@@ -8,7 +8,7 @@ const config = {
     token: "9f3c8b1a-2d7e-4a4d-91e3-c9f621f7dcb1"
   },
   api: {
-    baseUrl: "https://api.mirandasoft.com.br",
+    baseUrl: "http://localhost:3000",
     timeout: 30000,
     retryAttempts: 3,
     useProxy: false,

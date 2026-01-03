@@ -333,6 +333,44 @@ class Core {
         console.timeEnd('fetchAPI');
         return responseData;
       }
+
+      // Request Direto (Sem Proxy)
+      const cleanBaseUrl = baseUrl.replace(/\/+$/, '');
+      const cleanUrl = url.replace(/^\/+/, '');
+      const fullUrl = `${cleanBaseUrl}/${cleanUrl}`;
+
+      console.log(`[API Request] ${verb} ${fullUrl}`, data);
+
+      const options = {
+        method: verb,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${config?.api?.token}` || '____STANDBY____',
+        },
+        mode: 'cors',
+        credentials: 'include'
+      };
+
+      // Só adiciona o body se não for GET
+      if (verb !== 'GET') {
+        options.body = JSON.stringify(data);
+      }
+
+      const res = await fetch(fullUrl, options);
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        // Se for 404, retorna o erro do backend se existir
+        if (errorData.error) {
+          return errorData;
+        }
+        throw new Error(`API Error: ${res.status} ${res.statusText}`);
+      }
+
+      const responseData = await res.json();
+      console.log(`[API Response] ${verb} ${url}:`, responseData);
+      console.timeEnd('fetchAPI');
+      return responseData;
     } catch (error) {
       // Mensagens de erro mais específicas baseadas no tipo de erro
       let errorMessage = 'Erro ao acessar o servidor. Por favor, tente novamente mais tarde.';
