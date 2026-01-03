@@ -1,0 +1,106 @@
+<section class="docs py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <header class="text-center mb-5">
+          <p class="badge bg-light text-primary text-uppercase fw-semibold">Documentação</p>
+          <h1 class="display-5 fw-bold">Como o Framework Frontend funciona</h1>
+          <p class="lead text-muted">Um resumo da arquitetura, fluxo de trabalho e boas práticas para construir produtos com HTML + JavaScript puro.</p>
+        </header>
+
+        <article class="doc-card mb-4">
+          <h2>Visão geral</h2>
+          <p>
+            O Framework Frontend é um kit opinado para montar single page applications leves. Ele aposta em arquivos estáticos,
+            consumo direto de APIs e um CMS embutido que escreve no <code>localStorage</code>. O resultado é um projeto que roda
+            desde um simples <code>python -m http.server</code> até hospedagens robustas.
+          </p>
+          <ul>
+            <li>Router baseado em <code>history.pushState</code> + HTML parcial.</li>
+            <li>Componentes em HTML (fetch) ou JS (classe <code>Component</code>).</li>
+            <li>Assets vendors versionados na pasta <code>src/assets/vendor</code>.</li>
+          </ul>
+        </article>
+
+        <article class="doc-card mb-4">
+          <h2>Estrutura</h2>
+          <pre class="bg-dark text-white rounded p-3 small"><code>src/
+├── components/      # Cabeçalho, rodapé, seções reutilizáveis
+├── core/            # Router, Component, Skeleton, helpers
+├── data/            # Conteúdos mock (blog, cms)
+├── pages/           # HTML carregado pelo SPA
+├── services/        # ContentService e integrações futuras
+└── assets/
+    ├── css/         # Temas e overrides
+    └── vendor/      # Bootstrap, Swiper, Icons, etc</code></pre>
+          <p>
+            Ao navegar para <code>/contact</code>, o Core busca <code>src/pages/contact.html</code>,
+            injeta no <code>#root</code> e reexecuta os componentes daquele fragmento. Tudo funciona
+            em conjunto com o CMS, que mantém o conteúdo sincronizado.
+          </p>
+        </article>
+
+        <article class="doc-card mb-4">
+          <h2>Fluxo de desenvolvimento</h2>
+          <ol>
+            <li>Clone o projeto e rode um servidor estático local.</li>
+            <li>Edite os textos via <code>/cms</code> ou diretamente nos arquivos em <code>src/pages</code>.</li>
+            <li>Para novos componentes, use <code>Component.register('nome')</code> e coloque <code>&lt;div data-component="nome"&gt;</code> no HTML.</li>
+            <li>Consuma APIs com <code>core.fetchAPI</code> para herdar cabeçalhos e tratamento de erro.</li>
+          </ol>
+        </article>
+
+        <article class="doc-card mb-4">
+          <h2>Boas práticas</h2>
+          <ul>
+            <li>Centralize todas as URLs em <code>src/config/config.js</code>.</li>
+            <li>Use <code>core.showSkeleton</code> enquanto carrega dados.</li>
+            <li>Evite duplicar vendors: use os arquivos em <code>src/assets/vendor</code>.</li>
+            <li>Versione os JSON exportados do CMS para rastrear alterações de conteúdo.</li>
+            <li>Se precisar de múltiplos idiomas, salve diferentes arquivos no CMS e carregue conforme o contexto.</li>
+          </ul>
+        </article>
+
+        <article class="doc-card">
+          <h2>Próximos passos</h2>
+          <p>
+            Explore o blog para guias específicos, use a página de materiais para baixar snippets prontos
+            e abra issues no GitHub caso queira contribuir. O framework é deliberadamente simples:
+            quanto mais você o personaliza, mais fácil fica de manter.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mt-3">
+            <a href="/" class="btn btn-primary"><i class="bi bi-arrow-left me-2"></i>Voltar para Home</a>
+            <a href="/materials" class="btn btn-outline-primary">Ir para Recursos</a>
+            <a href="https://github.com/your-repo/framework-frontend" target="_blank" rel="noreferrer" class="btn btn-outline-secondary">
+              <i class="bi bi-github me-2"></i>GitHub
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.doc-card {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+.doc-card h2 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.doc-card ul,
+.doc-card ol {
+  margin-left: 1.5rem;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+</style>

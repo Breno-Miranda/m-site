@@ -1,0 +1,113 @@
+<!-- Main Header -->
+<header class="dev-header">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="/">
+        <img src="/src/assets/images/logo.png" alt="Miranda Soft" style="height: 40px; width: auto;">
+        <span>Miranda<span class="text-gradient">Soft</span></span>
+      </a>
+
+      <!-- Mobile Toggle Button -->
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <i class="bi bi-list" style="font-size: 1.75rem;"></i>
+      </button>
+
+      <!-- Navigation Menu -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="/apps">Apps</a></li>
+          <li class="nav-item"><a class="nav-link" href="#solucoes">Soluções</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
+          <li class="nav-item ms-lg-3">
+            <a class="dev-btn dev-btn-primary" href="https://wa.me/5584988330532" target="_blank" rel="noreferrer">
+              <i class="bi bi-whatsapp"></i>
+              Fale Conosco
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .dev-header .navbar {
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+    padding: 16px 0;
+    transition: all 0.3s ease;
+  }
+
+  .dev-header .navbar.scrolled {
+    background: rgba(10, 10, 15, 0.95);
+    padding: 12px 0;
+  }
+
+  .dev-header .navbar-brand {
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+    color: #f8fafc !important;
+  }
+
+  .dev-header .nav-link {
+    font-weight: 500;
+    color: #94a3b8 !important;
+    padding: 8px 16px !important;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .dev-header .nav-link:hover {
+    color: #f8fafc !important;
+    background: rgba(99, 102, 241, 0.1);
+  }
+
+  .dev-header .dev-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  @media (max-width: 991.98px) {
+    .dev-header .navbar-collapse {
+      background: rgba(26, 26, 37, 0.98);
+      backdrop-filter: blur(20px);
+      padding: 24px;
+      border-radius: 16px;
+      margin-top: 16px;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+    }
+
+    .dev-header .nav-link {
+      padding: 12px 16px !important;
+    }
+
+    .dev-header .dev-btn {
+      width: 100%;
+      justify-content: center;
+      margin-top: 12px;
+    }
+  }
+</style>
+
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.dev-header .navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+</script>

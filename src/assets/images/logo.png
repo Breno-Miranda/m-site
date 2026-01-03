@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang=pt-BR><head><title>MSoft - Soluções Tecnológicas Inovadoras</title><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0"><meta name=format-detection content="telephone=no"><meta name=author content=MSoft><meta name=keywords content="software, tecnologia, desenvolvimento, inovação, soluções digitais, msoft"><meta name=description content="MSoft - Empresa líder em desenvolvimento de software e soluções tecnológicas inovadoras para transformar seu negócio."><meta property=og:type content=website><meta content=https://msoft.com.br/ property=og:url><meta property=og:title content=MSoft><meta property=og:description content="Soluções tecnológicas inovadoras para transformar seu negócio"><meta property=og:image content=/assets/images/og-image.jpg><meta property=twitter:card content=summary_large_image><meta content=https://msoft.com.br/ property=twitter:url><meta property=twitter:title content=MSoft><meta property=twitter:description content="Soluções tecnológicas inovadoras para transformar seu negócio"><meta property=twitter:image content=/assets/images/og-image.jpg><link rel=icon type=image/x-icon href=/assets/vendor/favicon/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/assets/vendor/favicon/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/assets/vendor/favicon/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/assets/vendor/favicon/favicon-16x16.png><link rel=manifest href=/assets/vendor/favicon/site.webmanifest><link rel=preload href=/assets/vendor/css/style.css as=style><link rel=preload href=/src/core/core.js as=script><link href=/assets/vendor/css/style.css rel=stylesheet><link href=/assets/vendor/css/techsoft-theme.css rel=stylesheet><link href=/assets/vendor/css/bootstrap.min.css rel=stylesheet><link href=/assets/vendor/css/bootstrap-icons.css rel=stylesheet><link href=/assets/vendor/css/swiper-bundle.min.css rel=stylesheet><link href=/assets/vendor/css/skeleton.css rel=stylesheet><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel=stylesheet><script type=application/ld+json>
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "MSoft",
+    "description": "Empresa líder em desenvolvimento de software e soluções tecnológicas inovadoras",
+    "url": "https://msoft.com.br",
+    "logo": "https://msoft.com.br/assets/images/logo.png",
+    "taxID": "37.704.330/0001-78",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+55-84-98833-0532",
+      "contactType": "customer service",
+      "email": "contato@msoft.com.br"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Vereador Mauricio Fernandes, 142, Loja A",
+      "addressLocality": "São Gonçalo do Amarante",
+      "addressRegion": "RN",
+      "postalCode": "59296-274",
+      "addressCountry": "BR"
+    },
+    "sameAs": [
+      "https://linkedin.com/company/msoft",
+      "https://github.com/msoft"
+    ]
+  }
+  </script></head><body><div id=toast-container class="position-fixed top-0 end-0 p-3" style="z-index: 9999;"></div><div id=loading-indicator class="position-fixed top-50 start-50 translate-middle" style="display: none; z-index: 9998;"><div class="spinner-border text-primary" role=status><span class=visually-hidden>Carregando...</span></div></div><div id=head data-component=header><div data-component=skeleton></div></div><div id=root><div data-component=skeleton></div></div><div id=modal data-component=modal></div><div id=footer data-component=footer><div data-component=skeleton></div></div><script src=/assets/vendor/js/jquery-3.7.1.min.js></script><script src=/assets/vendor/js/bootstrap.bundle.min.js></script><script src=/assets/vendor/js/swiper-bundle.min.js></script><script src=/assets/vendor/js/papaparse.min.js></script><script src=/assets/vendor/js/marked.min.js></script><script src=/src/config/env.js></script><script src=/src/utils/debug.js></script><script src=/src/config/config.js></script><script src=/src/config/security.js></script><script src=/src/utils/validator.js></script><script src=/src/utils/url-processor.js></script><script src=/src/core/component.js></script><script src=/src/core/helpers.js></script><script src=/src/core/skeleton.js></script><script src=/src/core/core.js></script><script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        // Usa caminho absoluto resolvido para o service worker
+        const swPath = window.config?.basePath?.resolve('/src/config/sw.js') || '/src/config/sw.js';
+        navigator.serviceWorker.register(swPath)
+          .then((registration) => {
+            window.Debug?.log('SW registered: ', registration);
+          })
+          .catch((registrationError) => {
+            window.Debug?.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+  </script><script>
+    // Tratamento de erros de carregamento de scripts
+    window.addEventListener('error', (event) => {
+      // Ignora erros de CORS em scripts externos
+      if (event.target && event.target.tagName === 'SCRIPT' && event.target.src) {
+        console.warn(`[Script Error] Falha ao carregar script: ${event.target.src}`, event.error);
+        return;
+      }
+      
+      console.error('Global error:', event.error);
+      if (window.core && window.core.toast) {
+        window.core.toast('Ocorreu um erro inesperado. Tente recarregar a página.', 'error');
+      }
+    });
+
+    window.addEventListener('unhandledrejection', (event) => {
+      console.error('Unhandled promise rejection:', event.reason);
+      if (window.core && window.core.toast) {
+        window.core.toast('Erro na aplicação. Tente novamente.', 'error');
+      }
+    });
+  </script><script>
+    // Monitora métricas de performance
+    if ('PerformanceObserver' in window) {
+      const observer = new PerformanceObserver((list) => {
+              for (const entry of list.getEntries()) {
+        if (entry.entryType === 'navigation') {
+          window.Debug?.log('Page Load Time:', entry.loadEventEnd - entry.loadEventStart);
+        }
+      }
+      });
+      observer.observe({ entryTypes: ['navigation'] });
+    }
+  </script><script>
+    // Carregamento dinâmico de vendors definidos em window.config.cdn
+    (function() {
+      if (!window.config || !window.config.cdn) return;
+      // CSS
+      (window.config.cdn.css || []).forEach(function(href) {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.appendChild(link);
+      });
+      // JS
+      (window.config.cdn.js || []).forEach(function(src) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = false;
+        document.head.appendChild(script);
+      });
+    })();
+  </script><script>
+    // Testa o processador após um tempo para garantir que tudo foi carregado
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        if (window.UrlProcessor) {
+          console.log('[Test] Testando processador de URLs...');
+          const testResult = window.UrlProcessor.test();
+          console.log('[Test] Resultado do teste:', testResult);
+          
+          // Verifica se há links processados
+          const links = document.querySelectorAll('a[href^="/"]');
+          console.log('[Test] Links absolutos encontrados:', links.length);
+          
+          links.forEach((link, index) => {
+            console.log(`[Test] Link ${index + 1}:`, link.getAttribute('href'));
+          });
+        } else {
+          console.error('[Test] Processador de URLs não encontrado!');
+        }
+      }, 1000);
+    });
+  </script></body></html>

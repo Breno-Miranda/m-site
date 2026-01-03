@@ -1,0 +1,296 @@
+<footer class="dev-footer-section">
+  <div class="container">
+    <div class="row g-5 mb-5">
+      <!-- Brand & Description -->
+      <!-- Brand & Description -->
+      <div class="col-lg-5 col-md-6">
+        <a href="/" class="footer-brand d-flex align-items-center gap-2 mb-4">
+          <img src="/src/assets/images/logo.png" alt="Miranda Soft" style="height: 40px; width: auto;">
+          <span>Miranda<span class="text-accent">Soft</span></span>
+        </a>
+        <p class="footer-description">
+          Empresa líder em desenvolvimento de software e soluções tecnológicas inovadoras,
+          comprometida em transformar o seu negócio através da tecnologia.
+        </p>
+        <div class="footer-social mt-4">
+          <a href="https://linkedin.com/company/msoft" target="_blank" rel="noreferrer" class="social-link">
+            <i class="bi bi-linkedin"></i>
+          </a>
+          <a href="https://github.com/msoft" target="_blank" rel="noreferrer" class="social-link">
+            <i class="bi bi-github"></i>
+          </a>
+          <a href="mailto:contato@msoft.com.br" class="social-link">
+            <i class="bi bi-envelope-fill"></i>
+          </a>
+          <a href="https://wa.me/5584988330532" class="social-link">
+            <i class="bi bi-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="footer-title">Navegação</h6>
+        <ul class="footer-links">
+          <li><a href="#solucoes">Soluções</a></li>
+          <li><a href="#sobre">Sobre Nós</a></li>
+          <li><a href="/apps">Apps</a></li>
+          <li id="footer-auth-item"><a href="/login"><i class="bi bi-lock-fill me-1"></i> Área do Cliente</a></li>
+          <li><a href="#contact">Fale Conosco</a></li>
+        </ul>
+      </div>
+
+      <!-- Technologies -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="footer-title">Expertise</h6>
+        <ul class="footer-links">
+          <li><span>Desenvolvimento Web</span></li>
+          <li><span>Apps Mobile</span></li>
+          <li><span>Consultoria TI</span></li>
+          <li><span>Cloud Computing</span></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-lg-3 col-md-6">
+        <h6 class="footer-title">Contato</h6>
+        <ul class="footer-contact">
+          <li>
+            <i class="bi bi-envelope-fill"></i>
+            <a href="mailto:contato@msoft.com.br">contato@msoft.com.br</a>
+          </li>
+          <li>
+            <i class="bi bi-whatsapp"></i>
+            <a href="https://wa.me/5584988330532">(84) 98833-0532</a>
+          </li>
+          <li>
+            <i class="bi bi-geo-alt-fill"></i>
+            <span>São Gonçalo do Amarante - RN</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p class="copyright">
+            © 2025 Miranda Soft. Todos os direitos reservados. CNPJ: 37.704.330/0001-78
+          </p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p class="made-with">
+            Tecnologia com <i class="bi bi-heart-fill text-danger"></i>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .dev-footer-section {
+    background: #0a0a0f;
+    padding: 80px 0 30px;
+    border-top: 1px solid rgba(99, 102, 241, 0.1);
+  }
+
+  .footer-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f8fafc;
+    text-decoration: none;
+  }
+
+  .footer-brand i {
+    font-size: 1.75rem;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .footer-brand .text-accent {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .footer-description {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 400px;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 12px;
+  }
+
+  .social-link {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 12px;
+    color: #94a3b8;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-link:hover {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: #6366f1;
+    color: #f8fafc;
+    transform: translateY(-3px);
+  }
+
+  .footer-title {
+    color: #f8fafc;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border-radius: 2px;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 12px;
+  }
+
+  .footer-links a,
+  .footer-links span {
+    color: #64748b;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover {
+    color: #6366f1;
+  }
+
+  .footer-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+
+  .footer-contact li i {
+    color: #6366f1;
+    font-size: 1rem;
+    margin-top: 2px;
+  }
+
+  .footer-contact a {
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-contact a:hover {
+    color: #f8fafc;
+  }
+
+  .footer-bottom {
+    padding-top: 30px;
+    border-top: 1px solid rgba(99, 102, 241, 0.1);
+  }
+
+  .copyright,
+  .made-with {
+    color: #475569;
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .made-with i {
+    animation: heartbeat 1.5s ease infinite;
+  }
+
+  @keyframes heartbeat {
+
+    0%,
+    100% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .dev-footer-section {
+      padding: 60px 0 24px;
+    }
+
+    .footer-bottom .row>div {
+      text-align: center !important;
+      margin-bottom: 8px;
+    }
+  }
+</style>
+
+<script>
+  // Auth Footer Logic
+  (function updateFooterNav() {
+    const footerAuthItem = document.getElementById('footer-auth-item');
+    if (!footerAuthItem) return;
+
+    const auth = window.authService;
+    // Check immediately
+    update();
+
+    // Listen for changes
+    window.addEventListener('auth-change', update);
+
+    function update() {
+      if (auth && auth.isAuthenticated()) {
+        const user = auth.getUser();
+        let dashboardLink = '/premium';
+        let label = 'Minha Conta';
+
+        if (user.role === 'admin') {
+          dashboardLink = '/admin-cms';
+          label = 'Admin CMS';
+        }
+
+        footerAuthItem.innerHTML = `<a href="${dashboardLink}" class="text-warning"><i class="bi bi-speedometer2 me-1"></i> ${label}</a>`;
+      } else {
+        footerAuthItem.innerHTML = `<a href="/login"><i class="bi bi-lock-fill me-1"></i> Área do Cliente</a>`;
+      }
+    }
+  })();
+</script>

@@ -1,0 +1,86 @@
+<section class="dev-section pt-5 mt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card bg-dark border-secondary p-4 shadow-lg">
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <h3 class="fw-bold mb-1">Bem-vindo de volta!</h3>
+                            <p class="text-muted">Acesse sua conta para continuar</p>
+                        </div>
+
+                        <form id="login-form">
+                            <div class="mb-3">
+                                <label class="form-label text-muted">Email</label>
+                                <input type="email" class="form-control bg-dark border-secondary text-white" id="email"
+                                    required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label text-muted">Senha</label>
+                                <input type="password" class="form-control bg-dark border-secondary text-white"
+                                    id="password" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 py-2 mb-3">
+                                <span id="login-btn-text">Entrar</span>
+                                <div id="login-spinner" class="spinner-border spinner-border-sm ms-2" role="status"
+                                    style="display: none;"></div>
+                            </button>
+                        </form>
+
+                        <div class="text-center mt-4 border-top border-secondary pt-3">
+                            <p class="text-muted small">Ainda não tem conta? Entre em contato com o administrador.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function () {
+        const form = document.getElementById('login-form');
+        const btnText = document.getElementById('login-btn-text');
+        const spinner = document.getElementById('login-spinner');
+
+        // Redirect if already logged in
+        if (window.authService && window.authService.isAuthenticated()) {
+            window.core.navigate('premium');
+            return;
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // UI Loading State
+            btnText.textContent = 'Carregando...';
+            spinner.style.display = 'inline-block';
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+
+            try {
+                await window.authService.login(email, password);
+                window.core.toast('Login realizado com sucesso!', 'success');
+
+                // Redirect based on role
+                const user = window.authService.getUser();
+                if (user.role === 'admin') {
+                    window.core.navigate('/admin-cms');
+                } else {
+                    window.core.navigate('/premium');
+                }
+
+            } catch (error) {
+                window.core.toast(error.message || 'Erro ao fazer login', 'error');
+                // Reset UI
+                btnText.textContent = 'Entrar';
+                spinner.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        });
+    })();
+</script>

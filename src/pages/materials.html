@@ -1,0 +1,255 @@
+<section class="resources-page py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center mb-5">
+          <p class="badge bg-light text-primary text-uppercase fw-semibold">Recursos oficiais</p>
+          <h1 class="display-5 fw-bold mb-3">Entenda o Framework Frontend de ponta a ponta</h1>
+          <p class="lead text-muted">
+            Este hub reúne guias práticos, snippets e checklists para você construir e manter projetos
+            com o Framework Frontend sem depender de ferramentas externas.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Start -->
+    <div class="row g-4 mb-5">
+      <div class="col-12">
+        <h2 class="h3 mb-3">1. Primeiros passos</h2>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <div class="icon-circle bg-primary-subtle text-primary mb-3">
+              <i class="bi bi-download"></i>
+            </div>
+            <h5>Baixe e abra</h5>
+            <p class="text-muted">Clone o repositório ou baixe o ZIP, abra o <code>index.html</code> em qualquer servidor estático e já navegue.</p>
+            <ul class="list-unstyled small mb-0">
+              <li>• Sem dependências</li>
+              <li>• Bootstrap, Swiper, Icons já inclusos</li>
+              <li>• Funciona offline</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <div class="icon-circle bg-success-subtle text-success mb-3">
+              <i class="bi bi-braces"></i>
+            </div>
+            <h5>Customize o conteúdo</h5>
+            <p class="text-muted">Abra <code>/cms</code> e edite hero, cards, depoimentos e CTA. Tudo vai direto para o <code>localStorage</code>.</p>
+            <ul class="list-unstyled small mb-0">
+              <li>• Exportação em JSON</li>
+              <li>• Reset para default</li>
+              <li>• Atualização instantânea</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <div class="icon-circle bg-warning-subtle text-warning mb-3">
+              <i class="bi bi-rocket-takeoff"></i>
+            </div>
+            <h5>Publique</h5>
+            <p class="text-muted">Envie a pasta para qualquer serviço de hospedagem estática (Vercel, Netlify, S3, FTP tradicional).</p>
+            <ul class="list-unstyled small mb-0">
+              <li>• Sem CI/CD obrigatório</li>
+              <li>• Cache control em CDN recomendado</li>
+              <li>• Pode rodar dentro de CMSs headless</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Architecture -->
+    <div class="row g-4 mb-5">
+      <div class="col-12">
+        <h2 class="h3 mb-3">2. Arquitetura em camadas</h2>
+      </div>
+      <div class="col-lg-6">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h5>Core</h5>
+            <p class="text-muted">Responsável por roteamento, carregamento de páginas, skeleton e helpers globais.</p>
+            <table class="table table-sm">
+              <tbody>
+                <tr><td class="fw-semibold">core.js</td><td>Router + estado + fetchAPI</td></tr>
+                <tr><td class="fw-semibold">component.js</td><td>Classe base para componentes JS</td></tr>
+                <tr><td class="fw-semibold">skeleton.js</td><td>Placeholder universal</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h5>Conteúdo + Serviços</h5>
+            <p class="text-muted">Tudo que muda com frequência fica desacoplado em <code>src/data</code> e <code>src/services</code>.</p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">ContentService (localStorage + eventos)</li>
+              <li class="list-group-item">cms-content (seed utilizado no primeiro acesso)</li>
+              <li class="list-group-item">blog-posts (dados mockados para demos)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Snippets -->
+    <div class="row g-4 mb-5">
+      <div class="col-12">
+        <h2 class="h3 mb-3">3. Snippets úteis</h2>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h6 class="text-uppercase text-muted fw-semibold">Componentes HTML</h6>
+            <pre class="bg-dark text-white rounded p-3 small"><code>&lt;div data-component="faq"&gt;&lt;/div&gt;
+
+class FAQ extends Component {
+  constructor() {
+    super({ name: 'faq' });
+  }
+
+  render(target) {
+    target.innerHTML = '&lt;h3&gt;Perguntas frequentes&lt;/h3&gt;';
+  }
+}
+
+FAQ.register('faq');</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h6 class="text-uppercase text-muted fw-semibold">Chamada à API</h6>
+            <pre class="bg-dark text-white rounded p-3 small"><code>async function loadReleases() {
+  try {
+    const response = await core.fetchAPI('releases');
+    core.setData('release-list', template(response.data));
+  } catch (error) {
+    console.error(error);
+  }
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Downloads -->
+    <div class="row g-4 mb-5">
+      <div class="col-12">
+        <h2 class="h3 mb-3">4. Downloads recomendados</h2>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-primary border-1">
+          <div class="card-body">
+            <h5>Starter ZIP</h5>
+            <p class="text-muted">Versão atual do Framework com assets e CMS prontos.</p>
+            <a href="https://github.com/your-repo/framework-frontend/archive/refs/heads/main.zip" class="btn btn-primary w-100" target="_blank" rel="noreferrer">
+              <i class="bi bi-download me-2"></i>Baixar ZIP
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-success border-1">
+          <div class="card-body">
+            <h5>Conteúdo de exemplo</h5>
+            <p class="text-muted">Arquivo JSON do CMS com o conteúdo usado na home/demo.</p>
+            <a href="/src/data/cms-content.js" class="btn btn-success w-100">
+              <i class="bi bi-file-earmark-code me-2"></i>Ver JSON
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-info border-1">
+          <div class="card-body">
+            <h5>Snippets</h5>
+            <p class="text-muted">Coleção de componentes HTML/JS prontos para colar no projeto.</p>
+            <a href="https://github.com/your-repo/framework-frontend/tree/main/snippets" target="_blank" rel="noreferrer" class="btn btn-info w-100 text-white">
+              <i class="bi bi-boxes me-2"></i>Acessar snippets
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <h2 class="h3 mb-4">5. Perguntas frequentes</h2>
+            <div class="accordion" id="faq">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                    Posso usar com backends tradicionais?
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faq">
+                  <div class="accordion-body">
+                    Sim! Basta servir os arquivos estáticos e consumir sua API via <code>fetchAPI</code>. Já existe suporte a token, proxy e cookies.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                    Como mantenho versões diferentes de conteúdo?
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faq">
+                  <div class="accordion-body">
+                    Use o botão de exportação do CMS e versiona os arquivos JSON em um repositório. Para ambientes diferentes,
+                    importe o arquivo correspondente.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                    É possível integrar com Markdown?
+                  </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faq">
+                  <div class="accordion-body">
+                    Sim, o projeto já inclui a biblioteca <code>marked</code>. Basta importar o conteúdo e convertê-lo antes de renderizar no DOM.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.icon-circle {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+</style>

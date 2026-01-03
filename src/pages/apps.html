@@ -1,0 +1,377 @@
+<section class="dev-section pt-5 mt-5">
+    <div class="container">
+        <div class="dev-section-header text-center mb-5">
+            <span class="dev-section-badge">
+                <i class="bi bi-grid-fill"></i> Utilitários
+            </span>
+            <h2 class="dev-section-title">Super App Tools</h2>
+            <p class="dev-section-description">
+                Ferramentas úteis para o dia a dia, tudo em um só lugar.
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <!-- Password Generator -->
+            <div class="col-md-4 col-sm-6">
+                <div class="dev-skill-card h-100 p-4" onclick="openTool('password-gen')"
+                    style="cursor: pointer; transition: transform 0.3s;">
+                    <div class="dev-skill-icon mb-3">
+                        <i class="bi bi-key fs-1 text-primary"></i>
+                    </div>
+                    <h3 class="dev-skill-title mb-2">Gerador de Senha</h3>
+                    <p class="text-muted small">Crie senhas fortes e seguras com opções personalizáveis.</p>
+                </div>
+            </div>
+
+            <!-- Percentage Calculator -->
+            <div class="col-md-4 col-sm-6">
+                <div class="dev-skill-card h-100 p-4" onclick="openTool('percentage-calc')"
+                    style="cursor: pointer; transition: transform 0.3s;">
+                    <div class="dev-skill-icon mb-3">
+                        <i class="bi bi-percent fs-1 text-success"></i>
+                    </div>
+                    <h3 class="dev-skill-title mb-2">Calculadora de %</h3>
+                    <p class="text-muted small">Cálculos rápidos de porcentagem, desconto e aumento.</p>
+                </div>
+            </div>
+
+            <!-- CPF/CNPJ Generator -->
+            <div class="col-md-4 col-sm-6">
+                <div class="dev-skill-card h-100 p-4" onclick="openTool('doc-gen')"
+                    style="cursor: pointer; transition: transform 0.3s;">
+                    <div class="dev-skill-icon mb-3">
+                        <i class="bi bi-person-badge fs-1 text-info"></i>
+                    </div>
+                    <h3 class="dev-skill-title mb-2">Gerador CPF/CNPJ</h3>
+                    <p class="text-muted small">Gere e valide documentos para testes de desenvolvimento.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tool Display Area -->
+        <div id="tool-container" class="mt-5" style="display: none;">
+            <div class="card dev-card border-0 shadow-lg"
+                style="background: rgba(30, 30, 40, 0.95); backdrop-filter: blur(10px); border-radius: 16px;">
+                <div class="card-body p-5">
+                    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-dark pb-3">
+                        <h3 id="tool-title" class="m-0 fw-bold bg-gradient-primary text-white"></h3>
+                        <button class="btn btn-outline-danger btn-sm rounded-pill px-3" onclick="closeTool()">
+                            <i class="bi bi-x-lg"></i> Fechar
+                        </button>
+                    </div>
+                    <div id="tool-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .dev-skill-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.05);
+    }
+</style>
+
+<script>
+    // Ensure functions are global
+    window.openTool = function (toolId) {
+        const container = document.getElementById('tool-container');
+        const title = document.getElementById('tool-title');
+        const content = document.getElementById('tool-content');
+
+        container.style.display = 'block';
+
+        // Clear previous content
+        content.innerHTML = '';
+
+        if (toolId === 'password-gen') {
+            title.textContent = 'Gerador de Senha';
+            content.innerHTML = `
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control form-control-lg bg-dark text-white border-secondary" id="generated-password" readonly>
+                            <button class="btn btn-primary" onclick="window.copyPassword()">
+                                <i class="bi bi-clipboard"></i> Copiar
+                            </button>
+                        </div>
+                        
+                        <div class="card bg-dark border-secondary p-4">
+                            <div class="mb-4">
+                                <label class="form-label d-flex justify-content-between">
+                                    <span>Tamanho da Senha</span>
+                                    <span id="pwd-length-val" class="badge bg-primary">12</span>
+                                </label>
+                                <input type="range" class="form-range" min="4" max="32" value="12" id="pwd-length" 
+                                    oninput="document.getElementById('pwd-length-val').textContent = this.value; window.generatePassword()">
+                            </div>
+                            
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="pwd-upper" checked onchange="window.generatePassword()">
+                                        <label class="form-check-label">Maiúsculas (A-Z)</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="pwd-lower" checked onchange="window.generatePassword()">
+                                        <label class="form-check-label">Minúsculas (a-z)</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="pwd-numbers" checked onchange="window.generatePassword()">
+                                        <label class="form-check-label">Números (0-9)</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="pwd-special" checked onchange="window.generatePassword()">
+                                        <label class="form-check-label">Especiais (!@#)</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 mt-4">
+                                 <button class="btn btn-success btn-lg" onclick="window.generatePassword()">
+                                    <i class="bi bi-arrow-clockwise"></i> Gerar Nova Senha
+                                 </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            window.generatePassword();
+        } else if (toolId === 'percentage-calc') {
+            title.textContent = 'Calculadora de Porcentagem';
+            content.innerHTML = `
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card bg-dark border-secondary h-100">
+                            <div class="card-header border-secondary">
+                                <h5 class="m-0"><i class="bi bi-calculator"></i> Porcentagem de Valor</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted">Quanto é X% de Y?</p>
+                                <div class="row g-2 align-items-center mb-3">
+                                    <div class="col">
+                                        <input type="number" class="form-control bg-dark text-white border-secondary" placeholder="X" id="perc-1-x">
+                                    </div>
+                                    <div class="col-auto text-muted">% de</div>
+                                    <div class="col">
+                                        <input type="number" class="form-control bg-dark text-white border-secondary" placeholder="Y" id="perc-1-y">
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary w-100 mb-3" onclick="window.calcPerc1()">Calcular</button>
+                                <div class="alert alert-secondary text-center m-0 fs-5" id="perc-1-res">Resultado: -</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                         <div class="card bg-dark border-secondary h-100">
+                            <div class="card-header border-secondary">
+                                <h5 class="m-0"><i class="bi bi-percent"></i> Porcentagem Relativa</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted">X é qual % de Y?</p>
+                                <div class="row g-2 align-items-center mb-3">
+                                    <div class="col">
+                                        <input type="number" class="form-control bg-dark text-white border-secondary" placeholder="X" id="perc-2-x">
+                                    </div>
+                                    <div class="col-auto text-muted">é qual % de</div>
+                                    <div class="col">
+                                        <input type="number" class="form-control bg-dark text-white border-secondary" placeholder="Y" id="perc-2-y">
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary w-100 mb-3" onclick="window.calcPerc2()">Calcular</button>
+                                <div class="alert alert-secondary text-center m-0 fs-5" id="perc-2-res">Resultado: -</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else if (toolId === 'doc-gen') {
+            title.textContent = 'Gerador CPF/CNPJ';
+            content.innerHTML = `
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card bg-dark border-secondary h-100">
+                            <div class="card-header border-secondary d-flex justify-content-between align-items-center">
+                                <h5 class="m-0">CPF</h5>
+                                <div class="form-check form-switch m-0">
+                                    <input class="form-check-input" type="checkbox" id="cpf-mask" checked>
+                                    <label class="form-check-label small">Pontuação</label>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <button class="btn btn-primary w-100 mb-4 btn-lg" onclick="window.generateCPF()">
+                                    <i class="bi bi-person-plus"></i> Gerar CPF
+                                </button>
+                                <div class="input-group">
+                                    <input type="text" class="form-control text-center fs-4 bg-dark text-white border-secondary" id="cpf-result" readonly>
+                                    <button class="btn btn-outline-secondary" onclick="navigator.clipboard.writeText(document.getElementById('cpf-result').value)">
+                                        <i class="bi bi-clipboard"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card bg-dark border-secondary h-100">
+                            <div class="card-header border-secondary d-flex justify-content-between align-items-center">
+                                <h5 class="m-0">CNPJ</h5>
+                                <div class="form-check form-switch m-0">
+                                    <input class="form-check-input" type="checkbox" id="cnpj-mask" checked>
+                                    <label class="form-check-label small">Pontuação</label>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <button class="btn btn-info w-100 mb-4 btn-lg text-white" onclick="window.generateCNPJ()">
+                                    <i class="bi bi-building-add"></i> Gerar CNPJ
+                                </button>
+                                 <div class="input-group">
+                                    <input type="text" class="form-control text-center fs-5 bg-dark text-white border-secondary" id="cnpj-result" readonly>
+                                    <button class="btn btn-outline-secondary" onclick="navigator.clipboard.writeText(document.getElementById('cnpj-result').value)">
+                                        <i class="bi bi-clipboard"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    window.closeTool = function () {
+        document.getElementById('tool-container').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // --- Tool Logic ---
+
+    // Password Gen
+    window.generatePassword = function () {
+        const length = document.getElementById('pwd-length').value;
+        const upper = document.getElementById('pwd-upper').checked;
+        const lower = document.getElementById('pwd-lower').checked;
+        const numbers = document.getElementById('pwd-numbers').checked;
+        const special = document.getElementById('pwd-special').checked;
+
+        // Update badge
+        const badge = document.getElementById('pwd-length-val');
+        if (badge) badge.textContent = length;
+
+        let chars = '';
+        if (upper) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        if (lower) chars += 'abcdefghijklmnopqrstuvwxyz';
+        if (numbers) chars += '0123456789';
+        if (special) chars += '!@#$%^&*()_+{}[]|;:,.<>?';
+
+        if (chars === '') {
+            const el = document.getElementById('generated-password');
+            if (el) el.value = 'Selecione uma opção';
+            return;
+        };
+
+        let password = '';
+        for (let i = 0; i < length; i++) {
+            password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        const el = document.getElementById('generated-password');
+        if (el) el.value = password;
+    }
+
+    window.copyPassword = function () {
+        const copyText = document.getElementById("generated-password");
+        copyText.select();
+        document.execCommand("copy");
+        // Fallback or Toast
+        if (window.core && window.core.toast) {
+            window.core.toast('Senha copiada!', 'success');
+        } else {
+            alert('Copiado!');
+        }
+    }
+
+    // Percentage
+    window.calcPerc1 = function () {
+        const x = parseFloat(document.getElementById('perc-1-x').value);
+        const y = parseFloat(document.getElementById('perc-1-y').value);
+        if (!isNaN(x) && !isNaN(y)) {
+            const res = (x / 100) * y;
+            document.getElementById('perc-1-res').textContent = `Resultado: ${res.toLocaleString('pt-BR')}`;
+            document.getElementById('perc-1-res').className = "alert alert-success text-center m-0 fs-5";
+        }
+    }
+
+    window.calcPerc2 = function () {
+        const x = parseFloat(document.getElementById('perc-2-x').value);
+        const y = parseFloat(document.getElementById('perc-2-y').value);
+        if (!isNaN(x) && !isNaN(y) && y !== 0) {
+            const res = (x / y) * 100;
+            document.getElementById('perc-2-res').textContent = `Resultado: ${res.toFixed(2).replace('.', ',')}%`;
+            document.getElementById('perc-2-res').className = "alert alert-success text-center m-0 fs-5";
+        }
+    }
+
+    // Docs
+    window.generateCPF = function () {
+        const mask = document.getElementById('cpf-mask').checked;
+        const rnd = (n) => Math.round(Math.random() * n);
+        const n1 = rnd(9);
+        const n2 = rnd(9);
+        const n3 = rnd(9);
+        const n4 = rnd(9);
+        const n5 = rnd(9);
+        const n6 = rnd(9);
+        const n7 = rnd(9);
+        const n8 = rnd(9);
+        const n9 = rnd(9);
+        let d1 = n9 * 2 + n8 * 3 + n7 * 4 + n6 * 5 + n5 * 6 + n4 * 7 + n3 * 8 + n2 * 9 + n1 * 10;
+        d1 = 11 - (d1 % 11);
+        if (d1 >= 10) d1 = 0;
+        let d2 = d1 * 2 + n9 * 3 + n8 * 4 + n7 * 5 + n6 * 6 + n5 * 7 + n4 * 8 + n3 * 9 + n2 * 10 + n1 * 11;
+        d2 = 11 - (d2 % 11);
+        if (d2 >= 10) d2 = 0;
+
+        if (mask) {
+            document.getElementById('cpf-result').value = `${n1}${n2}${n3}.${n4}${n5}${n6}.${n7}${n8}${n9}-${d1}${d2}`;
+        } else {
+            document.getElementById('cpf-result').value = `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${n9}${d1}${d2}`;
+        }
+    }
+
+    window.generateCNPJ = function () {
+        const mask = document.getElementById('cnpj-mask').checked;
+        const rnd = (n) => Math.round(Math.random() * n);
+        const n1 = rnd(9);
+        const n2 = rnd(9);
+        const n3 = rnd(9);
+        const n4 = rnd(9);
+        const n5 = rnd(9);
+        const n6 = rnd(9);
+        const n7 = rnd(9);
+        const n8 = rnd(9);
+        const n9 = 0;
+        const n10 = 0;
+        const n11 = 0;
+        const n12 = 1;
+        let d1 = n12 * 2 + n11 * 3 + n10 * 4 + n9 * 5 + n8 * 6 + n7 * 7 + n6 * 8 + n5 * 9 + n4 * 2 + n3 * 3 + n2 * 4 + n1 * 5;
+        d1 = 11 - (d1 % 11);
+        if (d1 >= 10) d1 = 0;
+        let d2 = d1 * 2 + n12 * 3 + n11 * 4 + n10 * 5 + n9 * 6 + n8 * 7 + n7 * 8 + n6 * 9 + n5 * 2 + n4 * 3 + n3 * 4 + n2 * 5 + n1 * 6;
+        d2 = 11 - (d2 % 11);
+        if (d2 >= 10) d2 = 0;
+
+        if (mask) {
+            document.getElementById('cnpj-result').value = `${n1}${n2}.${n3}${n4}${n5}.${n6}${n7}${n8}/${n9}${n10}${n11}${n12}-${d1}${d2}`;
+        } else {
+            document.getElementById('cnpj-result').value = `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${n9}${n10}${n11}${n12}${d1}${d2}`;
+        }
+    }
+</script>

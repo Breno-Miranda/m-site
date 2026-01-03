@@ -1,0 +1,159 @@
+<section class="dev-section pt-5 mt-5">
+    <div class="container-fluid px-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="dev-section-title m-0">CMS Dashboard</h2>
+                <p class="text-muted m-0">Gerenciamento de Conteúdo e Usuários</p>
+            </div>
+            <div>
+                <span class="badge bg-success me-2">Admin Mode</span>
+                <button class="btn btn-outline-danger btn-sm" onclick="window.authService.logout()">Sair</button>
+            </div>
+        </div>
+
+        <!-- Protected Content Check -->
+        <div id="admin-content" style="display: none;">
+            <div class="row g-4">
+                <!-- Sidebar / Stats -->
+                <div class="col-md-3">
+                    <div class="card bg-dark border-secondary mb-3">
+                        <div class="card-body">
+                            <h6 class="text-muted">Usuários Totais</h6>
+                            <h2 class="fw-bold" id="total-users">-</h2>
+                        </div>
+                    </div>
+
+                    <div class="list-group bg-dark">
+                        <button class="list-group-item list-group-item-action active bg-primary border-primary"
+                            onclick="loadTab('users')">Gestão de Usuários</button>
+                        <button class="list-group-item list-group-item-action bg-dark text-white border-secondary"
+                            onclick="loadTab('content')">Conteúdo do Site</button>
+                        <button class="list-group-item list-group-item-action bg-dark text-white border-secondary"
+                            onclick="loadTab('logs')">Logs do Sistema</button>
+                    </div>
+                </div>
+
+                <!-- Main Area -->
+                <div class="col-md-9">
+                    <div class="card bg-dark border-secondary">
+                        <div class="card-body" id="tab-content">
+                            <!-- Content injected via JS -->
+                            <div class="text-center py-5">
+                                <div class="spinner-border text-primary" role="status"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Access Denied -->
+        <div id="access-denied" class="text-center py-5" style="display: none;">
+            <i class="bi bi-shield-lock-fill fs-1 text-danger mb-3"></i>
+            <h3>Acesso Negado</h3>
+            <p class="text-muted">Esta área é exclusiva para administradores.</p>
+            <a href="/" class="btn btn-secondary mt-3">Voltar para Home</a>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    (function () {
+        // Auth Check
+        const auth = window.authService;
+        const content = document.getElementById('admin-content');
+        const denied = document.getElementById('access-denied');
+
+        // Simple Router for Tabs
+        window.loadTab = async function (tab) {
+            // Update Active State
+            document.querySelectorAll('.list-group-item').forEach(el => el.classList.remove('active', 'bg-primary', 'border-primary'));
+            document.querySelectorAll('.list-group-item').forEach(el => el.classList.add('bg-dark', 'text-white', 'border-secondary'));
+            // Find button that called this (hacky but works for now)
+            const activeBtn = Array.from(document.querySelectorAll('.list-group-item')).find(el => el.textContent.includes(tab === 'users' ? 'Usuários' : (tab === 'content' ? 'Conteúdo' : 'Logs')));
+            if (activeBtn) {
+                activeBtn.classList.add('active', 'bg-primary', 'border-primary');
+                activeBtn.classList.remove('bg-dark', 'text-white', 'border-secondary');
+            }
+
+            const container = document.getElementById('tab-content');
+            container.innerHTML = '<div class="text-center py-5"><div class="spinner-border text-primary"></div></div>';
+
+            if (tab === 'users') {
+                try {
+                    // Fetch users from API (Needs auth header)
+                    // Note: fetchAPI needs to relay the token. Currently config.js has a static token. 
+                    // Ideally authService should intercept requests or core.fetchAPI should read from localStorage.
+                    // For now assuming the admin endpoint works or mocking data.
+
+                    // MOCK DATA for Demo since backend might not have data yet
+                    const mockUsers = [
+                        { id: 1, name: 'Admin User', email: 'admin@msoft.com.br', role: 'admin', status: 'active' },
+                        { id: 2, name: 'Cliente Premium', email: 'cliente@email.com', role: 'premium', status: 'active' },
+                        { id: 3, name: 'User Free', email: 'user@email.com', role: 'user', status: 'inactive' },
+                    ];
+
+                    let html = `
+                    <h4 class="mb-4">Gestão de Usuários</h4>
+                    <div class="table-responsive">
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                    mockUsers.forEach(u => {
+                        html += `
+                        <tr>
+                            <td>${u.name}</td>
+                            <td>${u.email}</td>
+                            <td><span class="badge bg-${u.role === 'admin' ? 'danger' : (u.role === 'premium' ? 'warning' : 'secondary')}">${u.role}</span></td>
+                            <td><span class="badge bg-${u.status === 'active' ? 'success' : 'secondary'}">${u.status}</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-light"><i class="bi bi-pencil"></i></button>
+                            </td>
+                        </tr>
+                    `;
+                    });
+
+                    html += '</tbody></table></div>';
+                    container.innerHTML = html;
+                    document.getElementById('total-users').textContent = mockUsers.length;
+
+                } catch (e) {
+                    container.innerHTML = `<div class="alert alert-danger">Erro ao carregar usuários: ${e.message}</div>`;
+                }
+            } else if (tab === 'content') {
+                container.innerHTML = `
+                <h4 class="mb-4">Gerenciador de Conteúdo</h4>
+                <p>Edite os textos da Home Page, Sobre e Soluções aqui.</p>
+                <div class="alert alert-info">Funcionalidade em desenvolvimento.</div>
+             `;
+            } else {
+                container.innerHTML = `
+                <h4 class="mb-4">Logs do Sistema</h4>
+                <div class="bg-black p-3 rounded font-monospace small" style="height: 400px; overflow-y: auto;">
+                    <div class="text-success">[INFO] 2025-01-02 23:45:12 - Server started</div>
+                    <div class="text-info">[AUTH] 2025-01-02 23:50:22 - Admin login success</div>
+                    <div class="text-warning">[WARN] 2025-01-02 23:55:00 - High memory usage detected</div>
+                </div>
+             `;
+            }
+        }
+
+        if (auth && auth.isAuthenticated() && auth.hasRole('admin')) {
+            content.style.display = 'block';
+            loadTab('users');
+        } else {
+            denied.style.display = 'block';
+        }
+    })();
+</script>

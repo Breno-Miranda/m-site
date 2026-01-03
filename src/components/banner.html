@@ -1,0 +1,93 @@
+<section class="framework-hero position-relative overflow-hidden text-white">
+  <div class="hero-grid"></div>
+  <div class="container position-relative py-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <p class="badge bg-white text-primary fw-semibold text-uppercase mb-3">Framework Frontend</p>
+        <h1 class="display-4 fw-bold mb-4 animate__animated animate__fadeInDown">
+          Monte SPAs modernas com HTML puro
+        </h1>
+        <p class="lead mb-4 animate__animated animate__fadeIn">
+          Router, componentes, CMS e integrações prontos para uso. Sem build steps, sem dependências pesadas —
+          apenas abra o <code>index.html</code> e comece a criar.
+        </p>
+        <div class="d-flex flex-wrap gap-3 animate__animated animate__fadeInUp">
+          <a href="/#cta-section" class="btn btn-light btn-lg px-4">
+            <i class="bi bi-rocket-takeoff-fill me-2"></i>Começar agora
+          </a>
+          <a href="https://github.com/your-repo/framework-frontend" target="_blank" rel="noreferrer" class="btn btn-outline-light btn-lg px-4">
+            <i class="bi bi-github me-2"></i>Ver no GitHub
+          </a>
+        </div>
+        <div class="d-flex flex-wrap gap-4 mt-4 text-white-50 small">
+          <span><i class="bi bi-cpu me-2"></i>Zero bundler</span>
+          <span><i class="bi bi-wifi-off me-2"></i>Funciona offline</span>
+          <span><i class="bi bi-plug me-2"></i>API ready</span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="code-preview shadow-lg rounded-4 p-4 bg-dark-subtle">
+          <div class="d-flex justify-content-between mb-3">
+            <div class="d-flex gap-2">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="text-white-50 small">home.html</span>
+          </div>
+          <pre class="mb-0"><code>&lt;div data-component="hero"&gt;&lt;/div&gt;
+
+window.core.registerComponent('hero', class extends Component {
+  render(target) {
+    target.innerHTML = `
+      &lt;h1&gt;Zero Build&lt;/h1&gt;
+      &lt;p&gt;Crie apps completos só com HTML.&lt;/p&gt;
+    `;
+  }
+});
+          </code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.framework-hero {
+  background: radial-gradient(circle at top, #4e54c8, #242848 70%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+}
+
+.code-preview {
+  background: rgba(15, 15, 25, 0.9);
+  color: #f8f9fa;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.code-preview pre {
+  color: #e1eafc;
+  background: transparent;
+  border: none;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  white-space: pre-line;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: block;
+}
+
+.dot-red { background-color: #ff5f56; }
+.dot-yellow { background-color: #ffbd2e; }
+.dot-green { background-color: #27c93f; }
+</style>

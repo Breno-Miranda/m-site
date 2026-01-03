@@ -1,0 +1,50 @@
+<section>
+  <div class="container-lg">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-header d-flex flex-wrap justify-content-between my-4">
+          <h2 class="section-title">Todo Nossos Passeios</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="product-container"
+          class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- modal product -->
+<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Detalhes do Passeio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- Add modal content -->
+      <div id="product-details" class="modal-body">
+
+      </div>
+      <!-- End modal content -->
+      <div class="modal-footer">
+        <!-- Action Buttons -->
+        <div class="d-flex gap-3 mb-4">
+          <div class="input-group w-auto">
+            <button class="btn btn-outline-secondary" type="button" onclick="decrementQuantity()">-</button>
+            <input type="number" class="form-control text-center" id="quantity" value="1" min="1" style="width: 70px">
+            <button class="btn btn-outline-secondary" type="button" onclick="incrementQuantity()">+</button>
+          </div>
+          <button id="modalButtonAddcart" onclick="loadCore().cart().addToCart(event)" data-bs-dismiss="modal"
+            class="btn btn-primary flex-grow-1">
+            <i class="bi bi-cart-plus me-2"></i>
+            Adicionar ao Carrinho
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

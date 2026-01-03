@@ -1,0 +1,150 @@
+<!-- Blog Content with Ads Section -->
+<section class="blog-content py-4">
+    <div class="container-lg">
+        <div class="row">
+            <div class="col-12">
+                <div id="blog-content-container">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.blog-content {
+    background-color: #fff;
+}
+
+.blog-post-card {
+    transition: transform 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.blog-post-card:hover {
+    transform: translateY(-5px);
+}
+
+.blog-post-image {
+    height: 250px;
+    object-fit: cover;
+}
+
+.ad-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.ad-space {
+    border: 1px dashed #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.ad-space.horizontal {
+    min-height: 90px;
+}
+
+.ad-space.vertical {
+    min-height: 600px;
+}
+</style>
+
+<script type="module">
+import blogPosts from '/src/data/blog-posts.js';
+
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('blog-content-container');
+    let content = '';
+    
+    // Ad configuration
+    const adConfig = {
+        client: 'ca-pub-XXXXXXXXXXXXXXXX',
+        slots: {
+            horizontal: 'XXXXXXXXXX',
+            vertical: 'XXXXXXXXXX'
+        }
+    };
+
+    // Function to create ad HTML
+    const createAdHTML = (type) => `
+        <div class="ad-container">
+            <div class="ad-label text-center text-muted mb-2">Publicidade</div>
+            <div class="ad-space ${type} bg-light rounded p-2 text-center">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="${adConfig.client}"
+                    data-ad-slot="${adConfig.slots[type]}"
+                    data-ad-format="${type === 'horizontal' ? 'auto' : 'vertical'}"
+                    data-full-width-responsive="true"></ins>
+            </div>
+        </div>
+    `;
+
+    // Add initial horizontal ad
+    content += createAdHTML('horizontal');
+
+    // Add blog posts with ads in between
+    blogPosts.forEach((post, index) => {
+        const postDate = new Date(post.date).toLocaleDateString('pt-BR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Add post
+        content += `
+            <article class="card blog-post-card border-0 shadow-sm">
+                <img src="${post.image}" class="card-img-top blog-post-image" alt="${post.title}">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge bg-primary">${post.category}</span>
+                        <small class="text-muted">${postDate}</small>
+                    </div>
+                    <h5 class="card-title">${post.title}</h5>
+                    <p class="card-text text-muted">${post.excerpt}</p>
+                    <div class="d-flex gap-2 flex-wrap">
+                        ${post.tags.map(tag => `
+                            <span class="badge bg-light text-dark">#${tag}</span>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="card-footer bg-white border-0">
+                    <a href="/blog/${post.id}" class="btn btn-outline-primary w-100">
+                        Ler mais
+                    </a>
+                </div>
+            </article>
+        `;
+
+        // Add vertical ad after every 2 posts
+        if ((index + 1) % 2 === 0) {
+            content += createAdHTML('vertical');
+        }
+        // Add horizontal ad after every 3 posts
+        else if ((index + 1) % 3 === 0) {
+            content += createAdHTML('horizontal');
+        }
+    });
+
+    // Add final horizontal ad
+    content += createAdHTML('horizontal');
+
+    // Insert content
+    container.innerHTML = content;
+
+    // Initialize Google AdSense
+    (function() {
+        var script = document.createElement('script');
+        script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+        script.async = true;
+        document.head.appendChild(script);
+        
+        // Initialize ads
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    })();
+});
+</script> 
