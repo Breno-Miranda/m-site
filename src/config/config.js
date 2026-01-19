@@ -2,7 +2,7 @@
 const config = {
   app: {
     name: "Miranda Soft",
-    version: "0.10.11",
+    version: "0.10.29",
     environment: "development",
     debug: true,
     token: "9f3c8b1a-2d7e-4a4d-91e3-c9f621f7dcb1"
@@ -20,6 +20,7 @@ const config = {
     page404: "404",
     validPages: [
       'home',
+      'blog',
       'apps',
       'login',
       'premium',
@@ -37,7 +38,14 @@ const config = {
       'terms',
       'lgpd',
       'cookies',
-      '404'
+      '404',
+      'healthtech-dashboard',
+      'healthtech-patients',
+      'healthtech-formulas',
+      'marketplace',
+      'mcredential',
+      'profile',
+      'support'
     ]
   },
   components: {

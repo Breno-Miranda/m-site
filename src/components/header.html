@@ -4,7 +4,7 @@
     <div class="container">
       <!-- Logo -->
       <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="/">
-        <img src="/src/assets/images/logo.png" alt="Miranda Soft" style="height: 40px; width: auto;">
+        <!-- <img src="/src/assets/images/logo.png" alt="Miranda Soft" style="height: 40px; width: auto;"> -->
         <span>Miranda<span class="text-gradient">Soft</span></span>
       </a>
 
@@ -16,14 +16,17 @@
       <!-- Navigation Menu -->
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="/marketplace">Marketplace</a></li>
           <li class="nav-item"><a class="nav-link" href="/apps">Apps</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
           <li class="nav-item"><a class="nav-link" href="#solucoes">Soluções</a></li>
           <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="/support">Suporte</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
-          <li class="nav-item ms-lg-3">
-            <a class="dev-btn dev-btn-primary" href="https://wa.me/5584988330532" target="_blank" rel="noreferrer">
-              <i class="bi bi-whatsapp"></i>
-              Fale Conosco
+          <li class="nav-item ms-lg-3" id="header-auth-action">
+            <a class="dev-btn dev-btn-primary" href="/login">
+              <i class="bi bi-person-circle"></i>
+              Área do Cliente
             </a>
           </li>
         </ul>
@@ -37,7 +40,7 @@
     background: rgba(10, 10, 15, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
     padding: 16px 0;
     transition: all 0.3s ease;
   }
@@ -63,7 +66,7 @@
 
   .dev-header .nav-link:hover {
     color: #f8fafc !important;
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(59, 130, 246, 0.1);
   }
 
   .dev-header .dev-btn {
@@ -72,10 +75,30 @@
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #10b981 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* User Menu specific styles */
+  .header-user-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 50px;
+    background: rgba(59, 130, 246, 0.1);
+    color: white !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .header-user-btn:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: #3b82f6;
+    transform: translateY(-2px);
   }
 
   @media (max-width: 991.98px) {
@@ -85,7 +108,7 @@
       padding: 24px;
       border-radius: 16px;
       margin-top: 16px;
-      border: 1px solid rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.1);
     }
 
     .dev-header .nav-link {
@@ -97,6 +120,23 @@
       justify-content: center;
       margin-top: 12px;
     }
+  }
+
+  /* Dropdown Overrides */
+  .dropdown-menu {
+    background: rgba(20, 20, 25, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(59, 130, 246, 0.2) !important;
+    margin-top: 10px !important;
+  }
+
+  .dropdown-item {
+    transition: all 0.2s;
+  }
+
+  .dropdown-item:hover {
+    background: rgba(59, 130, 246, 0.1) !important;
+    color: #fff !important;
   }
 </style>
 
@@ -110,4 +150,52 @@
       navbar.classList.remove('scrolled');
     }
   });
+
+  // Auth Header Logic
+  (function updateHeaderAuth() {
+    const headerAuthItem = document.getElementById('header-auth-action');
+    if (!headerAuthItem) return;
+
+    const auth = window.authService;
+
+    // Check immediately
+    render();
+
+    // Listen for changes
+    window.addEventListener('auth-change', render);
+
+    function render() {
+      if (auth && auth.isAuthenticated()) {
+        const user = auth.getUser();
+        let dashboardLink = '/premium';
+        let label = 'Dashboard';
+
+        if (user.role === 'admin') {
+          dashboardLink = '/admin-cms';
+          label = 'Admin';
+        }
+
+        headerAuthItem.innerHTML = `
+          <div class="dropdown">
+            <button class="header-user-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-circle"></i> ${user.name ? user.name.split(' ')[0] : 'Conta'}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary shadow-lg">
+              <li><a class="dropdown-item text-white" href="${dashboardLink}"><i class="bi bi-speedometer2 me-2"></i>${label}</a></li>
+              <li><a class="dropdown-item text-white" href="/profile"><i class="bi bi-person-gear me-2"></i>Meu Perfil</a></li>
+              <li><hr class="dropdown-divider bg-secondary"></li>
+              <li><button class="dropdown-item text-danger" onclick="window.authService.logout()"><i class="bi bi-box-arrow-right me-2"></i>Sair</button></li>
+            </ul>
+          </div>
+        `;
+      } else {
+        headerAuthItem.innerHTML = `
+          <a class="dev-btn dev-btn-primary" href="/login">
+            <i class="bi bi-person-circle"></i>
+            Área do Cliente
+          </a>
+        `;
+      }
+    }
+  })();
 </script>

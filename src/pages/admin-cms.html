@@ -1,5 +1,6 @@
+<!-- Version: V0.10.15 -->
 <section class="dev-section pt-5 mt-5">
-    <div class="container-fluid px-4">
+    <div class="container border-start border-end border-secondary px-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
                 <h2 class="dev-section-title m-0">CMS Dashboard</h2>
@@ -82,17 +83,26 @@
 
             if (tab === 'users') {
                 try {
-                    // Fetch users from API (Needs auth header)
-                    // Note: fetchAPI needs to relay the token. Currently config.js has a static token. 
-                    // Ideally authService should intercept requests or core.fetchAPI should read from localStorage.
-                    // For now assuming the admin endpoint works or mocking data.
 
-                    // MOCK DATA for Demo since backend might not have data yet
-                    const mockUsers = [
-                        { id: 1, name: 'Admin User', email: 'admin@msoft.com.br', role: 'admin', status: 'active' },
-                        { id: 2, name: 'Cliente Premium', email: 'cliente@email.com', role: 'premium', status: 'active' },
-                        { id: 3, name: 'User Free', email: 'user@email.com', role: 'user', status: 'inactive' },
-                    ];
+                    // Fetch users from API (Needs auth header)
+                    let usersList = [];
+                    try {
+                        const response = await window.core.fetchAPI('/auth/users');
+                        if (response && response.success && Array.isArray(response.data)) {
+                            usersList = response.data;
+                        }
+                    } catch (err) {
+                        console.warn('Failed to fetch users from API, using mock data:', err);
+                    }
+
+                    // Fallback to mock data if API failed or returned empty (for demo purposes)
+                    if (usersList.length === 0) {
+                        usersList = [
+                            { id: 1, name: 'Admin User', email: 'admin@msoft.com.br', role: 'admin', status: 'active' },
+                            { id: 2, name: 'Cliente Premium', email: 'cliente@email.com', role: 'premium', status: 'active' },
+                            { id: 3, name: 'User Free', email: 'user@email.com', role: 'user', status: 'inactive' },
+                        ];
+                    }
 
                     let html = `
                     <h4 class="mb-4">Gestão de Usuários</h4>
@@ -105,12 +115,13 @@
                                 <th>Role</th>
                                 <th>Status</th>
                                 <th>Ações</th>
+                                <th>Origem</th> 
                             </tr>
                         </thead>
                         <tbody>
                 `;
 
-                    mockUsers.forEach(u => {
+                    usersList.forEach(u => {
                         html += `
                         <tr>
                             <td>${u.name}</td>
@@ -120,13 +131,14 @@
                             <td>
                                 <button class="btn btn-sm btn-outline-light"><i class="bi bi-pencil"></i></button>
                             </td>
+                            <td><span class="badge bg-dark border border-secondary text-muted">${u.provider || (u.id < 10 ? 'Mock' : 'API')}</span></td>
                         </tr>
                     `;
                     });
 
                     html += '</tbody></table></div>';
                     container.innerHTML = html;
-                    document.getElementById('total-users').textContent = mockUsers.length;
+                    document.getElementById('total-users').textContent = usersList.length;
 
                 } catch (e) {
                     container.innerHTML = `<div class="alert alert-danger">Erro ao carregar usuários: ${e.message}</div>`;
@@ -135,7 +147,10 @@
                 container.innerHTML = `
                 <h4 class="mb-4">Gerenciador de Conteúdo</h4>
                 <p>Edite os textos da Home Page, Sobre e Soluções aqui.</p>
-                <div class="alert alert-info">Funcionalidade em desenvolvimento.</div>
+                <div class="d-grid gap-2 col-md-6 mb-3">
+                     <a href="/cms" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Abrir Editor Completo</a>
+                </div>
+                <div class="alert alert-info">O editor será aberto em uma nova visualização dedicada.</div>
              `;
             } else {
                 container.innerHTML = `

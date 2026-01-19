@@ -5,114 +5,108 @@
 (function (window) {
   const defaultCMSContent = {
     hero: {
-      eyebrow: "Framework Frontend",
-      title: "SPAs em minutos",
-      subtitle: "Vanilla JS • Zero build • 100% HTML",
+      eyebrow: "Tecnologia & Inovação",
+      title: "Soluções digitais que transformam o seu negócio",
+      subtitle: "Miranda Soft",
       description:
-        "Um micro framework pensado para landing pages, dashboards e MVPs que precisam nascer rápido sem abrir mão de organização e reuso.",
+        "Somos uma empresa líder em desenvolvimento de software e soluções tecnológicas inovadoras. Transformamos ideias complexas em produtos digitais de alta performance, focados em resultados reais para sua empresa.",
       primaryAction: {
-        label: "Ver documentação",
-        href: "https://github.com/your-repo/framework-frontend",
-        icon: "bi-journal-code",
+        label: "Conheça Nossas Soluções",
+        href: "#solucoes",
+        icon: "bi-grid-fill",
       },
       secondaryAction: {
-        label: "Explorar CMS",
-        href: "/cms",
-        icon: "bi-sliders",
+        label: "Fale com um Especialista",
+        href: "#contact",
+        icon: "bi-chat-text-fill",
       },
-      badgeIcon: "bi-braces-asterisk",
+      badgeIcon: "bi-rocket-takeoff-fill",
     },
     features: [
       {
-        title: "Router nativo",
-        description: "SPA com history API, 404 automático e parâmetros na URL.",
-        href: "/#features-section",
-        icon: "bi-signpost-split",
+        title: "Fábrica de Software",
+        description: "Desenvolvimento de software sob medida para atender as necessidades específicas do seu negócio.",
+        href: "/#solucoes",
+        icon: "bi-code-square",
         theme: "primary",
+        ctaLabel: "Saber mais",
+        bullets: ["Sistemas Web", "Plataformas SaaS", "APIs RESTful", "Dashboards & BI"]
+      },
+      {
+        title: "Aplicativos Mobile",
+        description: "Apps nativos e híbridos com a melhor experiência de usuário para iOS e Android.",
+        href: "/#solucoes",
+        icon: "bi-phone",
+        theme: "secondary",
         ctaLabel: "Ver detalhes",
+        bullets: ["React Native", "Flutter", "Apps Corporativos", "Marketplaces"]
       },
       {
-        title: "Componentes HTML",
-        description: "Use snippets ou classes JS para montar qualquer bloco reutilizável.",
-        href: "/#features-section",
-        icon: "bi-boxes",
-        theme: "success",
-        ctaLabel: "Exemplos",
-      },
-      {
-        title: "CMS instantâneo",
-        description: "Painel embutido em /cms com export/import JSON via localStorage.",
-        href: "/cms",
-        icon: "bi-sliders",
+        title: "Consultoria Tech",
+        description: "Assessoria especializada para modernização tecnológica e transformação digital.",
+        href: "/#solucoes",
+        icon: "bi-diagram-3",
         theme: "info",
-        ctaLabel: "Abrir CMS",
-      },
-      {
-        title: "API Ready",
-        description: "Fetch helper com proxy, tokens e toasts prontos para uso.",
-        href: "/#cta-section",
-        icon: "bi-plug",
-        theme: "warning",
-        ctaLabel: "Conhecer",
+        ctaLabel: "Consultar",
+        bullets: ["Arquitetura de Software", "DevOps & Cloud", "Gestão de Projetos Ágeis", "Segurança da Informação"]
       },
     ],
     about: {
-      title: "Arquitetura pensada para execução rápida",
+      title: "Sobre a Miranda Soft",
       description:
-        "Todo o framework cabe em arquivos estáticos: um router leve, helpers e um núcleo de componentes que rodam direto no navegador sem dependências externas.",
+        "Fundada com a missão de democratizar o acesso à tecnologia de alta qualidade, a Miranda Soft (MSoft) se estabeleceu como referência em desenvolvimento de soluções digitais no Rio Grande do Norte e para todo o Brasil.",
       bullets: [
-        "Carrega páginas HTML via fetch + cache local",
-        "Componentes JS registráveis com ciclo de vida simples",
-        "Helpers para storage, validações e formatação",
-        "Skeleton global para UX enquanto o conteúdo chega",
+        "10+ Anos de Experiência",
+        "100% Foco no Cliente",
+        "Equipe Especializada",
+        "Projetos de Alta Complexidade",
       ],
-      supportTitle: "Feito para times ágeis",
-      supportDescription:
-        "Desenvolvedores conseguem prototipar em minutos, designers editam conteúdo pelo CMS e o deploy é só subir arquivos estáticos.",
+      supportTitle: "Por que escolher a MSoft?",
+      supportDescription: "Nossa essência é entregar qualidade técnica superior com agilidade e parceria real.",
       supportColumns: [
-        ["Zero configuração", "Compatível com qualquer host", "Funciona offline"],
-        ["Hot reload via navegador", "Integração com APIs REST", "Documentação em Markdown"],
+        ["Qualidade Técnica Superior", "Tecnologias Modernas (React, Node.js)", "Longevidade do Projeto"],
+        ["Entregas Ágeis (Scrum)", "Parceria Estratégica", "Feedback Constante"],
       ],
     },
     testimonials: [
       {
-        name: "Bruna Peixoto",
-        relation: "Head de Produto - LoopDev",
+        name: "Carlos Eduardo",
+        relation: "CEO - TechSolutions RN",
         quote:
-          "Usamos o Framework Frontend para validar ideias em tempo recorde. Em 3 dias entregamos um MVP completo, sem build e sem servidores extras.",
+          "A Miranda Soft transformou nossa operação. O sistema desenvolvido por eles automatizou processos que levavam dias em poucos minutos.",
         icon: "bi-person-circle",
         tone: "primary",
       },
       {
-        name: "Rafael Nóbrega",
-        relation: "Tech Lead - SprintLab",
+        name: "Ana Clara",
+        relation: "Diretora de Marketing - Inova",
         quote:
-          "A arquitetura em HTML puro facilita muito. Designers conseguem editar conteúdo sozinhos e os devs focam apenas na lógica.",
+          "Excelente parceiro tecnológico. A equipe é muito atenta aos detalhes e o aplicativo ficou com uma usabilidade incrível.",
         icon: "bi-person-circle",
         tone: "success",
       },
       {
-        name: "Juliana Prado",
-        relation: "CTO - Protofy",
+        name: "Roberto Campos",
+        relation: "Gerente de Projetos",
         quote:
-          "O CMS em localStorage é perfeito para demos offline. Levo tudo no notebook e apresento o produto mesmo sem internet.",
+          "Comprometimento e qualidade técnica. Entregaram o projeto antes do prazo e com qualidade superior ao esperado.",
         icon: "bi-person-circle",
         tone: "info",
       },
     ],
     cta: {
-      title: "Abra o index.html e já esteja produzindo",
+      title: "Conheça o nosso Super App",
       description:
-        "Clone o repositório, personalize o conteúdo pelo CMS e publique em qualquer hospedagem estática. Sem CLIs, sem bundlers.",
+        "Explore nossa suíte de ferramentas e utilitários desenvolvidos para facilitar o dia a dia de desenvolvedores e empresas.",
       action: {
-        label: "Baixar agora",
-        href: "https://github.com/your-repo/framework-frontend/archive/refs/heads/main.zip",
-        icon: "bi-download",
+        label: "Acessar Ferramentas",
+        href: "/apps",
+        icon: "bi-arrow-right",
       },
     },
     seo: {
       updatedAt: new Date().toISOString(),
-      author: "Equipe Framework Frontend",
+      author: "Miranda Soft",
     },
   };
 

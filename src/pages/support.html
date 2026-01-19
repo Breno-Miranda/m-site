@@ -1,0 +1,173 @@
+<section class="dev-section pt-5 mt-5">
+    <div class="container">
+        <!-- Hero Search -->
+        <div class="text-center mb-5 animate__animated animate__fadeIn">
+            <span
+                class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 mb-3 rounded-pill px-3 py-2">
+                <i class="bi bi-life-preserver me-2"></i>Central de Ajuda
+            </span>
+            <h1 class="display-4 fw-bold mb-3">Como podemos <span class="text-gradient">ajudar você?</span></h1>
+            <p class="text-muted lead mb-4" style="max-width: 600px; margin: 0 auto;">
+                Explore nossa base de conhecimento ou entre em contato com nosso time de especialistas.
+            </p>
+
+            <div class="position-relative mx-auto" style="max-width: 600px;">
+                <input type="text"
+                    class="form-control form-control-lg bg-dark text-white border-secondary py-3 ps-5 rounded-pill shadow-lg"
+                    placeholder="Busque por dúvidas, artigos ou tutoriais..." id="search-input">
+                <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted fs-5"></i>
+            </div>
+        </div>
+
+        <!-- Support Categories -->
+        <div class="row g-4 mb-5 justify-content-center">
+            <!-- Getting Started -->
+            <div class="col-md-4">
+                <div class="card bg-dark border-secondary hover-card h-100 animate__animated animate__fadeInUp">
+                    <div class="card-body p-4 text-center">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3 text-primary">
+                            <i class="bi bi-rocket-takeoff fs-2"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Primeiros Passos</h4>
+                        <p class="text-muted small mb-3">Guia rápido para configurar sua conta e começar a usar nossos
+                            serviços.</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm rounded-pill stretched-link">Ver Artigos</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Billing -->
+            <div class="col-md-4">
+                <div class="card bg-dark border-secondary hover-card h-100 animate__animated animate__fadeInUp"
+                    style="animation-delay: 0.1s;">
+                    <div class="card-body p-4 text-center">
+                        <div class="bg-success bg-opacity-10 p-3 rounded-circle d-inline-block mb-3 text-success">
+                            <i class="bi bi-credit-card fs-2"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Faturamento</h4>
+                        <p class="text-muted small mb-3">Entenda suas faturas, formas de pagamento e planos.</p>
+                        <a href="#" class="btn btn-outline-success btn-sm rounded-pill stretched-link">Ver Artigos</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Developer API -->
+            <div class="col-md-4">
+                <div class="card bg-dark border-secondary hover-card h-100 animate__animated animate__fadeInUp"
+                    style="animation-delay: 0.2s;">
+                    <div class="card-body p-4 text-center">
+                        <div class="bg-warning bg-opacity-10 p-3 rounded-circle d-inline-block mb-3 text-warning">
+                            <i class="bi bi-code-square fs-2"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Developers</h4>
+                        <p class="text-muted small mb-3">Documentação da API, Webhooks e integrações.</p>
+                        <a href="#" class="btn btn-outline-warning btn-sm rounded-pill stretched-link">Ver
+                            Documentação</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8">
+                <h3 class="fw-bold mb-4 text-center">Perguntas Frequentes</h3>
+
+                <div class="accordion accordion-flush" id="faqAccordion">
+
+                    <div class="accordion-item bg-transparent border-secondary">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-dark text-white shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#faq1">
+                                Como acesso o Marketplace Premium?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                O Marketplace é público para visualização, mas para realizar compras ou assinaturas,
+                                você precisa criar uma conta gratuita. Basta clicar em "Login" no topo da página.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item bg-transparent border-secondary border-top">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-dark text-white shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#faq2">
+                                Posso cancelar minha assinatura a qualquer momento?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                Sim! Não temos contratos de fidelidade para os planos mensais. Você pode cancelar
+                                diretamente pelo seu Dashboard na seção "Gerenciar Plano".
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item bg-transparent border-secondary border-top">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-dark text-white shadow-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#faq3">
+                                Oferecem suporte para implementação?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                Sim! Para clientes do plano Enterprise ou para compras de módulos específicos (como o
+                                HealthTech OS), nosso time oferece suporte dedicado para setup inicial.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Still need help? -->
+        <div class="card border-0 bg-gradient-primary text-center p-5 rounded-4 animate__animated animate__zoomIn">
+            <div class="card-body">
+                <h3 class="fw-bold text-white mb-3">Ainda precisa de ajuda?</h3>
+                <p class="text-white text-opacity-75 mb-4">Nossa equipe de suporte está disponível de segunda a sexta,
+                    das 9h às 18h.</p>
+                <a href="/contact" class="btn btn-light text-primary fw-bold px-4 py-2 rounded-pill">
+                    <i class="bi bi-chat-dots-fill me-2"></i>Falar com Suporte
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    .hover-card {
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .hover-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--dev-accent-primary) !important;
+    }
+
+    .accordion-button::after {
+        filter: invert(1);
+    }
+
+    .accordion-button:not(.collapsed) {
+        background-color: rgba(59, 130, 246, 0.1) !important;
+        color: #fff !important;
+        box-shadow: none !important;
+    }
+</style>
+
+<script>
+    // Simple Search Filter Simulation
+    document.getElementById('search-input').addEventListener('input', function (e) {
+        const val = e.target.value.toLowerCase();
+        // Here we would typically filter a list or make an API call.
+        // For UI demo, we can just console log.
+        if (val.length > 2) {
+            console.log('Searching for:', val);
+        }
+    });
+</script>

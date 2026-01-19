@@ -1,4 +1,4 @@
-<div class="container py-5" id="cms-root">
+<div class="container py-5 mt-5 pt-5" id="cms-root">
   <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
     <div>
       <h1 class="h2 mb-1">Content Manager</h1>
@@ -21,18 +21,21 @@
 
   <div class="alert alert-info d-flex align-items-center gap-2" role="alert">
     <i class="bi bi-info-circle-fill"></i>
-    <span>As alterações ficam disponíveis imediatamente no site. Compartilhe o JSON exportado para replicar o conteúdo em outros dispositivos.</span>
+    <span>As alterações ficam disponíveis imediatamente no site. Compartilhe o JSON exportado para replicar o conteúdo
+      em outros dispositivos.</span>
   </div>
 
   <div class="accordion mt-4" id="cms-accordion">
     <!-- Hero Section -->
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingHero">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#cms-hero" aria-expanded="true" aria-controls="cms-hero">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#cms-hero"
+          aria-expanded="true" aria-controls="cms-hero">
           Hero / Seção de abertura
         </button>
       </h2>
-      <div id="cms-hero" class="accordion-collapse collapse show" aria-labelledby="headingHero" data-bs-parent="#cms-accordion">
+      <div id="cms-hero" class="accordion-collapse collapse show" aria-labelledby="headingHero"
+        data-bs-parent="#cms-accordion">
         <div class="accordion-body">
           <form id="hero-form" class="row g-3">
             <div class="col-md-4">
@@ -102,11 +105,13 @@
     <!-- Features Section -->
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingFeatures">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cms-features" aria-expanded="false" aria-controls="cms-features">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#cms-features" aria-expanded="false" aria-controls="cms-features">
           Cards de destaque
         </button>
       </h2>
-      <div id="cms-features" class="accordion-collapse collapse" aria-labelledby="headingFeatures" data-bs-parent="#cms-accordion">
+      <div id="cms-features" class="accordion-collapse collapse" aria-labelledby="headingFeatures"
+        data-bs-parent="#cms-accordion">
         <div class="accordion-body">
           <div class="d-flex justify-content-between align-items-center mb-3">
             <div>
@@ -130,11 +135,13 @@
     <!-- About Section -->
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingAbout">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cms-about" aria-expanded="false" aria-controls="cms-about">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cms-about"
+          aria-expanded="false" aria-controls="cms-about">
           Seção "Sobre"
         </button>
       </h2>
-      <div id="cms-about" class="accordion-collapse collapse" aria-labelledby="headingAbout" data-bs-parent="#cms-accordion">
+      <div id="cms-about" class="accordion-collapse collapse" aria-labelledby="headingAbout"
+        data-bs-parent="#cms-accordion">
         <div class="accordion-body">
           <form id="about-form" class="row g-3">
             <div class="col-md-6">
@@ -178,11 +185,13 @@
     <!-- Testimonials -->
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingTestimonials">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cms-testimonials" aria-expanded="false" aria-controls="cms-testimonials">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#cms-testimonials" aria-expanded="false" aria-controls="cms-testimonials">
           Depoimentos
         </button>
       </h2>
-      <div id="cms-testimonials" class="accordion-collapse collapse" aria-labelledby="headingTestimonials" data-bs-parent="#cms-accordion">
+      <div id="cms-testimonials" class="accordion-collapse collapse" aria-labelledby="headingTestimonials"
+        data-bs-parent="#cms-accordion">
         <div class="accordion-body">
           <div class="d-flex justify-content-between align-items-center mb-3">
             <div>
@@ -206,11 +215,13 @@
     <!-- CTA Section -->
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingCTA">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cms-cta" aria-expanded="false" aria-controls="cms-cta">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cms-cta"
+          aria-expanded="false" aria-controls="cms-cta">
           Chamada final (CTA)
         </button>
       </h2>
-      <div id="cms-cta" class="accordion-collapse collapse" aria-labelledby="headingCTA" data-bs-parent="#cms-accordion">
+      <div id="cms-cta" class="accordion-collapse collapse" aria-labelledby="headingCTA"
+        data-bs-parent="#cms-accordion">
         <div class="accordion-body">
           <form id="cta-form" class="row g-3">
             <div class="col-md-6">
@@ -246,151 +257,151 @@
 </div>
 
 <script>
-(function () {
-  const cms = window.ContentService;
-  const root = document.getElementById('cms-root');
-  if (!cms || !root) {
-    if (root) {
-      root.innerHTML = '<div class="alert alert-danger">ContentService indisponível. Verifique se os scripts foram carregados.</div>';
-    }
-    return;
-  }
-
-  let content = cms.getAll();
-
-  const notify = (message, type = 'success') => {
-    if (window.core?.toast) {
-      window.core.toast(message, type);
-    } else {
-      console[type === 'error' ? 'error' : 'log'](message);
-    }
-  };
-
-  const updatedLabel = document.getElementById('updated-label');
-  const updateTimestampLabel = () => {
-    if (!updatedLabel) return;
-    const timestamp = content?.seo?.updatedAt;
-    updatedLabel.textContent = timestamp
-      ? `Última atualização: ${new Date(timestamp).toLocaleString('pt-BR')}`
-      : 'Nenhuma edição registrada ainda.';
-  };
-
-  const bumpTimestamp = () => {
-    const seo = cms.getSection('seo') || {};
-    seo.updatedAt = new Date().toISOString();
-    cms.updateSection('seo', seo);
-  };
-
-  const getDeep = (obj = {}, path = '') => {
-    if (!path) return obj;
-    return path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : ''), obj);
-  };
-
-  const setDeep = (obj = {}, path = '', value) => {
-    if (!path) return;
-    const keys = path.split('.');
-    keys.reduce((acc, key, index) => {
-      if (index === keys.length - 1) {
-        acc[key] = value;
-        return acc;
+  (function () {
+    const cms = window.ContentService;
+    const root = document.getElementById('cms-root');
+    if (!cms || !root) {
+      if (root) {
+        root.innerHTML = '<div class="alert alert-danger">ContentService indisponível. Verifique se os scripts foram carregados.</div>';
       }
-      if (!acc[key] || typeof acc[key] !== 'object') {
-        acc[key] = {};
+      return;
+    }
+
+    let content = cms.getAll();
+
+    const notify = (message, type = 'success') => {
+      if (window.core?.toast) {
+        window.core.toast(message, type);
+      } else {
+        console[type === 'error' ? 'error' : 'log'](message);
       }
-      return acc[key];
-    }, obj);
-  };
+    };
 
-  const heroForm = document.getElementById('hero-form');
-  const aboutForm = document.getElementById('about-form');
-  const ctaForm = document.getElementById('cta-form');
-  const featuresList = document.getElementById('features-list');
-  const testimonialsList = document.getElementById('testimonials-list');
+    const updatedLabel = document.getElementById('updated-label');
+    const updateTimestampLabel = () => {
+      if (!updatedLabel) return;
+      const timestamp = content?.seo?.updatedAt;
+      updatedLabel.textContent = timestamp
+        ? `Última atualização: ${new Date(timestamp).toLocaleString('pt-BR')}`
+        : 'Nenhuma edição registrada ainda.';
+    };
 
-  const fillHeroForm = () => {
-    if (!heroForm) return;
-    heroForm.querySelectorAll('[name]').forEach((input) => {
-      input.value = getDeep(content.hero, input.name) || '';
-    });
-  };
+    const bumpTimestamp = () => {
+      const seo = cms.getSection('seo') || {};
+      seo.updatedAt = new Date().toISOString();
+      cms.updateSection('seo', seo);
+    };
 
-  if (heroForm) {
-    heroForm.addEventListener('input', (event) => {
-      const { name, value } = event.target;
-      if (!name) return;
-      content.hero = content.hero || {};
-      setDeep(content.hero, name, value);
-    });
+    const getDeep = (obj = {}, path = '') => {
+      if (!path) return obj;
+      return path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : ''), obj);
+    };
 
-    heroForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      cms.updateSection('hero', content.hero || {});
-      bumpTimestamp();
-      notify('Hero atualizado com sucesso!');
-    });
-  }
+    const setDeep = (obj = {}, path = '', value) => {
+      if (!path) return;
+      const keys = path.split('.');
+      keys.reduce((acc, key, index) => {
+        if (index === keys.length - 1) {
+          acc[key] = value;
+          return acc;
+        }
+        if (!acc[key] || typeof acc[key] !== 'object') {
+          acc[key] = {};
+        }
+        return acc[key];
+      }, obj);
+    };
 
-  const fillAboutForm = () => {
-    if (!aboutForm) return;
-    aboutForm.elements['title'].value = content.about?.title || '';
-    aboutForm.elements['supportTitle'].value = content.about?.supportTitle || '';
-    aboutForm.elements['description'].value = content.about?.description || '';
-    aboutForm.elements['supportDescription'].value = content.about?.supportDescription || '';
-    aboutForm.elements['bullets'].value = (content.about?.bullets || []).join('\n');
-    aboutForm.elements['supportColumn1'].value = (content.about?.supportColumns?.[0] || []).join('\n');
-    aboutForm.elements['supportColumn2'].value = (content.about?.supportColumns?.[1] || []).join('\n');
-  };
+    const heroForm = document.getElementById('hero-form');
+    const aboutForm = document.getElementById('about-form');
+    const ctaForm = document.getElementById('cta-form');
+    const featuresList = document.getElementById('features-list');
+    const testimonialsList = document.getElementById('testimonials-list');
 
-  if (aboutForm) {
-    aboutForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const formData = new FormData(aboutForm);
-      const toLines = (value) =>
-        (value || '')
-          .split('\n')
-          .map((line) => line.trim())
-          .filter(Boolean);
+    const fillHeroForm = () => {
+      if (!heroForm) return;
+      heroForm.querySelectorAll('[name]').forEach((input) => {
+        input.value = getDeep(content.hero, input.name) || '';
+      });
+    };
 
-      const updated = {
-        title: formData.get('title') || '',
-        description: formData.get('description') || '',
-        bullets: toLines(formData.get('bullets')),
-        supportTitle: formData.get('supportTitle') || '',
-        supportDescription: formData.get('supportDescription') || '',
-        supportColumns: [toLines(formData.get('supportColumn1')), toLines(formData.get('supportColumn2'))],
-      };
+    if (heroForm) {
+      heroForm.addEventListener('input', (event) => {
+        const { name, value } = event.target;
+        if (!name) return;
+        content.hero = content.hero || {};
+        setDeep(content.hero, name, value);
+      });
 
-      content.about = updated;
-      cms.updateSection('about', updated);
-      bumpTimestamp();
-      notify('Seção "Sobre" atualizada com sucesso!');
-    });
-  }
+      heroForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        cms.updateSection('hero', content.hero || {});
+        bumpTimestamp();
+        notify('Hero atualizado com sucesso!');
+      });
+    }
 
-  const fillCTAForm = () => {
-    if (!ctaForm) return;
-    ctaForm.querySelectorAll('[name]').forEach((input) => {
-      input.value = getDeep(content.cta, input.name) || '';
-    });
-  };
+    const fillAboutForm = () => {
+      if (!aboutForm) return;
+      aboutForm.elements['title'].value = content.about?.title || '';
+      aboutForm.elements['supportTitle'].value = content.about?.supportTitle || '';
+      aboutForm.elements['description'].value = content.about?.description || '';
+      aboutForm.elements['supportDescription'].value = content.about?.supportDescription || '';
+      aboutForm.elements['bullets'].value = (content.about?.bullets || []).join('\n');
+      aboutForm.elements['supportColumn1'].value = (content.about?.supportColumns?.[0] || []).join('\n');
+      aboutForm.elements['supportColumn2'].value = (content.about?.supportColumns?.[1] || []).join('\n');
+    };
 
-  if (ctaForm) {
-    ctaForm.addEventListener('input', (event) => {
-      const { name, value } = event.target;
-      if (!name) return;
-      content.cta = content.cta || {};
-      setDeep(content.cta, name, value);
-    });
+    if (aboutForm) {
+      aboutForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const formData = new FormData(aboutForm);
+        const toLines = (value) =>
+          (value || '')
+            .split('\n')
+            .map((line) => line.trim())
+            .filter(Boolean);
 
-    ctaForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      cms.updateSection('cta', content.cta || {});
-      bumpTimestamp();
-      notify('CTA atualizado!');
-    });
-  }
+        const updated = {
+          title: formData.get('title') || '',
+          description: formData.get('description') || '',
+          bullets: toLines(formData.get('bullets')),
+          supportTitle: formData.get('supportTitle') || '',
+          supportDescription: formData.get('supportDescription') || '',
+          supportColumns: [toLines(formData.get('supportColumn1')), toLines(formData.get('supportColumn2'))],
+        };
 
-  const featureTemplate = (item = {}, index) => `
+        content.about = updated;
+        cms.updateSection('about', updated);
+        bumpTimestamp();
+        notify('Seção "Sobre" atualizada com sucesso!');
+      });
+    }
+
+    const fillCTAForm = () => {
+      if (!ctaForm) return;
+      ctaForm.querySelectorAll('[name]').forEach((input) => {
+        input.value = getDeep(content.cta, input.name) || '';
+      });
+    };
+
+    if (ctaForm) {
+      ctaForm.addEventListener('input', (event) => {
+        const { name, value } = event.target;
+        if (!name) return;
+        content.cta = content.cta || {};
+        setDeep(content.cta, name, value);
+      });
+
+      ctaForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        cms.updateSection('cta', content.cta || {});
+        bumpTimestamp();
+        notify('CTA atualizado!');
+      });
+    }
+
+    const featureTemplate = (item = {}, index) => `
     <div class="col-md-6" data-item-index="${index}">
       <div class="card border-0 shadow-sm h-100">
         <div class="card-body">
@@ -417,8 +428,8 @@
               <label class="form-label">Tema</label>
               <select class="form-select" data-field="theme" data-index="${index}">
                 ${['primary', 'success', 'info', 'warning', 'danger']
-                  .map((option) => `<option value="${option}" ${item.theme === option ? 'selected' : ''}>${option}</option>`)
-                  .join('')}
+        .map((option) => `<option value="${option}" ${item.theme === option ? 'selected' : ''}>${option}</option>`)
+        .join('')}
               </select>
             </div>
             <div class="col-md-3">
@@ -435,7 +446,7 @@
     </div>
   `;
 
-  const testimonialTemplate = (item = {}, index) => `
+    const testimonialTemplate = (item = {}, index) => `
     <div class="col-md-6" data-testimonial-index="${index}">
       <div class="card border-0 shadow-sm h-100">
         <div class="card-body">
@@ -462,8 +473,8 @@
               <label class="form-label">Tom (cor)</label>
               <select class="form-select" data-field="tone" data-index="${index}">
                 ${['primary', 'success', 'info', 'warning']
-                  .map((option) => `<option value="${option}" ${item.tone === option ? 'selected' : ''}>${option}</option>`)
-                  .join('')}
+        .map((option) => `<option value="${option}" ${item.tone === option ? 'selected' : ''}>${option}</option>`)
+        .join('')}
               </select>
             </div>
             <div class="col-md-6">
@@ -476,155 +487,155 @@
     </div>
   `;
 
-  const renderFeaturesList = () => {
-    if (!featuresList) return;
-    const items = content.features || [];
-    if (!items.length) {
-      featuresList.innerHTML = '<div class="col-12 text-muted text-center">Nenhum card cadastrado. Clique em "Novo card" para começar.</div>';
-      return;
-    }
-    featuresList.innerHTML = items.map((item, index) => featureTemplate(item, index)).join('');
-  };
-
-  const renderTestimonialsList = () => {
-    if (!testimonialsList) return;
-    const items = content.testimonials || [];
-    if (!items.length) {
-      testimonialsList.innerHTML = '<div class="col-12 text-muted text-center">Adicione depoimentos para gerar confiança.</div>';
-      return;
-    }
-    testimonialsList.innerHTML = items.map((item, index) => testimonialTemplate(item, index)).join('');
-  };
-
-  document.getElementById('add-feature')?.addEventListener('click', () => {
-    content.features = content.features || [];
-    content.features.push({
-      title: 'Novo destaque',
-      description: '',
-      href: '/',
-      icon: 'bi-star',
-      theme: 'primary',
-      ctaLabel: 'Saiba mais',
-    });
-    renderFeaturesList();
-  });
-
-  document.getElementById('save-features')?.addEventListener('click', () => {
-    cms.updateSection('features', content.features || []);
-    bumpTimestamp();
-    notify('Cards de destaque salvos!');
-  });
-
-  featuresList?.addEventListener('input', (event) => {
-    const field = event.target.dataset.field;
-    if (field === undefined) return;
-    const index = Number(event.target.dataset.index);
-    if (!Number.isFinite(index)) return;
-    content.features[index][field] = event.target.value;
-  });
-
-  featuresList?.addEventListener('click', (event) => {
-    const actionBtn = event.target.closest('[data-action="remove-feature"]');
-    if (!actionBtn) return;
-    const index = Number(actionBtn.dataset.index);
-    content.features.splice(index, 1);
-    renderFeaturesList();
-  });
-
-  document.getElementById('add-testimonial')?.addEventListener('click', () => {
-    content.testimonials = content.testimonials || [];
-    content.testimonials.push({
-      name: 'Nome da família',
-      relation: 'Família atendida',
-      quote: '',
-      tone: 'primary',
-      icon: 'bi-person-circle',
-    });
-    renderTestimonialsList();
-  });
-
-  document.getElementById('save-testimonials')?.addEventListener('click', () => {
-    cms.updateSection('testimonials', content.testimonials || []);
-    bumpTimestamp();
-    notify('Depoimentos salvos!');
-  });
-
-  testimonialsList?.addEventListener('input', (event) => {
-    const field = event.target.dataset.field;
-    if (field === undefined) return;
-    const index = Number(event.target.dataset.index);
-    if (!Number.isFinite(index)) return;
-    content.testimonials[index][field] = event.target.value;
-  });
-
-  testimonialsList?.addEventListener('click', (event) => {
-    const actionBtn = event.target.closest('[data-action="remove-testimonial"]');
-    if (!actionBtn) return;
-    const index = Number(actionBtn.dataset.index);
-    content.testimonials.splice(index, 1);
-    renderTestimonialsList();
-  });
-
-  document.getElementById('export-json')?.addEventListener('click', () => {
-    const data = cms.getAll();
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `cms-content-${new Date().toISOString().split('T')[0]}.json`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  });
-
-  document.getElementById('import-json')?.addEventListener('change', (event) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (loadEvent) => {
-      try {
-        const parsed = JSON.parse(loadEvent.target.result);
-        if (typeof parsed !== 'object' || Array.isArray(parsed)) {
-          throw new Error('JSON inválido');
-        }
-        Object.keys(parsed).forEach((section) => {
-          cms.updateSection(section, parsed[section]);
-        });
-        notify('Conteúdo importado com sucesso!');
-      } catch (error) {
-        console.error(error);
-        notify('Não foi possível importar o arquivo selecionado.', 'error');
-      } finally {
-        event.target.value = '';
+    const renderFeaturesList = () => {
+      if (!featuresList) return;
+      const items = content.features || [];
+      if (!items.length) {
+        featuresList.innerHTML = '<div class="col-12 text-muted text-center">Nenhum card cadastrado. Clique em "Novo card" para começar.</div>';
+        return;
       }
+      featuresList.innerHTML = items.map((item, index) => featureTemplate(item, index)).join('');
     };
-    reader.readAsText(file);
-  });
 
-  document.getElementById('reset-content')?.addEventListener('click', () => {
-    if (!confirm('Deseja realmente restaurar o conteúdo padrão?')) return;
-    const fresh = cms.reset();
-    content = fresh;
-    updateTimestampLabel();
-    hydrateAll(fresh);
-    notify('Conteúdo restaurado ao padrão.');
-  });
+    const renderTestimonialsList = () => {
+      if (!testimonialsList) return;
+      const items = content.testimonials || [];
+      if (!items.length) {
+        testimonialsList.innerHTML = '<div class="col-12 text-muted text-center">Adicione depoimentos para gerar confiança.</div>';
+        return;
+      }
+      testimonialsList.innerHTML = items.map((item, index) => testimonialTemplate(item, index)).join('');
+    };
 
-  const hydrateAll = (latestContent) => {
-    content = latestContent || cms.getAll();
-    fillHeroForm();
-    fillAboutForm();
-    fillCTAForm();
-    renderFeaturesList();
-    renderTestimonialsList();
-    updateTimestampLabel();
-  };
+    document.getElementById('add-feature')?.addEventListener('click', () => {
+      content.features = content.features || [];
+      content.features.push({
+        title: 'Novo destaque',
+        description: '',
+        href: '/',
+        icon: 'bi-star',
+        theme: 'primary',
+        ctaLabel: 'Saiba mais',
+      });
+      renderFeaturesList();
+    });
 
-  cms.subscribe('*', (data) => {
-    hydrateAll(data);
-  });
+    document.getElementById('save-features')?.addEventListener('click', () => {
+      cms.updateSection('features', content.features || []);
+      bumpTimestamp();
+      notify('Cards de destaque salvos!');
+    });
 
-  hydrateAll(content);
-})();
+    featuresList?.addEventListener('input', (event) => {
+      const field = event.target.dataset.field;
+      if (field === undefined) return;
+      const index = Number(event.target.dataset.index);
+      if (!Number.isFinite(index)) return;
+      content.features[index][field] = event.target.value;
+    });
+
+    featuresList?.addEventListener('click', (event) => {
+      const actionBtn = event.target.closest('[data-action="remove-feature"]');
+      if (!actionBtn) return;
+      const index = Number(actionBtn.dataset.index);
+      content.features.splice(index, 1);
+      renderFeaturesList();
+    });
+
+    document.getElementById('add-testimonial')?.addEventListener('click', () => {
+      content.testimonials = content.testimonials || [];
+      content.testimonials.push({
+        name: 'Nome da família',
+        relation: 'Família atendida',
+        quote: '',
+        tone: 'primary',
+        icon: 'bi-person-circle',
+      });
+      renderTestimonialsList();
+    });
+
+    document.getElementById('save-testimonials')?.addEventListener('click', () => {
+      cms.updateSection('testimonials', content.testimonials || []);
+      bumpTimestamp();
+      notify('Depoimentos salvos!');
+    });
+
+    testimonialsList?.addEventListener('input', (event) => {
+      const field = event.target.dataset.field;
+      if (field === undefined) return;
+      const index = Number(event.target.dataset.index);
+      if (!Number.isFinite(index)) return;
+      content.testimonials[index][field] = event.target.value;
+    });
+
+    testimonialsList?.addEventListener('click', (event) => {
+      const actionBtn = event.target.closest('[data-action="remove-testimonial"]');
+      if (!actionBtn) return;
+      const index = Number(actionBtn.dataset.index);
+      content.testimonials.splice(index, 1);
+      renderTestimonialsList();
+    });
+
+    document.getElementById('export-json')?.addEventListener('click', () => {
+      const data = cms.getAll();
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `cms-content-${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('import-json')?.addEventListener('change', (event) => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (loadEvent) => {
+        try {
+          const parsed = JSON.parse(loadEvent.target.result);
+          if (typeof parsed !== 'object' || Array.isArray(parsed)) {
+            throw new Error('JSON inválido');
+          }
+          Object.keys(parsed).forEach((section) => {
+            cms.updateSection(section, parsed[section]);
+          });
+          notify('Conteúdo importado com sucesso!');
+        } catch (error) {
+          console.error(error);
+          notify('Não foi possível importar o arquivo selecionado.', 'error');
+        } finally {
+          event.target.value = '';
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    document.getElementById('reset-content')?.addEventListener('click', () => {
+      if (!confirm('Deseja realmente restaurar o conteúdo padrão?')) return;
+      const fresh = cms.reset();
+      content = fresh;
+      updateTimestampLabel();
+      hydrateAll(fresh);
+      notify('Conteúdo restaurado ao padrão.');
+    });
+
+    const hydrateAll = (latestContent) => {
+      content = latestContent || cms.getAll();
+      fillHeroForm();
+      fillAboutForm();
+      fillCTAForm();
+      renderFeaturesList();
+      renderTestimonialsList();
+      updateTimestampLabel();
+    };
+
+    cms.subscribe('*', (data) => {
+      hydrateAll(data);
+    });
+
+    hydrateAll(content);
+  })();
 </script>

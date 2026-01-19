@@ -3,20 +3,20 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-7 dev-hero-content">
-        <div class="dev-hero-badge">
+        <div class="dev-hero-badge" id="hero-badge-text">
           <span><i class="bi bi-rocket-takeoff-fill"></i> Tecnologia & Inovação</span>
         </div>
 
-        <h1 class="dev-hero-title">
+        <h1 class="dev-hero-title" id="hero-title">
           Soluções digitais que<br>
           <span class="text-gradient">transformam o seu negócio</span>
         </h1>
 
-        <p class="dev-hero-subtitle">
+        <p class="dev-hero-subtitle" id="hero-subtitle">
           Miranda Soft
         </p>
 
-        <p class="dev-hero-description">
+        <p class="dev-hero-description" id="hero-desc">
           Somos uma empresa líder em desenvolvimento de software e soluções tecnológicas inovadoras.
           Transformamos ideias complexas em produtos digitais de alta performance, focados em resultados
           reais para sua empresa.
@@ -32,11 +32,11 @@
 
         <!-- Actions -->
         <div class="dev-hero-actions">
-          <a href="#solucoes" class="dev-btn dev-btn-primary">
+          <a href="#solucoes" class="dev-btn dev-btn-primary" id="hero-btn-primary">
             <i class="bi bi-grid-fill"></i>
             Conheça Nossas Soluções
           </a>
-          <a href="#contact" class="dev-btn dev-btn-secondary">
+          <a href="#contact" class="dev-btn dev-btn-secondary" id="hero-btn-secondary">
             <i class="bi bi-chat-text-fill"></i>
             Fale com um Especialista
           </a>
@@ -82,7 +82,7 @@
       </p>
     </div>
 
-    <div class="dev-skills-grid">
+    <div class="dev-skills-grid" id="features-grid">
       <!-- Software Development -->
       <div class="dev-skill-card animate-on-scroll">
         <div class="dev-skill-icon">
@@ -101,8 +101,8 @@
 
       <!-- Mobile Apps -->
       <div class="dev-skill-card animate-on-scroll">
-        <div class="dev-skill-icon" style="background: rgba(139, 92, 246, 0.1);">
-          <i class="bi bi-phone" style="color: #8b5cf6;"></i>
+        <div class="dev-skill-icon" style="background: rgba(59, 130, 246, 0.1);">
+          <i class="bi bi-phone" style="color: #3b82f6;"></i>
         </div>
         <h3 class="dev-skill-title">Aplicativos Mobile</h3>
         <p class="text-muted mb-3">Apps nativos e híbridos com a melhor experiência de usuário para iOS e Android.</p>
@@ -139,9 +139,9 @@
       <div class="col-lg-6 animate-on-scroll">
         <div class="position-relative">
           <div
-            style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border-radius: 20px; padding: 40px; border: 1px solid rgba(255,255,255,0.05);">
-            <h3 class="fw-bold mb-4">Sobre a <span class="text-gradient">Miranda Soft</span></h3>
-            <p class="text-muted mb-4">
+            style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%); border-radius: 20px; padding: 40px; border: 1px solid rgba(255,255,255,0.05);">
+            <h3 class="fw-bold mb-4" id="about-title">Sobre a <span class="text-gradient">Miranda Soft</span></h3>
+            <p class="text-muted mb-4" id="about-desc">
               Fundada com a missão de democratizar o acesso à tecnologia de alta qualidade, a Miranda Soft (MSoft)
               se estabeleceu como referência em desenvolvimento de soluções digitais no Rio Grande do Norte e para todo
               o Brasil.
@@ -176,7 +176,7 @@
           <span class="dev-section-badge">
             <i class="bi bi-building"></i> Nossa Essência
           </span>
-          <h2 class="dev-section-title">Por que escolher a MSoft?</h2>
+          <h2 class="dev-section-title" id="about-support-title">Por que escolher a MSoft?</h2>
         </div>
 
         <div class="d-flex flex-column gap-4">
@@ -226,8 +226,9 @@
       <div class="card-body p-5 position-relative">
         <div class="row align-items-center position-relative" style="z-index: 2;">
           <div class="col-lg-8">
-            <h2 class="fw-bold mb-3 text-white">Conheça o nosso <span class="text-gradient">Super App</span></h2>
-            <p class="lead text-light opacity-75 mb-4">
+            <h2 class="fw-bold mb-3 text-white" id="cta-title">Conheça o nosso <span class="text-gradient">Super
+                App</span></h2>
+            <p class="lead text-light opacity-75 mb-4" id="cta-desc">
               Explore nossa suíte de ferramentas e utilitários desenvolvidos para facilitar o dia a dia de
               desenvolvedores e empresas.
             </p>
@@ -277,9 +278,10 @@
   </div>
 </section>
 
+
 <script>
   (function () {
-    // Scroll Animation Observer (reused from core)
+    // Scroll Animation Observer
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -298,18 +300,79 @@
       observer.observe(el);
     });
 
-    // Smooth scroll for anchor links
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
+
+    // CMS & Content Binding
+    function renderContent() {
+      if (!window.ContentService) return;
+      const content = window.ContentService.getAll();
+      if (!content) return;
+
+      const safeText = (text) => text || '';
+      const setHtml = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
+      const setTxt = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+      const setAttr = (id, attr, val) => { const el = document.getElementById(id); if (el) el.setAttribute(attr, val); };
+
+      // Hero
+      setHtml('hero-badge-text', `<i class="${content.hero.badgeIcon}"></i> ${content.hero.eyebrow}`);
+      // Preserving gradient if possible, otherwise plain text
+      if (content.hero.title.includes('transformam')) {
+        setHtml('hero-title', content.hero.title.replace('transformam o seu negócio', '<span class="text-gradient">transformam o seu negócio</span>'));
+      } else {
+        setTxt('hero-title', content.hero.title);
+      }
+      setTxt('hero-subtitle', content.hero.subtitle);
+      setTxt('hero-desc', content.hero.description);
+
+      setTxt('hero-btn-primary', content.hero.primaryAction.label);
+      setAttr('hero-btn-primary', 'href', content.hero.primaryAction.href);
+
+      setTxt('hero-btn-secondary', content.hero.secondaryAction.label);
+      setAttr('hero-btn-secondary', 'href', content.hero.secondaryAction.href);
+
+      // Features (Dynamic Render)
+      const grid = document.getElementById('features-grid');
+      if (grid && content.features) {
+        grid.innerHTML = content.features.map(f => `
+              <div class="dev-skill-card animate-on-scroll">
+                <div class="dev-skill-icon">
+                  <i class="bi ${f.icon}"></i>
+                </div>
+                <h3 class="dev-skill-title">${f.title}</h3>
+                <p class="text-muted mb-3">${f.description}</p>
+                <ul class="dev-skill-list">
+                  ${(f.bullets || []).map(b => `<li>${b}</li>`).join('')}
+                </ul>
+              </div>
+           `).join('');
+        // Re-observe new elements
+        grid.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+      }
+
+      // About
+      setTxt('about-title', content.about.title);
+      setTxt('about-desc', content.about.description);
+      setTxt('about-support-title', content.about.supportTitle);
+
+      // CTA
+      setHtml('cta-title', `Conheça o nosso <span class="text-gradient">Super App</span>`); // Keep gradient fixed for now or logic similar to hero
+      if (content.cta.title !== "Conheça o nosso Super App") setTxt('cta-title', content.cta.title);
+
+      setTxt('cta-desc', content.cta.description);
+    }
+
+    // Initial Render
+    document.addEventListener('DOMContentLoaded', renderContent);
+    // Listen for storage changes (if another tab updates content)
+    window.addEventListener('storage', renderContent);
   })();
 </script>

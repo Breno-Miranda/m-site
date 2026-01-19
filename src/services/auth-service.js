@@ -17,24 +17,19 @@ class AuthService {
 
     // Login
     async login(email, password) {
-        try {
-            const response = await window.core.fetchAPI('/auth/login', 'POST', { email, password });
+        const response = await window.core.fetchAPI('/auth/login', 'POST', { email, password });
 
-            if (response && response.success) {
-                localStorage.setItem(this.tokenKey, response.token);
-                localStorage.setItem(this.userKey, JSON.stringify(response.user));
+        if (response && response.success) {
+            localStorage.setItem(this.tokenKey, response.token);
+            localStorage.setItem(this.userKey, JSON.stringify(response.user));
 
-                // Dispatch auth change event
-                window.dispatchEvent(new CustomEvent('auth-change', { detail: { isAuthenticated: true, user: response.user } }));
+            // Dispatch auth change event
+            window.dispatchEvent(new CustomEvent('auth-change', { detail: { isAuthenticated: true, user: response.user } }));
 
-                return response;
-            } else {
-                const errorMsg = response?.error || 'Falha no login';
-                throw new Error(errorMsg);
-            }
-        } catch (error) {
-            console.error('Login error:', error);
-            throw error;
+            return response;
+        } else {
+            const errorMsg = response?.error || 'Falha no login';
+            throw new Error(errorMsg);
         }
     }
 

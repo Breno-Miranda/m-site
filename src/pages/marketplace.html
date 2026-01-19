@@ -1,0 +1,391 @@
+<section class="dev-section pt-5 mt-5">
+    <div class="container">
+        <div class="dev-section-header text-center mb-5">
+            <span class="dev-section-badge bg-gradient-primary">
+                <i class="bi bi-shop"></i> Marketplace
+            </span>
+            <h2 class="dev-section-title">Marketplace Premium</h2>
+            <p class="dev-section-description">
+                Descubra apps exclusivos para turbinar seus projetos.
+            </p>
+        </div>
+
+        <!-- Public Content -->
+        <div id="marketplace-content">
+
+            <!-- Filters -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap gap-2 justify-content-center">
+                        <button class="btn btn-outline-light btn-sm rounded-pill active" data-filter="all"
+                            onclick="filterApps('all', this)">
+                            <i class="bi bi-grid-3x3-gap-fill"></i> Todos
+                        </button>
+                        <button class="btn btn-outline-light btn-sm rounded-pill" data-filter="one-time"
+                            onclick="filterApps('one-time', this)">
+                            <i class="bi bi-bag-check"></i> Compra Única
+                        </button>
+                        <button class="btn btn-outline-light btn-sm rounded-pill" data-filter="subscription"
+                            onclick="filterApps('subscription', this)">
+                            <i class="bi bi-arrow-repeat"></i> Assinatura
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Apps Grid -->
+            <div class="row g-4" id="apps-grid">
+
+                <!-- Analytics Pro - Assinatura -->
+                <div class="col-lg-4 col-md-6 app-card" data-type="subscription">
+                    <div class="card bg-dark border-0 h-100 marketplace-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="app-icon bg-primary bg-opacity-25 rounded-3 p-3">
+                                    <i class="bi bi-graph-up-arrow fs-2 text-primary"></i>
+                                </div>
+                                <span
+                                    class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-25">
+                                    <i class="bi bi-arrow-repeat"></i> Assinatura
+                                </span>
+                            </div>
+                            <h4 class="card-title text-white fw-bold mb-2">Analytics Pro</h4>
+                            <p class="card-text text-muted small mb-3">
+                                Dashboard avançado com métricas em tempo real, relatórios customizados e insights de IA.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-white fs-4 fw-bold">R$ 49,90</span>
+                                    <span class="text-muted small">/mês</span>
+                                </div>
+                                <button class="btn btn-primary rounded-pill px-4"
+                                    onclick="openPurchaseModal('Analytics Pro', 49.90, 'subscription')">
+                                    <i class="bi bi-cart-plus"></i> Assinar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-commerce Builder - Compra Única -->
+                <div class="col-lg-4 col-md-6 app-card" data-type="one-time">
+                    <div class="card bg-dark border-0 h-100 marketplace-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="app-icon bg-success bg-opacity-25 rounded-3 p-3">
+                                    <i class="bi bi-cart4 fs-2 text-success"></i>
+                                </div>
+                                <span
+                                    class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">
+                                    <i class="bi bi-bag-check"></i> Compra Única
+                                </span>
+                            </div>
+                            <h4 class="card-title text-white fw-bold mb-2">E-commerce Builder</h4>
+                            <p class="card-text text-muted small mb-3">
+                                Construa lojas virtuais completas com carrinho, checkout e integração com gateways.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-white fs-4 fw-bold">R$ 199,00</span>
+                                </div>
+                                <button class="btn btn-success rounded-pill px-4"
+                                    onclick="openPurchaseModal('E-commerce Builder', 199.00, 'one-time')">
+                                    <i class="bi bi-cart-plus"></i> Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEO Toolkit - Assinatura -->
+                <div class="col-lg-4 col-md-6 app-card" data-type="subscription">
+                    <div class="card bg-dark border-0 h-100 marketplace-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="app-icon bg-info bg-opacity-25 rounded-3 p-3">
+                                    <i class="bi bi-search fs-2 text-info"></i>
+                                </div>
+                                <span
+                                    class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-25">
+                                    <i class="bi bi-arrow-repeat"></i> Assinatura
+                                </span>
+                            </div>
+                            <h4 class="card-title text-white fw-bold mb-2">SEO Toolkit</h4>
+                            <p class="card-text text-muted small mb-3">
+                                Otimização de páginas, análise de keywords, monitoramento de ranking e sugestões IA.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-white fs-4 fw-bold">R$ 29,90</span>
+                                    <span class="text-muted small">/mês</span>
+                                </div>
+                                <button class="btn btn-primary rounded-pill px-4"
+                                    onclick="openPurchaseModal('SEO Toolkit', 29.90, 'subscription')">
+                                    <i class="bi bi-cart-plus"></i> Assinar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API Gateway Plus - Compra Única -->
+                <div class="col-lg-4 col-md-6 app-card" data-type="one-time">
+                    <div class="card bg-dark border-0 h-100 marketplace-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="app-icon bg-warning bg-opacity-25 rounded-3 p-3">
+                                    <i class="bi bi-hdd-network fs-2 text-warning"></i>
+                                </div>
+                                <span
+                                    class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">
+                                    <i class="bi bi-bag-check"></i> Compra Única
+                                </span>
+                            </div>
+                            <h4 class="card-title text-white fw-bold mb-2">API Gateway Plus</h4>
+                            <p class="card-text text-muted small mb-3">
+                                Gerencie suas APIs com rate limiting, autenticação JWT e logs detalhados.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-white fs-4 fw-bold">R$ 149,00</span>
+                                </div>
+                                <button class="btn btn-success rounded-pill px-4"
+                                    onclick="openPurchaseModal('API Gateway Plus', 149.00, 'one-time')">
+                                    <i class="bi bi-cart-plus"></i> Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CRM Enterprise - Assinatura -->
+                <div class="col-lg-4 col-md-6 app-card" data-type="subscription">
+                    <div class="card bg-dark border-0 h-100 marketplace-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="app-icon bg-danger bg-opacity-25 rounded-3 p-3">
+                                    <i class="bi bi-people fs-2 text-danger"></i>
+                                </div>
+                                <span
+                                    class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-25">
+                                    <i class="bi bi-arrow-repeat"></i> Assinatura
+                                </span>
+                            </div>
+                            <h4 class="card-title text-white fw-bold mb-2">CRM Enterprise</h4>
+                            <p class="card-text text-muted small mb-3">
+                                Gestão completa de clientes, funil de vendas, automações e integrações.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-white fs-4 fw-bold">R$ 79,90</span>
+                                    <span class="text-muted small">/mês</span>
+                                </div>
+                                <button class="btn btn-primary rounded-pill px-4"
+                                    onclick="openPurchaseModal('CRM Enterprise', 79.90, 'subscription')">
+                                    <i class="bi bi-cart-plus"></i> Assinar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Landing Page Kit - Compra Única -->
+                <div class="col-lg-4 col-md-6 app-card" data-type="one-time">
+                    <div class="card bg-dark border-0 h-100 marketplace-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="app-icon bg-secondary bg-opacity-50 rounded-3 p-3">
+                                    <i class="bi bi-layout-text-window-reverse fs-2 text-light"></i>
+                                </div>
+                                <span
+                                    class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">
+                                    <i class="bi bi-bag-check"></i> Compra Única
+                                </span>
+                            </div>
+                            <h4 class="card-title text-white fw-bold mb-2">Landing Page Kit</h4>
+                            <p class="card-text text-muted small mb-3">
+                                +50 templates de landing pages responsivas e otimizadas para conversão.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-white fs-4 fw-bold">R$ 89,00</span>
+                                </div>
+                                <button class="btn btn-success rounded-pill px-4"
+                                    onclick="openPurchaseModal('Landing Page Kit', 89.00, 'one-time')">
+                                    <i class="bi bi-cart-plus"></i> Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="/premium" class="btn btn-outline-light rounded-pill px-4">
+                    <i class="bi bi-arrow-left"></i> Voltar para Meus Apps
+                </a>
+            </div>
+        </div>
+
+
+
+    </div>
+</section>
+
+<!-- Purchase Modal -->
+<div id="purchase-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark border-secondary">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title text-white">
+                    <i class="bi bi-cart-check me-2"></i>
+                    <span id="modal-app-name">Confirmar Compra</span>
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center py-4">
+                <div id="modal-icon" class="display-3 mb-3"></div>
+                <h4 class="text-white" id="modal-title">App Name</h4>
+                <p class="text-muted" id="modal-description">Descrição do app</p>
+
+                <div class="card bg-secondary bg-opacity-25 border-0 p-3 mt-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Valor:</span>
+                        <span class="text-white fs-4 fw-bold" id="modal-price">R$ 0,00</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-2" id="modal-type-row">
+                        <span class="text-muted">Tipo:</span>
+                        <span id="modal-type-badge"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-secondary justify-content-center gap-2">
+                <button type="button" class="btn btn-outline-light px-4" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success px-4" onclick="confirmPurchase()">
+                    <i class="bi bi-check-lg"></i> Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .marketplace-card {
+        background: linear-gradient(145deg, rgba(30, 30, 45, 0.9), rgba(20, 20, 35, 0.95)) !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        border-radius: 16px !important;
+        transition: all 0.3s ease;
+    }
+
+    .marketplace-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .app-icon {
+        transition: transform 0.3s ease;
+    }
+
+    .marketplace-card:hover .app-icon {
+        transform: scale(1.1);
+    }
+
+    .btn.active {
+        background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+        border-color: transparent;
+    }
+
+    [data-filter] {
+        transition: all 0.2s ease;
+    }
+
+    .app-card {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .app-card.hidden {
+        opacity: 0;
+        transform: scale(0.95);
+        pointer-events: none;
+        position: absolute;
+        visibility: hidden;
+    }
+</style>
+
+<script>
+    (function () {
+        const auth = window.authService;
+        let currentPurchase = null;
+
+        // Filter Apps
+        window.filterApps = function (type, btn) {
+            // Update active button
+            document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Filter cards
+            document.querySelectorAll('.app-card').forEach(card => {
+                const cardType = card.dataset.type;
+                if (type === 'all' || cardType === type) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // Open Purchase Modal
+        window.openPurchaseModal = function (name, price, type) {
+
+            // Check auth before opening modal
+            if (!auth || !auth.isAuthenticated()) {
+                if (window.core && window.core.toast) {
+                    window.core.toast('Faça login ou crie uma conta para adquirir este item.', 'warning');
+                }
+                setTimeout(() => window.core.navigate('/login'), 1500);
+                return;
+            }
+
+            currentPurchase = { name, price, type };
+
+            const modal = new bootstrap.Modal(document.getElementById('purchase-modal'));
+
+            document.getElementById('modal-app-name').textContent = name;
+            document.getElementById('modal-title').textContent = name;
+
+            const priceFormatted = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            const priceText = type === 'subscription' ? `${priceFormatted}/mês` : priceFormatted;
+            document.getElementById('modal-price').textContent = priceText;
+
+            const typeBadge = document.getElementById('modal-type-badge');
+            if (type === 'subscription') {
+                typeBadge.innerHTML = '<span class="badge bg-primary">Assinatura Mensal</span>';
+                document.getElementById('modal-icon').innerHTML = '<i class="bi bi-arrow-repeat text-primary"></i>';
+            } else {
+                typeBadge.innerHTML = '<span class="badge bg-success">Compra Única</span>';
+                document.getElementById('modal-icon').innerHTML = '<i class="bi bi-bag-check text-success"></i>';
+            }
+
+            modal.show();
+        }
+
+        // Confirm Purchase
+        window.confirmPurchase = function () {
+            if (!currentPurchase) return;
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('purchase-modal'));
+            modal.hide();
+
+            // Simulate purchase
+            if (window.core && window.core.toast) {
+                window.core.toast(`Compra de "${currentPurchase.name}" realizada com sucesso!`, 'success');
+            } else {
+                alert('Compra realizada com sucesso!');
+            }
+
+            currentPurchase = null;
+        }
+    })();
+</script>

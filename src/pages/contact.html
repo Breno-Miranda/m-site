@@ -1,110 +1,153 @@
-<div class="container py-5">
-  <div class="row">
-    <div class="col-md-8 mx-auto">
-      <h1 class="display-4 mb-4 text-center">Get in Touch</h1>
-      <p class="lead mb-4 text-center">Visit my website for more information and to get in touch!</p>
+<section class="dev-section pt-5 mt-5">
+  <div class="container">
 
+    <!-- Header -->
+    <div class="dev-section-header text-center mb-5">
+      <span class="dev-section-badge bg-primary bg-opacity-10 text-primary border-primary">
+        <i class="bi bi-chat-text-fill"></i> Fale Conosco
+      </span>
+      <h2 class="dev-section-title">Entre em <span class="text-gradient">Contato</span></h2>
+      <p class="dev-section-description">
+        Estamos prontos para ouvir seu projeto e transformar suas ideias em realidade.
+      </p>
+    </div>
 
-      <div class="card mb-5 animate__animated animate__fadeIn">
-        <div class="card-body text-center p-5">
-          <i class="bi bi-globe text-primary" style="font-size: 3rem;"></i>
-          <h3 class="mt-3 mb-3">texto dinamico</h3>
-          <p class="text-muted mb-4" id="foo"></p>
-        </div>
-      </div>
+    <div class="row g-5 justify-content-center">
 
-      <!-- Main Website Card -->
-      <div class="card mb-5 animate__animated animate__fadeIn">
-        <div class="card-body text-center p-5">
-          <i class="bi bi-globe text-primary" style="font-size: 3rem;"></i>
-          <h3 class="mt-3 mb-3">brenossan.com.br</h3>
-          <p class="text-muted mb-4">Find all the information you need about my services, projects, and how to work together.</p>
-          <a href="https://brenossan.com.br" target="_blank" class="btn btn-primary btn-lg">
-            <i class="bi bi-box-arrow-up-right me-2"></i>Visit Website
-          </a>
-        </div>
-      </div>
-
-      <!-- Social Media & Contact Cards -->
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="card h-100 animate__animated animate__fadeInLeft">
-            <div class="card-body text-center">
-              <i class="bi bi-github text-dark fs-1 mb-3"></i>
-              <h5 class="card-title">GitHub</h5>
-              <p class="card-text">Check out my open source projects and contributions</p>
-              <a href="https://github.com/brenossan" target="_blank" class="btn btn-outline-dark">
-                <i class="bi bi-github me-2"></i>Follow on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card h-100 animate__animated animate__fadeInRight">
-            <div class="card-body text-center">
-              <i class="bi bi-linkedin text-primary fs-1 mb-3"></i>
-              <h5 class="card-title">LinkedIn</h5>
-              <p class="card-text">Connect with me professionally</p>
-              <a href="https://linkedin.com/in/brenossan" target="_blank" class="btn btn-outline-primary">
-                <i class="bi bi-linkedin me-2"></i>Connect on LinkedIn
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card h-100 animate__animated animate__fadeInLeft">
-            <div class="card-body text-center">
-              <i class="bi bi-envelope text-danger fs-1 mb-3"></i>
-              <h5 class="card-title">Email</h5>
-              <p class="card-text">Get in touch directly via email</p>
-              <a href="mailto:contact@brenossan.com.br" class="btn btn-outline-danger">
-                <i class="bi bi-envelope me-2"></i>Send Email
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card h-100 animate__animated animate__fadeInRight">
-            <div class="card-body text-center">
-              <i class="bi bi-whatsapp text-success fs-1 mb-3"></i>
-              <h5 class="card-title">WhatsApp</h5>
-              <p class="card-text">Chat with me directly</p>
-              <a href="https://wa.me/5511999999999" target="_blank" class="btn btn-outline-success">
-                <i class="bi bi-whatsapp me-2"></i>Message on WhatsApp
-              </a>
-            </div>
+      <!-- Contact Form -->
+      <div class="col-lg-7">
+        <div class="card bg-dark border-secondary bg-opacity-50 animate__animated animate__fadeInLeft h-100">
+          <div class="card-body p-4 p-md-5">
+            <form id="contact-form">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label text-muted small text-uppercase fw-bold">Seu Nome</label>
+                  <input type="text" class="form-control bg-dark text-white border-secondary py-3"
+                    placeholder="João Silva" required id="contact-name">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label text-muted small text-uppercase fw-bold">Seu Email</label>
+                  <input type="email" class="form-control bg-dark text-white border-secondary py-3"
+                    placeholder="joao@empresa.com" required id="contact-email">
+                </div>
+                <div class="col-12">
+                  <label class="form-label text-muted small text-uppercase fw-bold">Assunto</label>
+                  <select class="form-select bg-dark text-white border-secondary py-3" id="contact-subject">
+                    <option value="orcamento">Orçamento de Projeto</option>
+                    <option value="duvida">Dúvida Técnica</option>
+                    <option value="parceria">Parceria</option>
+                    <option value="outro">Outro</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label text-muted small text-uppercase fw-bold">Mensagem</label>
+                  <textarea class="form-control bg-dark text-white border-secondary" rows="5"
+                    placeholder="Conte-nos mais sobre seu projeto..." required id="contact-message"></textarea>
+                </div>
+                <div class="col-12 mt-4">
+                  <button type="submit" class="btn btn-primary w-100 py-3 fw-bold shadow-lg">
+                    <i class="bi bi-send-fill me-2"></i> Enviar Mensagem
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
 
-      <!-- Additional Social Links -->
-      <div class="text-center mt-5">
-        <p class="text-muted mb-3">Follow me on social media</p>
-        <div class="d-flex justify-content-center gap-3">
-          <a href="https://twitter.com/brenossan" target="_blank" class="btn btn-outline-info">
-            <i class="bi bi-twitter-x"></i>
-          </a>
-          <a href="https://instagram.com/brenossan" target="_blank" class="btn btn-outline-danger">
-            <i class="bi bi-instagram"></i>
-          </a>
-          <a href="https://youtube.com/@brenossan" target="_blank" class="btn btn-outline-danger">
-            <i class="bi bi-youtube"></i>
-          </a>
+      <!-- Contact Info -->
+      <div class="col-lg-5">
+        <div class="d-flex flex-column gap-4 animate__animated animate__fadeInRight">
+
+          <!-- Card 1 -->
+          <div class="card bg-dark border-secondary bg-opacity-50">
+            <div class="card-body p-4 d-flex align-items-center gap-4">
+              <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-circle">
+                <i class="bi bi-whatsapp fs-3"></i>
+              </div>
+              <div>
+                <h5 class="mb-1 text-white">WhatsApp</h5>
+                <p class="text-muted small mb-1">Atendimento rápido</p>
+                <a href="https://wa.me/5584988330532" target="_blank"
+                  class="text-white text-decoration-none fw-bold stretched-link">(84) 98833-0532</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="card bg-dark border-secondary bg-opacity-50">
+            <div class="card-body p-4 d-flex align-items-center gap-4">
+              <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-circle">
+                <i class="bi bi-envelope-fill fs-3"></i>
+              </div>
+              <div>
+                <h5 class="mb-1 text-white">Email</h5>
+                <p class="text-muted small mb-1">Para orçamentos detalhados</p>
+                <a href="mailto:contato@msoft.com.br"
+                  class="text-white text-decoration-none fw-bold stretched-link">contato@msoft.com.br</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="card bg-dark border-secondary bg-opacity-50">
+            <div class="card-body p-4 d-flex align-items-center gap-4">
+              <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-circle">
+                <i class="bi bi-geo-alt-fill fs-3"></i>
+              </div>
+              <div>
+                <h5 class="mb-1 text-white">Localização</h5>
+                <p class="text-muted small mb-1">Base de operações</p>
+                <span class="text-white fw-bold">São Gonçalo do Amarante, RN</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Socials -->
+          <div class="card bg-dark border-secondary bg-opacity-50 mt-2">
+            <div class="card-body p-4 text-center">
+              <h6 class="text-muted mb-3">Redes Sociais</h6>
+              <div class="d-flex justify-content-center gap-3">
+                <a href="#" class="btn btn-outline-secondary rounded-circle"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="btn btn-outline-secondary rounded-circle"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="btn btn-outline-secondary rounded-circle"><i class="bi bi-github"></i></a>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
+
     </div>
   </div>
-</div>
+</section>
+
+<style>
+  .form-control:focus,
+  .form-select:focus {
+    background-color: #1a1a25 !important;
+    border-color: #3b82f6 !important;
+    color: white !important;
+    box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+  }
+</style>
 
 <script>
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-window.core.setData('foo', `texto dinamico ${Math.random()}`);
-  window.core.fetchAPI('article/foo?format=yaml', 'GET').then(data => {
-    window.core.toast('texto obtido com sucesso', 'success');
-    window.core.setData('foo', data);
+    const btn = e.submitter;
+    const originalText = btn.innerHTML;
 
-    window.core.setData('foo', `<p>texto dinamico ${Math.random()}</p>`, true);
-    console.log(`data`,data);
-  })
-  
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Enviando...';
+    btn.disabled = true;
+
+    // Simulate API call
+    setTimeout(() => {
+      window.core.toast('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
+      document.getElementById('contact-form').reset();
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    }, 1500);
+  });
 </script>

@@ -60,7 +60,8 @@
                     </h5>
                 </div>
                 <div class="card-body">
-                    <p class="text-muted small">Receba atualizações do Framework Frontend diretamente na caixa de entrada</p>
+                    <p class="text-muted small">Receba atualizações do Framework Frontend diretamente na caixa de
+                        entrada</p>
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" placeholder="Seu e-mail">
                         <button class="btn btn-outline-info" type="button">
@@ -74,306 +75,317 @@
 </div>
 
 <style>
-/* Blog Post Styles */
-.blog-post {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-    overflow: hidden;
-}
-
-.blog-post-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 3rem 2rem;
-    text-align: center;
-    position: relative;
-}
-
-.blog-post-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.1);
-    z-index: 1;
-}
-
-.blog-post-header > * {
-    position: relative;
-    z-index: 2;
-}
-
-.blog-post-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-}
-
-.blog-post-meta {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
-}
-
-.blog-post-meta-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    opacity: 0.9;
-}
-
-.blog-post-description {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    opacity: 0.95;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.blog-post-content {
-    padding: 3rem 2rem;
-}
-
-.blog-post-content h1,
-.blog-post-content h2,
-.blog-post-content h3,
-.blog-post-content h4,
-.blog-post-content h5,
-.blog-post-content h6 {
-    color: #2c3e50;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-.blog-post-content h1 { font-size: 2rem; }
-.blog-post-content h2 { font-size: 1.75rem; }
-.blog-post-content h3 { font-size: 1.5rem; }
-.blog-post-content h4 { font-size: 1.25rem; }
-
-.blog-post-content p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #555;
-    margin-bottom: 1.5rem;
-}
-
-.blog-post-content ul,
-.blog-post-content ol {
-    margin-bottom: 1.5rem;
-    padding-left: 2rem;
-}
-
-.blog-post-content li {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #555;
-    margin-bottom: 0.5rem;
-}
-
-.blog-post-content blockquote {
-    border-left: 4px solid #667eea;
-    padding-left: 1.5rem;
-    margin: 2rem 0;
-    font-style: italic;
-    color: #666;
-    background: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 0 8px 8px 0;
-}
-
-.blog-post-content img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin: 2rem 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.blog-post-content code {
-    background: #f8f9fa;
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    font-family: 'Courier New', monospace;
-    color: #e83e8c;
-}
-
-.blog-post-content pre {
-    background: #2d3748;
-    color: #e2e8f0;
-    padding: 1.5rem;
-    border-radius: 8px;
-    overflow-x: auto;
-    margin: 2rem 0;
-}
-
-.blog-post-content pre code {
-    background: none;
-    color: inherit;
-    padding: 0;
-}
-
-/* Breadcrumb */
-.breadcrumb {
-    background: transparent;
-    padding: 0;
-    margin-bottom: 2rem;
-}
-
-.breadcrumb-item + .breadcrumb-item::before {
-    color: #6c757d;
-}
-
-.breadcrumb-item a {
-    color: #667eea;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.breadcrumb-item a:hover {
-    color: #5a67d8;
-    text-decoration: underline;
-}
-
-/* Related Posts */
-.related-post-item {
-    display: flex;
-    align-items: start;
-    padding: 1rem 0;
-    border-bottom: 1px solid #f1f3f4;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.2s ease;
-}
-
-.related-post-item:hover {
-    color: #667eea;
-    text-decoration: none;
-    transform: translateX(5px);
-}
-
-.related-post-item:last-child {
-    border-bottom: none;
-}
-
-.related-post-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-right: 1rem;
-    flex-shrink: 0;
-}
-
-.related-post-content h6 {
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-    font-weight: 600;
-}
-
-.related-post-date {
-    font-size: 0.8rem;
-    color: #6c757d;
-}
-
-/* Share Buttons */
-.btn-outline-primary:hover {
-    background-color: #3b5998;
-    border-color: #3b5998;
-}
-
-.btn-outline-info:hover {
-    background-color: #1da1f2;
-    border-color: #1da1f2;
-}
-
-.btn-outline-success:hover {
-    background-color: #25d366;
-    border-color: #25d366;
-}
-
-/* Responsive */
-@media (max-width: 991.98px) {
-    .blog-post-header {
-        padding: 2rem 1rem;
+    /* Blog Post Styles */
+    .blog-post {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
     }
-    
+
+    .blog-post-header {
+        background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+        color: white;
+        padding: 3rem 2rem;
+        text-align: center;
+        position: relative;
+    }
+
+    .blog-post-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.1);
+        z-index: 1;
+    }
+
+    .blog-post-header>* {
+        position: relative;
+        z-index: 2;
+    }
+
     .blog-post-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    .blog-post-meta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+    }
+
+    .blog-post-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+
+    .blog-post-description {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        opacity: 0.95;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .blog-post-content {
+        padding: 3rem 2rem;
+    }
+
+    .blog-post-content h1,
+    .blog-post-content h2,
+    .blog-post-content h3,
+    .blog-post-content h4,
+    .blog-post-content h5,
+    .blog-post-content h6 {
+        color: #2c3e50;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .blog-post-content h1 {
         font-size: 2rem;
     }
-    
-    .blog-post-content {
-        padding: 2rem 1rem;
-    }
-    
-    .blog-post-meta {
-        gap: 1rem;
-    }
-}
 
-@media (max-width: 767.98px) {
-    .blog-post-title {
+    .blog-post-content h2 {
         font-size: 1.75rem;
     }
-    
-    .blog-post-meta {
-        flex-direction: column;
-        gap: 0.5rem;
+
+    .blog-post-content h3 {
+        font-size: 1.5rem;
     }
-    
+
+    .blog-post-content h4 {
+        font-size: 1.25rem;
+    }
+
     .blog-post-content p {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 1.5rem;
     }
-}
+
+    .blog-post-content ul,
+    .blog-post-content ol {
+        margin-bottom: 1.5rem;
+        padding-left: 2rem;
+    }
+
+    .blog-post-content li {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 0.5rem;
+    }
+
+    .blog-post-content blockquote {
+        border-left: 4px solid #3b82f6;
+        padding-left: 1.5rem;
+        margin: 2rem 0;
+        font-style: italic;
+        color: #666;
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 0 8px 8px 0;
+    }
+
+    .blog-post-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 2rem 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-post-content code {
+        background: #f8f9fa;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        color: #e83e8c;
+    }
+
+    .blog-post-content pre {
+        background: #2d3748;
+        color: #e2e8f0;
+        padding: 1.5rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 2rem 0;
+    }
+
+    .blog-post-content pre code {
+        background: none;
+        color: inherit;
+        padding: 0;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+        background: transparent;
+        padding: 0;
+        margin-bottom: 2rem;
+    }
+
+    .breadcrumb-item+.breadcrumb-item::before {
+        color: #6c757d;
+    }
+
+    .breadcrumb-item a {
+        color: #3b82f6;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .breadcrumb-item a:hover {
+        color: #1d4ed8;
+        text-decoration: underline;
+    }
+
+    /* Related Posts */
+    .related-post-item {
+        display: flex;
+        align-items: start;
+        padding: 1rem 0;
+        border-bottom: 1px solid #f1f3f4;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.2s ease;
+    }
+
+    .related-post-item:hover {
+        color: #3b82f6;
+        text-decoration: none;
+        transform: translateX(5px);
+    }
+
+    .related-post-item:last-child {
+        border-bottom: none;
+    }
+
+    .related-post-image {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-right: 1rem;
+        flex-shrink: 0;
+    }
+
+    .related-post-content h6 {
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+        font-weight: 600;
+    }
+
+    .related-post-date {
+        font-size: 0.8rem;
+        color: #6c757d;
+    }
+
+    /* Share Buttons */
+    .btn-outline-primary:hover {
+        background-color: #3b5998;
+        border-color: #3b5998;
+    }
+
+    .btn-outline-info:hover {
+        background-color: #1da1f2;
+        border-color: #1da1f2;
+    }
+
+    .btn-outline-success:hover {
+        background-color: #25d366;
+        border-color: #25d366;
+    }
+
+    /* Responsive */
+    @media (max-width: 991.98px) {
+        .blog-post-header {
+            padding: 2rem 1rem;
+        }
+
+        .blog-post-title {
+            font-size: 2rem;
+        }
+
+        .blog-post-content {
+            padding: 2rem 1rem;
+        }
+
+        .blog-post-meta {
+            gap: 1rem;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .blog-post-title {
+            font-size: 1.75rem;
+        }
+
+        .blog-post-meta {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .blog-post-content p {
+            font-size: 1rem;
+        }
+    }
 </style>
 
 <script type="module">
-import blogPosts from '/src/data/blog-posts.js';
+    import blogPosts from '/src/data/blog-posts.js';
 
-const slugify = (value = '') => {
-    if (window.core?.helpers?.slugify) {
-        return window.core.helpers.slugify(value);
-    }
-    return value.toString().toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-};
+    const slugify = (value = '') => {
+        if (window.core?.helpers?.slugify) {
+            return window.core.helpers.slugify(value);
+        }
+        return value.toString().toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    };
 
-const params = window.core?.params || [];
-const idParam = params[0];
+    const params = window.core?.params || [];
+    const idParam = params[0];
 
-document.addEventListener('DOMContentLoaded', () => {
-    if (!idParam) {
-        showError('ID não encontrado. Verifique a URL.');
-        return;
-    }
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!idParam) {
+            showError('ID não encontrado. Verifique a URL.');
+            return;
+        }
 
-    const post = blogPosts.find(post => String(post.id) === String(idParam));
-    if (!post) {
-        showError('Conteúdo não encontrado.');
-        return;
-    }
+        const post = blogPosts.find(post => String(post.id) === String(idParam));
+        if (!post) {
+            showError('Conteúdo não encontrado.');
+            return;
+        }
 
-    renderBlogPost(post);
-    renderRelatedPosts(post);
-});
-
-function renderBlogPost(post) {
-    const publishedDate = new Date(post.date || post.publishedAt).toLocaleDateString('pt-BR', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
+        renderBlogPost(post);
+        renderRelatedPosts(post);
     });
 
-    const content = `
+    function renderBlogPost(post) {
+        const publishedDate = new Date(post.date || post.publishedAt).toLocaleDateString('pt-BR', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        const content = `
         <article class="blog-post">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -422,22 +434,22 @@ function renderBlogPost(post) {
         </article>
     `;
 
-    window.core.setData('blog-content', content);
-    document.title = `${post.title} - Blog do Framework`;
-}
+        window.core.setData('blog-content', content);
+        document.title = `${post.title} - Blog do Framework`;
+    }
 
-function renderRelatedPosts(currentPost) {
-    const related = blogPosts
-        .filter(post => post.id !== currentPost.id)
-        .sort((a, b) => (a.category === currentPost.category ? -1 : 1))
-        .slice(0, 3);
+    function renderRelatedPosts(currentPost) {
+        const related = blogPosts
+            .filter(post => post.id !== currentPost.id)
+            .sort((a, b) => (a.category === currentPost.category ? -1 : 1))
+            .slice(0, 3);
 
-    const html = related.map(post => {
-        const publishedDate = new Date(post.date || post.publishedAt).toLocaleDateString('pt-BR', {
-            day: '2-digit',
-            month: 'short'
-        });
-        return `
+        const html = related.map(post => {
+            const publishedDate = new Date(post.date || post.publishedAt).toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: 'short'
+            });
+            return `
             <a href="/blog-review/${post.id}/${slugify(post.title)}" class="related-post-item">
                 ${post.image ? `
                     <img src="${post.image}" class="related-post-image" alt="${post.title}">
@@ -452,37 +464,36 @@ function renderRelatedPosts(currentPost) {
                 </div>
             </a>
         `;
-    }).join('');
+        }).join('');
 
-    window.core.setData('related-posts-list', html);
-}
+        window.core.setData('related-posts-list', html);
+    }
 
-function showError(message) {
-    const errorContent = `
+    function showError(message) {
+        const errorContent = `
         <div class="alert alert-warning" role="alert">
             <i class="bi bi-exclamation-triangle me-2"></i>
             ${message}
         </div>
     `;
-    window.core.setData('blog-content', errorContent);
-    window.core.toast(message, 'error');
-}
+        window.core.setData('blog-content', errorContent);
+        window.core.toast(message, 'error');
+    }
 
-window.shareOnFacebook = function shareOnFacebook() {
-    const url = encodeURIComponent(window.location.href);
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
-};
+    window.shareOnFacebook = function shareOnFacebook() {
+        const url = encodeURIComponent(window.location.href);
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+    };
 
-window.shareOnTwitter = function shareOnTwitter() {
-    const url = encodeURIComponent(window.location.href);
-    const title = encodeURIComponent(document.title);
-    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank');
-};
+    window.shareOnTwitter = function shareOnTwitter() {
+        const url = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent(document.title);
+        window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank');
+    };
 
-window.shareOnWhatsApp = function shareOnWhatsApp() {
-    const url = encodeURIComponent(window.location.href);
-    const title = encodeURIComponent(document.title);
-    window.open(`https://wa.me/?text=${title}%20${url}`, '_blank');
-};
+    window.shareOnWhatsApp = function shareOnWhatsApp() {
+        const url = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent(document.title);
+        window.open(`https://wa.me/?text=${title}%20${url}`, '_blank');
+    };
 </script>
-

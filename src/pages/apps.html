@@ -1,20 +1,25 @@
 <section class="dev-section pt-5 mt-5">
     <div class="container">
         <div class="dev-section-header text-center mb-5">
-            <span class="dev-section-badge">
-                <i class="bi bi-grid-fill"></i> Utilitários
+            <span class="dev-section-badge bg-success bg-opacity-10 text-success border-success">
+                <i class="bi bi-gift-fill"></i> Utilitários Gratuitos
             </span>
             <h2 class="dev-section-title">Super App Tools</h2>
             <p class="dev-section-description">
-                Ferramentas úteis para o dia a dia, tudo em um só lugar.
+                Ferramentas essenciais para o dia a dia, 100% gratuitas.<br>
+                Procurando soluções avançadas? Conheça nosso <a href="/marketplace"
+                    class="text-gradient fw-bold text-decoration-none">Marketplace Premium</a>.
             </p>
         </div>
 
-        <div class="row g-4 justify-content-center">
+        <div class="row g-4 justify-content-center" id="apps-grid">
             <!-- Password Generator -->
             <div class="col-md-4 col-sm-6">
-                <div class="dev-skill-card h-100 p-4" onclick="openTool('password-gen')"
+                <div class="dev-skill-card h-100 p-4 position-relative" onclick="openTool('password-gen', this)"
                     style="cursor: pointer; transition: transform 0.3s;">
+                    <span
+                        class="position-absolute top-0 end-0 m-3 badge bg-success rounded-pill d-none installed-badge"><i
+                            class="bi bi-check-lg"></i> Instalado</span>
                     <div class="dev-skill-icon mb-3">
                         <i class="bi bi-key fs-1 text-primary"></i>
                     </div>
@@ -25,8 +30,11 @@
 
             <!-- Percentage Calculator -->
             <div class="col-md-4 col-sm-6">
-                <div class="dev-skill-card h-100 p-4" onclick="openTool('percentage-calc')"
+                <div class="dev-skill-card h-100 p-4 position-relative" onclick="openTool('percentage-calc', this)"
                     style="cursor: pointer; transition: transform 0.3s;">
+                    <span
+                        class="position-absolute top-0 end-0 m-3 badge bg-success rounded-pill d-none installed-badge"><i
+                            class="bi bi-check-lg"></i> Instalado</span>
                     <div class="dev-skill-icon mb-3">
                         <i class="bi bi-percent fs-1 text-success"></i>
                     </div>
@@ -37,13 +45,76 @@
 
             <!-- CPF/CNPJ Generator -->
             <div class="col-md-4 col-sm-6">
-                <div class="dev-skill-card h-100 p-4" onclick="openTool('doc-gen')"
+                <div class="dev-skill-card h-100 p-4 position-relative" onclick="openTool('doc-gen', this)"
                     style="cursor: pointer; transition: transform 0.3s;">
+                    <span
+                        class="position-absolute top-0 end-0 m-3 badge bg-success rounded-pill d-none installed-badge"><i
+                            class="bi bi-check-lg"></i> Instalado</span>
                     <div class="dev-skill-icon mb-3">
                         <i class="bi bi-person-badge fs-1 text-info"></i>
                     </div>
                     <h3 class="dev-skill-title mb-2">Gerador CPF/CNPJ</h3>
                     <p class="text-muted small">Gere e valide documentos para testes de desenvolvimento.</p>
+                </div>
+            </div>
+
+            <!-- NFe XML to JSON -->
+            <div class="col-md-4 col-sm-6">
+                <div class="dev-skill-card h-100 p-4 position-relative" onclick="openTool('nfe-xml-json', this)"
+                    style="cursor: pointer; transition: transform 0.3s;">
+                    <span
+                        class="position-absolute top-0 end-0 m-3 badge bg-success rounded-pill d-none installed-badge"><i
+                            class="bi bi-check-lg"></i> Instalado</span>
+                    <div class="dev-skill-icon mb-3">
+                        <i class="bi bi-file-earmark-code fs-1 text-warning"></i>
+                    </div>
+                    <h3 class="dev-skill-title mb-2">XML NFe para JSON</h3>
+                    <p class="text-muted small">Converta XML de Nota Fiscal (55/65) para JSON instantaneamente.</p>
+                </div>
+            </div>
+
+            <!-- JSON Formatter -->
+            <div class="col-md-4 col-sm-6">
+                <div class="dev-skill-card h-100 p-4 position-relative" onclick="openTool('json-formatter', this)"
+                    style="cursor: pointer; transition: transform 0.3s;">
+                    <span
+                        class="position-absolute top-0 end-0 m-3 badge bg-success rounded-pill d-none installed-badge"><i
+                            class="bi bi-check-lg"></i> Instalado</span>
+                    <div class="dev-skill-icon mb-3">
+                        <i class="bi bi-braces fs-1 text-danger"></i>
+                    </div>
+                    <h3 class="dev-skill-title mb-2">JSON Formatter</h3>
+                    <p class="text-muted small">Valide e formate arquivos JSON desorganizados ou minificados.</p>
+                </div>
+            </div>
+
+            <!-- Base64 Converter -->
+            <div class="col-md-4 col-sm-6">
+                <div class="dev-skill-card h-100 p-4 position-relative" onclick="openTool('base64-converter', this)"
+                    style="cursor: pointer; transition: transform 0.3s;">
+                    <span
+                        class="position-absolute top-0 end-0 m-3 badge bg-success rounded-pill d-none installed-badge"><i
+                            class="bi bi-check-lg"></i> Instalado</span>
+                    <div class="dev-skill-icon mb-3">
+                        <i class="bi bi-shield-lock fs-1 text-light"></i>
+                    </div>
+                    <h3 class="dev-skill-title mb-2">Conversor Base64</h3>
+                    <p class="text-muted small">Codifique e decodifique textos em Base64 facilmente.</p>
+                </div>
+            </div>
+
+            <!-- De/Para Universal -->
+            <div class="col-md-4 col-sm-6">
+                <div class="dev-skill-card h-100 p-4 position-relative" onclick="openTool('depara-transform', this)"
+                    style="cursor: pointer; transition: transform 0.3s;">
+                    <span
+                        class="position-absolute top-0 end-0 m-3 badge bg-success rounded-pill d-none installed-badge"><i
+                            class="bi bi-check-lg"></i> Instalado</span>
+                    <div class="dev-skill-icon mb-3">
+                        <i class="bi bi-arrow-left-right fs-1 text-info"></i>
+                    </div>
+                    <h3 class="dev-skill-title mb-2">De/Para Universal</h3>
+                    <p class="text-muted small">Substituição em massa e mapeamento direto de textos, código e JSON.</p>
                 </div>
             </div>
         </div>
@@ -54,7 +125,13 @@
                 style="background: rgba(30, 30, 40, 0.95); backdrop-filter: blur(10px); border-radius: 16px;">
                 <div class="card-body p-5">
                     <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-dark pb-3">
-                        <h3 id="tool-title" class="m-0 fw-bold bg-gradient-primary text-white"></h3>
+                        <div class="d-flex align-items-center gap-3">
+                            <h3 id="tool-title" class="m-0 fw-bold bg-gradient-primary text-white"></h3>
+                            <button class="btn btn-outline-secondary btn-sm rounded-circle"
+                                onclick="window.openHistory()" title="Histórico de Uso" data-bs-toggle="tooltip">
+                                <i class="bi bi-clock-history"></i>
+                            </button>
+                        </div>
                         <button class="btn btn-outline-danger btn-sm rounded-pill px-3" onclick="closeTool()">
                             <i class="bi bi-x-lg"></i> Fechar
                         </button>
@@ -73,179 +150,670 @@
     }
 </style>
 
+
+<!-- Premium Install Overlay -->
+<div id="premium-install-overlay" class="fade-in"
+    style="display: none; position: fixed; inset: 0; background: rgba(5, 5, 10, 0.95); backdrop-filter: blur(15px); z-index: 9999; flex-direction: column; align-items: center; justify-content: center;">
+    <div class="text-center p-5 rounded-4 border border-secondary border-opacity-25"
+        style="background: rgba(20, 20, 30, 0.8); max-width: 400px; width: 90%;">
+        <div class="mb-4 position-relative d-inline-block">
+            <i class="bi bi-hexagon-fill text-primary text-opacity-25" style="font-size: 6rem;"></i>
+            <i class="bi bi-cloud-arrow-down-fill text-primary position-absolute top-50 start-50 translate-middle"
+                style="font-size: 3rem;"></i>
+        </div>
+        <h3 class="text-white mb-2 fw-bold">Instalando App...</h3>
+        <p class="text-secondary small mb-4" id="install-status">Preparando ambiente seguro</p>
+
+        <div class="progress bg-dark border border-secondary border-opacity-25"
+            style="height: 6px; border-radius: 10px;">
+            <div id="install-progress" class="progress-bar bg-gradient-primary" role="progressbar" style="width: 0%">
+            </div>
+        </div>
+        <div class="d-flex justify-content-between text-muted small mt-2">
+            <span>0%</span>
+            <span id="install-percent">0%</span>
+        </div>
+    </div>
+</div>
+
+<!-- Upgrade Modal -->
+<div id="upgrade-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark border-warning">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title text-warning"><i class="bi bi-star-fill me-2"></i>Recurso Premium</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center py-4">
+                <div class="display-1 text-warning mb-3"><i class="bi bi-lock-fill"></i></div>
+                <h4>Acesso Restrito</h4>
+                <p class="text-muted">Este aplicativo é exclusivo para assinantes Premium. Faça o upgrade agora para
+                    desbloquear todas as ferramentas.</p>
+            </div>
+            <div class="modal-footer border-secondary justify-content-center">
+                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Fechar</button>
+                <a href="/#contact"
+                    onclick="bootstrap.Modal.getInstance(document.getElementById('upgrade-modal')).hide()"
+                    class="btn btn-warning text-dark fw-bold">Ver Planos</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- History Modal -->
+<div id="history-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark border-secondary">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title text-white"><i class="bi bi-clock-history me-2"></i>Histórico: <span
+                        id="history-tool-title" class="text-primary"></span></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body bg-black bg-opacity-50 p-0">
+                <div id="history-list" class="list-group list-group-flush">
+                    <!-- Items injected here -->
+                    <div class="text-center p-5 text-muted">Ainda não há histórico para esta ferramenta.</div>
+                </div>
+            </div>
+            <div class="modal-footer border-secondary justify-content-between">
+                <button class="btn btn-outline-danger btn-sm" onclick="window.clearHistory()"><i
+                        class="bi bi-trash"></i> Limpar Histórico</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-    // Ensure functions are global
-    window.openTool = function (toolId) {
-        const container = document.getElementById('tool-container');
-        const title = document.getElementById('tool-title');
-        const content = document.getElementById('tool-content');
+    // App State Management & History
+    window.AppState = {
+        key: 'msoft_installed_apps',
+        historyKey: 'msoft_apps_history',
+        currentToolId: null,
 
-        container.style.display = 'block';
+        getApps: function () {
+            try { return JSON.parse(localStorage.getItem(this.key)) || []; } catch (e) { return []; }
+        },
 
-        // Clear previous content
-        content.innerHTML = '';
+        getHistory: function (toolId) {
+            try {
+                const allHistory = JSON.parse(localStorage.getItem(this.historyKey)) || {};
+                return allHistory[toolId] || [];
+            } catch (e) { return []; }
+        },
 
-        if (toolId === 'password-gen') {
-            title.textContent = 'Gerador de Senha';
-            content.innerHTML = `
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <div class="input-group mb-4">
-                            <input type="text" class="form-control form-control-lg bg-dark text-white border-secondary" id="generated-password" readonly>
-                            <button class="btn btn-primary" onclick="window.copyPassword()">
-                                <i class="bi bi-clipboard"></i> Copiar
-                            </button>
-                        </div>
-                        
-                        <div class="card bg-dark border-secondary p-4">
-                            <div class="mb-4">
-                                <label class="form-label d-flex justify-content-between">
-                                    <span>Tamanho da Senha</span>
-                                    <span id="pwd-length-val" class="badge bg-primary">12</span>
-                                </label>
-                                <input type="range" class="form-range" min="4" max="32" value="12" id="pwd-length" 
-                                    oninput="document.getElementById('pwd-length-val').textContent = this.value; window.generatePassword()">
-                            </div>
-                            
-                            <div class="row g-3">
-                                <div class="col-6">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="pwd-upper" checked onchange="window.generatePassword()">
-                                        <label class="form-check-label">Maiúsculas (A-Z)</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="pwd-lower" checked onchange="window.generatePassword()">
-                                        <label class="form-check-label">Minúsculas (a-z)</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="pwd-numbers" checked onchange="window.generatePassword()">
-                                        <label class="form-check-label">Números (0-9)</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="pwd-special" checked onchange="window.generatePassword()">
-                                        <label class="form-check-label">Especiais (!@#)</label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="d-grid gap-2 mt-4">
-                                 <button class="btn btn-success btn-lg" onclick="window.generatePassword()">
-                                    <i class="bi bi-arrow-clockwise"></i> Gerar Nova Senha
-                                 </button>
-                            </div>
-                        </div>
+        addHistory: function (toolId, summary, content, details = null) {
+            try {
+                const allHistory = JSON.parse(localStorage.getItem(this.historyKey)) || {};
+                if (!allHistory[toolId]) allHistory[toolId] = [];
+
+                const item = {
+                    id: Date.now(),
+                    date: new Date().toISOString(),
+                    summary,
+                    content,
+                    details,
+                    note: ''
+                };
+
+                // Add to beginning, max 50 items
+                allHistory[toolId].unshift(item);
+                if (allHistory[toolId].length > 50) allHistory[toolId].pop();
+
+                localStorage.setItem(this.historyKey, JSON.stringify(allHistory));
+                // Optional: Sync with API
+            } catch (e) { console.error('Error saving history', e); }
+        },
+
+        updateNote: function (toolId, itemId, note) {
+            const allHistory = JSON.parse(localStorage.getItem(this.historyKey)) || {};
+            if (allHistory[toolId]) {
+                const item = allHistory[toolId].find(i => i.id == itemId);
+                if (item) {
+                    item.note = note;
+                    localStorage.setItem(this.historyKey, JSON.stringify(allHistory));
+                }
+            }
+        },
+
+        clearToolHistory: function (toolId) {
+            const allHistory = JSON.parse(localStorage.getItem(this.historyKey)) || {};
+            if (allHistory[toolId]) {
+                delete allHistory[toolId];
+                localStorage.setItem(this.historyKey, JSON.stringify(allHistory));
+                window.openHistory(); // Refresh UI
+            }
+        },
+
+        isInstalled: function (appId) {
+            return this.getApps().includes(appId);
+        },
+
+        install: function (appId) {
+            const apps = this.getApps();
+            if (!apps.includes(appId)) {
+                apps.push(appId);
+                localStorage.setItem(this.key, JSON.stringify(apps));
+                this.syncWithApi();
+                return true;
+            }
+            return false;
+        },
+
+        syncWithApi: function () {
+            if (window.authService && window.authService.getUser()) {
+                console.log('Syncing installed apps with API...', this.getApps());
+            }
+        },
+
+        updateUI: function () {
+            const apps = this.getApps();
+            document.querySelectorAll('[onclick^="openTool"]').forEach(el => {
+                const match = el.getAttribute('onclick').match(/'([^']+)'/);
+                if (match && match[1]) {
+                    if (apps.includes(match[1])) {
+                        const badge = el.querySelector('.installed-badge');
+                        if (badge) badge.classList.remove('d-none');
+                    }
+                }
+            });
+        }
+    };
+
+    // History UI Logic
+    window.openHistory = function () {
+        const toolId = window.AppState.currentToolId;
+        if (!toolId) return;
+
+        const history = window.AppState.getHistory(toolId);
+        const list = document.getElementById('history-list');
+        const title = document.getElementById('tool-title').textContent;
+
+        document.getElementById('history-tool-title').textContent = title;
+        list.innerHTML = '';
+
+        if (history.length === 0) {
+            list.innerHTML = '<div class="text-center p-5 text-muted"><i class="bi bi-clock me-2"></i>Nenhum histórico recente.</div>';
+        } else {
+            history.forEach(item => {
+                const date = new Date(item.date).toLocaleString('pt-BR');
+                const div = document.createElement('div');
+                div.className = 'list-group-item list-group-item-action bg-dark text-white border-secondary p-3';
+                div.innerHTML = `
+                    <div class="d-flex w-100 justify-content-between mb-2">
+                        <h6 class="mb-1 text-primary fw-bold">${item.summary}</h6>
+                        <small class="text-muted">${date}</small>
                     </div>
-                </div>
-            `;
-            window.generatePassword();
-        } else if (toolId === 'percentage-calc') {
-            title.textContent = 'Calculadora de Porcentagem';
-            content.innerHTML = `
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="card bg-dark border-secondary h-100">
-                            <div class="card-header border-secondary">
-                                <h5 class="m-0"><i class="bi bi-calculator"></i> Porcentagem de Valor</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="text-muted">Quanto é X% de Y?</p>
-                                <div class="row g-2 align-items-center mb-3">
-                                    <div class="col">
-                                        <input type="number" class="form-control bg-dark text-white border-secondary" placeholder="X" id="perc-1-x">
-                                    </div>
-                                    <div class="col-auto text-muted">% de</div>
-                                    <div class="col">
-                                        <input type="number" class="form-control bg-dark text-white border-secondary" placeholder="Y" id="perc-1-y">
-                                    </div>
-                                </div>
-                                <button class="btn btn-primary w-100 mb-3" onclick="window.calcPerc1()">Calcular</button>
-                                <div class="alert alert-secondary text-center m-0 fs-5" id="perc-1-res">Resultado: -</div>
-                            </div>
-                        </div>
+                    <div class="mb-2 bg-black bg-opacity-50 p-2 rounded font-monospace small text-break border border-secondary border-opacity-25" style="max-height: 100px; overflow-y: auto;">
+                        ${item.content}
                     </div>
-                    <div class="col-md-6">
-                         <div class="card bg-dark border-secondary h-100">
-                            <div class="card-header border-secondary">
-                                <h5 class="m-0"><i class="bi bi-percent"></i> Porcentagem Relativa</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="text-muted">X é qual % de Y?</p>
-                                <div class="row g-2 align-items-center mb-3">
-                                    <div class="col">
-                                        <input type="number" class="form-control bg-dark text-white border-secondary" placeholder="X" id="perc-2-x">
-                                    </div>
-                                    <div class="col-auto text-muted">é qual % de</div>
-                                    <div class="col">
-                                        <input type="number" class="form-control bg-dark text-white border-secondary" placeholder="Y" id="perc-2-y">
-                                    </div>
-                                </div>
-                                <button class="btn btn-primary w-100 mb-3" onclick="window.calcPerc2()">Calcular</button>
-                                <div class="alert alert-secondary text-center m-0 fs-5" id="perc-2-res">Resultado: -</div>
-                            </div>
-                        </div>
+                    <div class="mt-2">
+                        <label class="small text-muted mb-1"><i class="bi bi-pencil me-1"></i>Anotações</label>
+                        <input type="text" class="form-control form-control-sm bg-black text-white border-secondary" 
+                            placeholder="Adicione uma nota..." value="${item.note || ''}"
+                            onblur="window.AppState.updateNote('${toolId}', ${item.id}, this.value)">
                     </div>
-                </div>
-            `;
-        } else if (toolId === 'doc-gen') {
-            title.textContent = 'Gerador CPF/CNPJ';
-            content.innerHTML = `
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="card bg-dark border-secondary h-100">
-                            <div class="card-header border-secondary d-flex justify-content-between align-items-center">
-                                <h5 class="m-0">CPF</h5>
-                                <div class="form-check form-switch m-0">
-                                    <input class="form-check-input" type="checkbox" id="cpf-mask" checked>
-                                    <label class="form-check-label small">Pontuação</label>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <button class="btn btn-primary w-100 mb-4 btn-lg" onclick="window.generateCPF()">
-                                    <i class="bi bi-person-plus"></i> Gerar CPF
-                                </button>
-                                <div class="input-group">
-                                    <input type="text" class="form-control text-center fs-4 bg-dark text-white border-secondary" id="cpf-result" readonly>
-                                    <button class="btn btn-outline-secondary" onclick="navigator.clipboard.writeText(document.getElementById('cpf-result').value)">
-                                        <i class="bi bi-clipboard"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card bg-dark border-secondary h-100">
-                            <div class="card-header border-secondary d-flex justify-content-between align-items-center">
-                                <h5 class="m-0">CNPJ</h5>
-                                <div class="form-check form-switch m-0">
-                                    <input class="form-check-input" type="checkbox" id="cnpj-mask" checked>
-                                    <label class="form-check-label small">Pontuação</label>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <button class="btn btn-info w-100 mb-4 btn-lg text-white" onclick="window.generateCNPJ()">
-                                    <i class="bi bi-building-add"></i> Gerar CNPJ
-                                </button>
-                                 <div class="input-group">
-                                    <input type="text" class="form-control text-center fs-5 bg-dark text-white border-secondary" id="cnpj-result" readonly>
-                                    <button class="btn btn-outline-secondary" onclick="navigator.clipboard.writeText(document.getElementById('cnpj-result').value)">
-                                        <i class="bi bi-clipboard"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
+                `;
+                list.appendChild(div);
+            });
         }
 
-        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        new bootstrap.Modal(document.getElementById('history-modal')).show();
     }
+
+    window.clearHistory = function () {
+        if (confirm('Tem certeza que deseja limpar o histórico desta ferramenta?')) {
+            window.AppState.clearToolHistory(window.AppState.currentToolId);
+        }
+    }
+
+    // Inicializar UI
+    document.addEventListener('DOMContentLoaded', () => {
+        window.AppState.updateUI();
+    });
+
+    // Premium Logic & Install Effect
+    window.checkPremium = function () {
+        if (!window.authService) return false;
+        const user = window.authService.getUser();
+        if (!user) return false;
+        return user.role === 'admin' || user.role === 'premium';
+    }
+
+    window.runInstallEffect = function (callback, appId) {
+        // Se já instalado, pula animação
+        if (appId && window.AppState.isInstalled(appId)) {
+            if (callback) callback();
+            return;
+        }
+
+        const overlay = document.getElementById('premium-install-overlay');
+        const progressBar = document.getElementById('install-progress');
+        const statusText = document.getElementById('install-status');
+        const percentText = document.getElementById('install-percent');
+
+        overlay.style.display = 'flex';
+        let progress = 0;
+
+        const steps = [
+            { pct: 15, text: 'Verificando licença e compatibilidade...' },
+            { pct: 40, text: 'Baixando recursos...' },
+            { pct: 75, text: 'Configurando preferências do usuário...' },
+            { pct: 90, text: 'Salvando no histórico...' },
+            { pct: 100, text: 'Instalação Concluída!' }
+        ];
+
+        const interval = setInterval(() => {
+            progress += Math.floor(Math.random() * 5) + 1;
+            if (progress > 100) progress = 100;
+
+            progressBar.style.width = `${progress}%`;
+            percentText.textContent = `${progress}%`;
+
+            // Update status text based on progress
+            const step = steps.find(s => progress >= s.pct && progress < s.pct + 20); // rough range
+            if (step) statusText.textContent = step.text;
+
+            if (progress >= 100) {
+                clearInterval(interval);
+
+                // Salvar estado
+                if (appId) window.AppState.install(appId);
+                window.AppState.updateUI(); // Atualiza badges
+
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    if (callback) callback();
+                    // Reset for next time
+                    setTimeout(() => {
+                        progressBar.style.width = '0%';
+                        percentText.textContent = '0%';
+                        statusText.textContent = 'Aguardando...';
+                    }, 500);
+                }, 600);
+            }
+        }, 30); // Speed of animation
+    }
+
+    // Ensure functions are global
+    window.openTool = function (toolId, element) {
+        // Free tools for everyone
+        const openToolLogic = () => {
+            const container = document.getElementById('tool-container');
+            const title = document.getElementById('tool-title');
+            const content = document.getElementById('tool-content');
+
+            container.style.display = 'block';
+            window.AppState.currentToolId = toolId; // Set current tool ID
+
+            // Se veio de um clique (tem element), mostra qual está ativo visualmente (opcional)
+            // if(element) ... 
+
+            // Clear previous content
+            content.innerHTML = '';
+
+            if (toolId === 'password-gen') {
+                title.textContent = 'Gerador de Senha';
+                content.innerHTML = `
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="input-group mb-4">
+                                <input type="text" class="form-control form-control-lg bg-dark text-white border-secondary" id="generated-password" readonly>
+                                <button class="btn btn-primary" onclick="window.copyPassword()">
+                                    <i class="bi bi-clipboard"></i> Copiar
+                                </button>
+                            </div>
+                            
+                            <div class="card bg-dark border-secondary p-4">
+                                <div class="mb-4">
+                                    <label class="form-label d-flex justify-content-between">
+                                        <span>Tamanho da Senha</span>
+                                        <span id="pwd-length-val" class="badge bg-primary">12</span>
+                                    </label>
+                                    <input type="range" class="form-range" min="4" max="32" value="12" id="pwd-length" 
+                                        oninput="document.getElementById('pwd-length-val').textContent = this.value; window.generatePassword()">
+                                </div>
+                                
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="pwd-upper" checked onchange="window.generatePassword()">
+                                            <label class="form-check-label">Maiúsculas (A-Z)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="pwd-lower" checked onchange="window.generatePassword()">
+                                            <label class="form-check-label">Minúsculas (a-z)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="pwd-numbers" checked onchange="window.generatePassword()">
+                                            <label class="form-check-label">Números (0-9)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="pwd-special" checked onchange="window.generatePassword()">
+                                            <label class="form-check-label">Especiais (!@#)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-grid gap-2 mt-4">
+                                     <button class="btn btn-success btn-lg" onclick="window.generatePassword(true)">
+                                        <i class="bi bi-arrow-clockwise"></i> Gerar Nova Senha
+                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                window.generatePassword();
+            } else if (toolId === 'percentage-calc') {
+                title.textContent = 'Calculadora de Porcentagem';
+                content.innerHTML = `
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card bg-dark border-secondary h-100">
+                                <div class="card-header border-secondary">
+                                    <h5 class="m-0"><i class="bi bi-calculator"></i> Porcentagem de Valor</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="text-muted">Quanto é X% de Y?</p>
+                                    <div class="row g-2 align-items-center mb-3">
+                                        <div class="col">
+                                            <input type="number" class="form-control bg-dark text-white border-secondary" placeholder="X" id="perc-1-x">
+                                        </div>
+                                        <div class="col-auto text-muted">% de</div>
+                                        <div class="col">
+                                            <input type="number" class="form-control bg-dark text-white border-secondary" placeholder="Y" id="perc-1-y">
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary w-100 mb-3" onclick="window.calcPerc1()">Calcular</button>
+                                    <div class="alert alert-secondary text-center m-0 fs-5" id="perc-1-res">Resultado: -</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                             <div class="card bg-dark border-secondary h-100">
+                                <div class="card-header border-secondary">
+                                    <h5 class="m-0"><i class="bi bi-percent"></i> Porcentagem Relativa</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="text-muted">X é qual % de Y?</p>
+                                    <div class="row g-2 align-items-center mb-3">
+                                        <div class="col">
+                                            <input type="number" class="form-control bg-dark text-white border-secondary" placeholder="X" id="perc-2-x">
+                                        </div>
+                                        <div class="col-auto text-muted">é qual % de</div>
+                                        <div class="col">
+                                            <input type="number" class="form-control bg-dark text-white border-secondary" placeholder="Y" id="perc-2-y">
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary w-100 mb-3" onclick="window.calcPerc2()">Calcular</button>
+                                    <div class="alert alert-secondary text-center m-0 fs-5" id="perc-2-res">Resultado: -</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (toolId === 'doc-gen') {
+                title.textContent = 'Gerador CPF/CNPJ';
+                content.innerHTML = `
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card bg-dark border-secondary h-100">
+                                <div class="card-header border-secondary d-flex justify-content-between align-items-center">
+                                    <h5 class="m-0">CPF</h5>
+                                    <div class="form-check form-switch m-0">
+                                        <input class="form-check-input" type="checkbox" id="cpf-mask" checked>
+                                        <label class="form-check-label small">Pontuação</label>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <button class="btn btn-primary w-100 mb-4 btn-lg" onclick="window.generateCPF()">
+                                        <i class="bi bi-person-plus"></i> Gerar CPF
+                                    </button>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control text-center fs-4 bg-dark text-white border-secondary" id="cpf-result" readonly>
+                                        <button class="btn btn-outline-secondary" onclick="navigator.clipboard.writeText(document.getElementById('cpf-result').value)">
+                                            <i class="bi bi-clipboard"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-dark border-secondary h-100">
+                                <div class="card-header border-secondary d-flex justify-content-between align-items-center">
+                                    <h5 class="m-0">CNPJ</h5>
+                                    <div class="form-check form-switch m-0">
+                                        <input class="form-check-input" type="checkbox" id="cnpj-mask" checked>
+                                        <label class="form-check-label small">Pontuação</label>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <button class="btn btn-info w-100 mb-4 btn-lg text-white" onclick="window.generateCNPJ()">
+                                        <i class="bi bi-building-add"></i> Gerar CNPJ
+                                    </button>
+                                     <div class="input-group">
+                                        <input type="text" class="form-control text-center fs-5 bg-dark text-white border-secondary" id="cnpj-result" readonly>
+                                        <button class="btn btn-outline-secondary" onclick="navigator.clipboard.writeText(document.getElementById('cnpj-result').value)">
+                                            <i class="bi bi-clipboard"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (toolId === 'nfe-xml-json') {
+                title.textContent = 'Conversor XML da Nota Fiscal para JSON';
+                content.innerHTML = `
+                    <div class="row justify-content-center">
+                        <div class="col-md-10">
+                            <div class="card bg-dark border-secondary p-4 mb-4">
+                                <div class="mb-4 text-center">
+                                    <label for="xml-file-input" class="form-label d-block p-5 border border-2 border-dashed border-secondary rounded-3" style="cursor: pointer;" id="drop-zone">
+                                        <i class="bi bi-cloud-upload fs-1 text-primary mb-3"></i>
+                                        <h5 class="mb-2">Arraste seu XML aqui</h5>
+                                        <span class="text-muted">Suporta NFe (modelo 55) e NFCe (modelo 65)</span>
+                                        <input type="file" id="xml-file-input" class="d-none" accept=".xml">
+                                    </label>
+                                </div>
+                                <div id="json-output-container" style="display: none;">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="text-success fw-bold"><i class="bi bi-check-circle"></i> Convertido com Sucesso</span>
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-outline-light" onclick="window.copyJson()"><i class="bi bi-clipboard"></i> Copiar</button>
+                                            <button class="btn btn-sm btn-outline-primary" onclick="window.downloadJson()"><i class="bi bi-download"></i> Baixar JSON</button>
+                                        </div>
+                                    </div>
+                                    <textarea id="json-result" class="form-control bg-black text-info font-monospace border-secondary" rows="15" readonly></textarea>
+                                </div>
+                            </div>
+                            <div class="alert alert-info bg-opacity-10 border-info text-info">
+                                <i class="bi bi-info-circle me-2"></i> O processamento é feito 100% no seu navegador. Seus dados fiscais não são enviados para nenhum servidor.
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                setTimeout(() => {
+                    const fileInput = document.getElementById('xml-file-input');
+                    const dropZone = document.getElementById('drop-zone');
+
+                    if (fileInput) {
+                        fileInput.addEventListener('change', window.handleFileSelect);
+
+                        // Drag and drop events
+                        dropZone.addEventListener('dragover', (e) => {
+                            e.preventDefault();
+                            dropZone.classList.add('border-primary');
+                            dropZone.classList.add('bg-dark');
+                        });
+
+                        dropZone.addEventListener('dragleave', (e) => {
+                            e.preventDefault();
+                            dropZone.classList.remove('border-primary');
+                            dropZone.classList.remove('bg-dark');
+                        });
+
+                        dropZone.addEventListener('drop', (e) => {
+                            e.preventDefault();
+                            dropZone.classList.remove('border-primary');
+                            dropZone.classList.remove('bg-dark');
+                            if (e.dataTransfer.files.length) {
+                                fileInput.files = e.dataTransfer.files;
+                                window.handleFileSelect({ target: fileInput });
+                            }
+                        });
+                    }
+                }, 100);
+            } else if (toolId === 'json-formatter') {
+                title.textContent = 'Formatador & Validador JSON';
+                content.innerHTML = `
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="mb-3 d-flex gap-2">
+                                <button class="btn btn-sm btn-outline-secondary" onclick="window.jsonSample()">Exemplo</button>
+                                <button class="btn btn-sm btn-outline-secondary" onclick="window.clearJson()">Limpar</button>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted">Entrada (JSON Sujo/Minificado)</label>
+                                    <textarea id="json-input" class="form-control bg-dark text-white border-secondary font-monospace" rows="15" placeholder='Paste JSON here...'></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted d-flex justify-content-between">
+                                        <span>Saída (JSON Formatado)</span>
+                                        <span id="json-status" class="badge bg-secondary">Aguardando</span>
+                                    </label>
+                                    <textarea id="json-output" class="form-control bg-black text-success border-secondary font-monospace" rows="15" readonly></textarea>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center gap-3 mt-4">
+                                <button class="btn btn-primary px-5" onclick="window.formatJson()"><i class="bi bi-magic"></i> Formatar</button>
+                                <button class="btn btn-outline-light" onclick="window.minifyJson()"><i class="bi bi-arrows-collapse"></i> Minificar</button>
+                                <button class="btn btn-outline-success" onclick="window.copyFormattedJson()"><i class="bi bi-clipboard"></i> Copiar</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (toolId === 'base64-converter') {
+                title.textContent = 'Conversor Base64';
+                content.innerHTML = `
+                     <div class="row justify-content-center">
+                        <div class="col-md-10">
+                            <ul class="nav nav-tabs border-secondary mb-4" id="b64Tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active text-white" id="encode-tab" data-bs-toggle="tab" data-bs-target="#encode" type="button" role="tab">Codificar (Encode)</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link text-white" id="decode-tab" data-bs-toggle="tab" data-bs-target="#decode" type="button" role="tab">Decodificar (Decode)</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="b64TabContent">
+                                <div class="tab-pane fade show active" id="encode" role="tabpanel">
+                                    <div class="mb-3">
+                                        <label class="form-label text-muted">Texto Normal</label>
+                                        <textarea id="b64-encode-input" class="form-control bg-dark text-white border-secondary" rows="5" oninput="window.b64Encode()"></textarea>
+                                    </div>
+                                    <div class="text-center mb-3">
+                                        <i class="bi bi-arrow-down fs-3 text-secondary"></i>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label text-muted">Resultado Base64</label>
+                                        <div class="input-group">
+                                            <textarea id="b64-encode-output" class="form-control bg-black text-warning border-secondary font-monospace" rows="5" readonly></textarea>
+                                            <button class="btn btn-outline-secondary" onclick="window.copyToClipboard('b64-encode-output')"><i class="bi bi-clipboard"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="decode" role="tabpanel">
+                                    <div class="mb-3">
+                                        <label class="form-label text-muted">String Base64</label>
+                                        <textarea id="b64-decode-input" class="form-control bg-dark text-warning border-secondary font-monospace" rows="5" oninput="window.b64Decode()"></textarea>
+                                    </div>
+                                     <div class="text-center mb-3">
+                                        <i class="bi bi-arrow-down fs-3 text-secondary"></i>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label text-muted">Resultado Texto</label>
+                                        <div class="input-group">
+                                            <textarea id="b64-decode-output" class="form-control bg-black text-white border-secondary" rows="5" readonly></textarea>
+                                            <button class="btn btn-outline-secondary" onclick="window.copyToClipboard('b64-decode-output')"><i class="bi bi-clipboard"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (toolId === 'depara-transform') {
+                title.textContent = 'De/Para - Transformador Universal';
+                content.innerHTML = `
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                             <div class="row g-4">
+                                <div class="col-md-4">
+                                    <div class="card bg-dark border-secondary h-100">
+                                        <div class="card-header border-secondary">
+                                            <h5 class="m-0"><i class="bi bi-list-check"></i> Regras de Mapeamento</h5>
+                                        </div>
+                                        <div class="card-body p-2" style="max-height: 480px; overflow-y: auto;">
+                                            <div id="depara-rules-container">
+                                                <!-- Rules injected here -->
+                                            </div>
+                                            <button class="btn btn-outline-primary w-100 mt-2 btn-sm" onclick="window.addDeparaRule()">
+                                                <i class="bi bi-plus-lg"></i> Adicionar Regra
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="mb-3">
+                                        <label class="form-label text-muted">Conteúdo Original (JSON, Texto, Código)</label>
+                                        <div class="d-flex justify-content-end mb-1">
+                                            <button class="btn btn-sm btn-outline-secondary me-2 py-0" onclick="window.clearDepara()">Limpar</button>
+                                            <button class="btn btn-sm btn-outline-secondary py-0" onclick="window.sampleDepara()">Exemplo</button>
+                                        </div>
+                                        <textarea id="depara-input" class="form-control bg-dark text-white border-secondary font-monospace" rows="8" placeholder="Cole seu conteúdo aqui..."></textarea>
+                                    </div>
+                                    
+                                    <div class="text-center my-3">
+                                        <button class="btn btn-primary px-5 btn-lg" onclick="window.processDepara()">
+                                            <i class="bi bi-arrow-down-up"></i> Executar Transformação
+                                        </button>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label text-muted">Resultado</label>
+                                        <div class="input-group">
+                                            <textarea id="depara-output" class="form-control bg-black text-warning border-secondary font-monospace" rows="8" readonly></textarea>
+                                            <button class="btn btn-outline-secondary" onclick="window.copyToClipboard('depara-output')"><i class="bi bi-clipboard"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                // Init with one rule
+                setTimeout(() => {
+                    const container = document.getElementById('depara-rules-container');
+                    if (container && container.children.length === 0) window.addDeparaRule();
+                }, 100);
+            }
+
+            container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }; // End logic
+
+        // Run install effect then open
+        window.runInstallEffect(openToolLogic, toolId);
+    } // End main function
 
     window.closeTool = function () {
         document.getElementById('tool-container').style.display = 'none';
@@ -255,7 +823,7 @@
     // --- Tool Logic ---
 
     // Password Gen
-    window.generatePassword = function () {
+    window.generatePassword = function (save = false) {
         const length = document.getElementById('pwd-length').value;
         const upper = document.getElementById('pwd-upper').checked;
         const lower = document.getElementById('pwd-lower').checked;
@@ -284,6 +852,10 @@
         }
         const el = document.getElementById('generated-password');
         if (el) el.value = password;
+
+        if (save) {
+            window.AppState.addHistory('password-gen', 'Senha Gerada', password);
+        }
     }
 
     window.copyPassword = function () {
@@ -304,8 +876,9 @@
         const y = parseFloat(document.getElementById('perc-1-y').value);
         if (!isNaN(x) && !isNaN(y)) {
             const res = (x / 100) * y;
-            document.getElementById('perc-1-res').textContent = `Resultado: ${res.toLocaleString('pt-BR')}`;
+            document.getElementById('perc-1-res').textContent = `Resultado: ${res.toLocaleString('pt-BR')} `;
             document.getElementById('perc-1-res').className = "alert alert-success text-center m-0 fs-5";
+            window.AppState.addHistory('percentage-calc', 'Cálculo de Valor', `${x}% de ${y} = ${res}`);
         }
     }
 
@@ -314,8 +887,10 @@
         const y = parseFloat(document.getElementById('perc-2-y').value);
         if (!isNaN(x) && !isNaN(y) && y !== 0) {
             const res = (x / y) * 100;
-            document.getElementById('perc-2-res').textContent = `Resultado: ${res.toFixed(2).replace('.', ',')}%`;
+            const resStr = res.toFixed(2).replace('.', ',');
+            document.getElementById('perc-2-res').textContent = `Resultado: ${resStr}% `;
             document.getElementById('perc-2-res').className = "alert alert-success text-center m-0 fs-5";
+            window.AppState.addHistory('percentage-calc', 'Porcentagem Relativa', `${x} é ${resStr}% de ${y}`);
         }
     }
 
@@ -340,9 +915,13 @@
         if (d2 >= 10) d2 = 0;
 
         if (mask) {
-            document.getElementById('cpf-result').value = `${n1}${n2}${n3}.${n4}${n5}${n6}.${n7}${n8}${n9}-${d1}${d2}`;
+            const cpf = `${n1}${n2}${n3}.${n4}${n5}${n6}.${n7}${n8}${n9}-${d1}${d2}`;
+            document.getElementById('cpf-result').value = cpf;
+            window.AppState.addHistory('doc-gen', 'CPF Gerado', cpf);
         } else {
-            document.getElementById('cpf-result').value = `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${n9}${d1}${d2}`;
+            const cpf = `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${n9}${d1}${d2}`;
+            document.getElementById('cpf-result').value = cpf;
+            window.AppState.addHistory('doc-gen', 'CPF Gerado', cpf);
         }
     }
 
@@ -369,9 +948,415 @@
         if (d2 >= 10) d2 = 0;
 
         if (mask) {
-            document.getElementById('cnpj-result').value = `${n1}${n2}.${n3}${n4}${n5}.${n6}${n7}${n8}/${n9}${n10}${n11}${n12}-${d1}${d2}`;
+            const cnpj = `${n1}${n2}.${n3}${n4}${n5}.${n6}${n7}${n8}/${n9}${n10}${n11}${n12}-${d1}${d2}`;
+            document.getElementById('cnpj-result').value = cnpj;
+            window.AppState.addHistory('doc-gen', 'CNPJ Gerado', cnpj);
         } else {
-            document.getElementById('cnpj-result').value = `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${n9}${n10}${n11}${n12}${d1}${d2}`;
+            const cnpj = `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${n9}${n10}${n11}${n12}${d1}${d2}`;
+            document.getElementById('cnpj-result').value = cnpj;
+            window.AppState.addHistory('doc-gen', 'CNPJ Gerado', cnpj);
         }
+    }
+
+    // --- XML to JSON Logic ---
+    window.handleFileSelect = function (e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const xmlContent = e.target.result;
+            try {
+                // 1. Converter XML para JSON Bruto
+                const rawJson = window.xmlToJson(xmlContent);
+
+                // 2. Processar e Limpar o JSON (Nova Estrutura)
+                const refinedJson = window.processNFe(rawJson);
+
+                const jsonStr = JSON.stringify(refinedJson, null, 2);
+
+                document.getElementById('json-output-container').style.display = 'block';
+                document.getElementById('json-result').value = jsonStr;
+
+                const resumo = refinedJson.resumo ? `NFe ${refinedJson.resumo.numero}` : 'XML Convertido';
+                window.AppState.addHistory('nfe-xml-json', resumo, jsonStr);
+            } catch (err) {
+                console.error(err);
+                if (window.core && window.core.toast) window.core.toast('Erro ao ler XML. Verifique o arquivo.', 'error');
+                else alert('Erro ao processar o XML: ' + err.message);
+            }
+        };
+        reader.readAsText(file);
+    }
+
+    window.copyJson = function () {
+        const copyText = document.getElementById("json-result");
+        copyText.select();
+        document.execCommand("copy");
+
+        const btn = event.currentTarget;
+        const icon = btn.querySelector('i');
+        // Check if icon exists, btn might be the icon itself if user clicked precisely
+        if (icon) {
+            const originalIcon = icon.className;
+            icon.className = 'bi bi-check';
+            setTimeout(() => icon.className = originalIcon, 2000);
+        }
+
+        if (window.core && window.core.toast) window.core.toast('JSON copiado!', 'success');
+    }
+
+    window.downloadJson = function () {
+        const text = document.getElementById("json-result").value;
+        const blob = new Blob([text], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "nota-fiscal.json";
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    window.xmlToJson = function (xml) {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xml, "text/xml");
+
+        // Verifica erros de parse
+        const parseError = xmlDoc.getElementsByTagName("parsererror");
+        if (parseError.length > 0) {
+            throw new Error("Erro ao fazer parsing do XML");
+        }
+
+        // Função recursiva
+        function parseNode(node) {
+            const obj = {};
+
+            // 1. Atributos vira propriedade @attributes ou inline com prefixo @?
+            // Vamos simplificar e ignorar atributos "xmlns" que poluem muito
+            if (node.attributes && node.attributes.length > 0) {
+                for (let i = 0; i < node.attributes.length; i++) {
+                    const attr = node.attributes[i];
+                    // Ignora namespace declaration
+                    if (attr.nodeName.startsWith('xmlns')) continue;
+
+                    if (!obj["@attributes"]) obj["@attributes"] = {};
+                    obj["@attributes"][attr.nodeName] = attr.nodeValue;
+                }
+            }
+
+            // 2. Processar filhos
+            if (node.hasChildNodes()) {
+                let hasElementChildren = false;
+
+                for (let i = 0; i < node.childNodes.length; i++) {
+                    const item = node.childNodes.item(i);
+                    const nodeName = item.nodeName;
+
+                    if (item.nodeType === 1) { // Elemento
+                        hasElementChildren = true;
+                        const res = parseNode(item);
+
+                        if (obj[nodeName] === undefined) {
+                            obj[nodeName] = res;
+                        } else {
+                            if (!Array.isArray(obj[nodeName])) {
+                                obj[nodeName] = [obj[nodeName]];
+                            }
+                            obj[nodeName].push(res);
+                        }
+                    } else if (item.nodeType === 3) { // Texto
+                        // Se for só whitespace, ignora
+                        if (item.nodeValue.trim() !== "") {
+                            // Se tiver texto misturado com elementos, isso é complexo.
+                            // Mas NFe geralmente é estructurada.
+                            // Se o elemento só tem texto, vamos pegar dps
+                        }
+                    }
+                }
+
+                // Se não tem filhos elementos, tenta pegar o texto
+                if (!hasElementChildren) {
+                    const text = node.textContent.trim();
+                    // Se temos atributos, temos que retornar obj com #text
+                    if (obj["@attributes"]) {
+                        if (text) obj["#text"] = text;
+                        // Se só tem metadata e texto vazio, e attributes, ok.
+                    } else {
+                        // Sem atributos, retorna direto o texto
+                        return text;
+                    }
+                }
+            }
+
+            return obj;
+        }
+
+        const root = xmlDoc.documentElement;
+        const result = {};
+        result[root.nodeName] = parseNode(root);
+        return result;
+    }
+
+    // Função para simplificar e focar nos dados importantes da NFe
+    window.processNFe = function (raw) {
+        // Navegar até a raiz nfeProc ou NFe
+        let root = raw.nfeProc || raw.NFe || raw;
+
+        // Se caso nfeProc, descer para NFe
+        if (root.NFe) root = root.NFe;
+        if (root.infNFe) root = root.infNFe;
+
+        if (!root) return raw; // Retorna bruto se não encontrar estrutura padrão
+
+        // Helper para pegar valor texto seguro
+        const getVal = (obj, path) => {
+            // Path ex: 'emit.enderEmit.xLgr'
+            const keys = path.split('.');
+            let current = obj;
+            for (let k of keys) {
+                if (current && current[k]) current = current[k];
+                else return null;
+            }
+            return typeof current === 'object' ? (current['#text'] || current) : current;
+        };
+
+        // Dados da Nota
+        const nfeData = {
+            resumo: {
+                chave_acesso: (getVal(root, '@attributes.Id') || '').replace('NFe', ''),
+                numero: getVal(root, 'ide.nNF'),
+                serie: getVal(root, 'ide.serie'),
+                modelo: getVal(root, 'ide.mod'),
+                data_emissao: getVal(root, 'ide.dhEmi'),
+                natureza_operacao: getVal(root, 'ide.natOp'),
+                tipo: getVal(root, 'ide.tpNF') === '1' ? 'Saída' : 'Entrada'
+            },
+            emitente: {
+                cnpj: getVal(root, 'emit.CNPJ'),
+                nome: getVal(root, 'emit.xNome'),
+                fantasia: getVal(root, 'emit.xFant'),
+                endereco: {
+                    logradouro: getVal(root, 'emit.enderEmit.xLgr'),
+                    numero: getVal(root, 'emit.enderEmit.nro'),
+                    bairro: getVal(root, 'emit.enderEmit.xBairro'),
+                    municipio: getVal(root, 'emit.enderEmit.xMun'),
+                    uf: getVal(root, 'emit.enderEmit.UF')
+                }
+            },
+            destinatario: {
+                cnpj_cpf: getVal(root, 'dest.CNPJ') || getVal(root, 'dest.CPF'),
+                nome: getVal(root, 'dest.xNome'),
+                email: getVal(root, 'dest.email'),
+                endereco: root.dest && root.dest.enderDest ? {
+                    logradouro: getVal(root, 'dest.enderDest.xLgr'),
+                    numero: getVal(root, 'dest.enderDest.nro'),
+                    bairro: getVal(root, 'dest.enderDest.xBairro'),
+                    municipio: getVal(root, 'dest.enderDest.xMun'),
+                    uf: getVal(root, 'dest.enderDest.UF')
+                } : null
+            },
+            totais: {
+                icms_base: getVal(root, 'total.ICMSTot.vBC'),
+                icms_valor: getVal(root, 'total.ICMSTot.vICMS'),
+                produtos_total: getVal(root, 'total.ICMSTot.vProd'),
+                frete: getVal(root, 'total.ICMSTot.vFrete'),
+                seguro: getVal(root, 'total.ICMSTot.vSeg'),
+                desconto: getVal(root, 'total.ICMSTot.vDesc'),
+                nota_total: getVal(root, 'total.ICMSTot.vNF')
+            },
+            produtos: []
+        };
+
+        // Processar Itens
+        let dets = root.det;
+        if (!dets) return nfeData;
+
+        // Se for só 1 item, o XML to JSON converte como objeto, não array. Normalizar.
+        if (!Array.isArray(dets)) dets = [dets];
+
+        nfeData.produtos = dets.map((item, index) => {
+            const prod = item.prod;
+            const imposto = item.imposto || {};
+
+            // Tentar extrair ICMS
+            let icmsData = {};
+            if (imposto.ICMS) {
+                // ICMS pode ter varias chaves tipo ICMS00, ICMS20, etc
+                const icmsKey = Object.keys(imposto.ICMS)[0];
+                if (icmsKey) icmsData = imposto.ICMS[icmsKey];
+            }
+
+            return {
+                index: index + 1,
+                codigo: getVal(prod, 'cProd'),
+                ean: getVal(prod, 'cEAN'),
+                descricao: getVal(prod, 'xProd'),
+                ncm: getVal(prod, 'NCM'),
+                cfop: getVal(prod, 'CFOP'),
+                unidade: getVal(prod, 'uCom'),
+                qtd: parseFloat(getVal(prod, 'qCom')),
+                valor_unitario: parseFloat(getVal(prod, 'vUnCom')),
+                valor_total: parseFloat(getVal(prod, 'vProd')),
+                impostos: {
+                    icms_cst_csosn: getVal(icmsData, 'CST') || getVal(icmsData, 'CSOSN'),
+                    ipi_aliquota: getVal(imposto, 'IPI.IPITrib.pIPI'),
+                    pis_aliquota: getVal(imposto, 'PIS.PISAliq.pPIS'),
+                    cofins_aliquota: getVal(imposto, 'COFINS.COFINSAliq.pCOFINS')
+                }
+            };
+        });
+
+        return nfeData;
+    }
+
+    // --- JSON Formatter Logic ---
+    window.formatJson = function () {
+        const input = document.getElementById('json-input').value;
+        const status = document.getElementById('json-status');
+        try {
+            if (!input.trim()) return;
+            const parsed = JSON.parse(input);
+            document.getElementById('json-output').value = JSON.stringify(parsed, null, 4);
+            status.textContent = "Válido";
+            status.className = "badge bg-success";
+            window.AppState.addHistory('json-formatter', 'Formatado', JSON.stringify(parsed, null, 4));
+        } catch (e) {
+            document.getElementById('json-output').value = e.message;
+            status.textContent = "Inválido";
+            status.className = "badge bg-danger";
+        }
+    }
+
+    window.minifyJson = function () {
+        const input = document.getElementById('json-input').value;
+        const status = document.getElementById('json-status');
+        try {
+            if (!input.trim()) return;
+            const parsed = JSON.parse(input);
+            document.getElementById('json-output').value = JSON.stringify(parsed);
+            status.textContent = "Minificado";
+            status.className = "badge bg-success";
+            window.AppState.addHistory('json-formatter', 'Minificado', JSON.stringify(parsed));
+        } catch (e) {
+            document.getElementById('json-output').value = e.message;
+            status.textContent = "Inválido";
+            status.className = "badge bg-danger";
+        }
+    }
+
+    window.jsonSample = function () {
+        const sample = { "nome": "Miranda", "cargo": "Dev", "skills": ["JS", "HTML", "CSS"], "ativo": true };
+        document.getElementById('json-input').value = JSON.stringify(sample);
+        window.formatJson();
+    }
+
+    window.clearJson = function () {
+        document.getElementById('json-input').value = '';
+        document.getElementById('json-output').value = '';
+        document.getElementById('json-status').textContent = 'Aguardando';
+        document.getElementById('json-status').className = 'badge bg-secondary';
+    }
+
+    window.copyFormattedJson = function () {
+        const copyText = document.getElementById("json-output");
+        copyText.select();
+        document.execCommand("copy");
+        if (window.core && window.core.toast) window.core.toast('Copiado!', 'success');
+    }
+
+    // --- Base64 Logic ---
+    window.b64Encode = function () {
+        const input = document.getElementById('b64-encode-input').value;
+        try {
+            const output = btoa(unescape(encodeURIComponent(input))); // Handle UTF-8
+            document.getElementById('b64-encode-output').value = output;
+        } catch (e) {
+            console.log('Typing...');
+        }
+    }
+
+    window.b64Decode = function () {
+        const input = document.getElementById('b64-decode-input').value;
+        try {
+            const output = decodeURIComponent(escape(window.atob(input))); // Handle UTF-8
+            document.getElementById('b64-decode-output').value = output;
+        } catch (e) {
+            // Invalid base64, wait for complete string
+        }
+    }
+
+    window.copyToClipboard = function (id) {
+        const copyText = document.getElementById(id);
+        copyText.select();
+        document.execCommand("copy");
+        if (window.core && window.core.toast) window.core.toast('Copiado!', 'success');
+    }
+
+    // --- De/Para Logic ---
+    window.deparaRulesCount = 0;
+
+    window.addDeparaRule = function (de = '', para = '') {
+        const container = document.getElementById('depara-rules-container');
+        if (!container) return;
+
+        const id = window.deparaRulesCount++;
+        const div = document.createElement('div');
+        div.className = 'input-group mb-2 animate__animated animate__fadeIn';
+        div.id = `rule-${id}`;
+        div.innerHTML = `
+            <input type="text" class="form-control bg-dark text-white border-secondary form-control-sm rule-de" placeholder="De (Busca)" value="${de}">
+            <span class="input-group-text bg-secondary border-secondary text-white"><i class="bi bi-arrow-right"></i></span>
+            <input type="text" class="form-control bg-dark text-white border-secondary form-control-sm rule-para" placeholder="Para" value="${para}">
+            <button class="btn btn-outline-danger btn-sm" onclick="document.getElementById('rule-${id}').remove()"><i class="bi bi-x"></i></button>
+        `;
+        container.appendChild(div);
+    }
+
+    window.processDepara = function () {
+        let content = document.getElementById('depara-input').value;
+        if (!content) return;
+
+        const rulesDe = document.querySelectorAll('.rule-de');
+        const rulesPara = document.querySelectorAll('.rule-para');
+
+        let count = 0;
+
+        for (let i = 0; i < rulesDe.length; i++) {
+            const de = rulesDe[i].value;
+            const para = rulesPara[i].value;
+
+            if (de) {
+                // Global replace using regex escaping
+                const escapedDe = de.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(escapedDe, 'g');
+
+                // Count occurrences for toast (optional) just to know something happened
+                const matches = content.match(regex);
+                if (matches) count += matches.length;
+
+                content = content.replace(regex, para);
+            }
+        }
+
+        document.getElementById('depara-output').value = content;
+        if (window.core && window.core.toast) window.core.toast(`${count} substituições realizadas!`, 'success');
+
+        window.AppState.addHistory('depara-transform', `Transformação (${count} trocas)`, content);
+    }
+
+    window.sampleDepara = function () {
+        document.getElementById('depara-input').value = '{\n  "nome_usuario": "UserOLD",\n  "id_cliente": 123,\n  "status_sistema": "ATIVO"\n}';
+        const container = document.getElementById('depara-rules-container');
+        container.innerHTML = '';
+        window.addDeparaRule('nome_usuario', 'fullName');
+        window.addDeparaRule('UserOLD', 'Miranda');
+        window.addDeparaRule('ATIVO', 'ONLINE');
+    }
+
+    window.clearDepara = function () {
+        document.getElementById('depara-input').value = '';
+        document.getElementById('depara-output').value = '';
+        document.getElementById('depara-rules-container').innerHTML = '';
+        window.addDeparaRule();
     }
 </script>

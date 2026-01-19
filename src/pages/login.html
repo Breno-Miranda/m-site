@@ -1,43 +1,88 @@
-<section class="dev-section pt-5 mt-5">
+<section class="dev-hero justify-content-center" style="min-height: 85vh;">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-5">
-                <div class="card bg-dark border-secondary p-4 shadow-lg">
-                    <div class="card-body">
-                        <div class="text-center mb-4">
-                            <h3 class="fw-bold mb-1">Bem-vindo de volta!</h3>
-                            <p class="text-muted">Acesse sua conta para continuar</p>
+            <div class="col-md-6 col-lg-5 col-xl-4">
+                <div class="dev-skill-card p-4 p-md-5"
+                    style="border-radius: var(--dev-radius-xl); animation: fadeInUp 0.5s ease-out forwards;">
+                    <div class="text-center mb-4">
+                        <div class="d-flex align-items-center justify-content-center mb-4">
+                            <div class="dev-skill-icon mb-0" style="width: 80px; height: 80px;">
+                                <i class="bi bi-person-fill-lock text-gradient" style="font-size: 2.5rem;"></i>
+                            </div>
+                        </div>
+                        <h2 class="fw-bold mb-2">Bem-vindo</h2>
+                        <p class="text-muted">Acesse sua conta para continuar</p>
+                    </div>
+
+                    <form id="login-form">
+                        <div class="mb-3 text-start">
+                            <label class="form-label text-muted small fw-bold text-uppercase ls-1">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text border-0"
+                                    style="background: var(--dev-bg-secondary); border-radius: var(--dev-radius-md) 0 0 var(--dev-radius-md); border: 1px solid var(--dev-border-color); border-right: none;">
+                                    <i class="bi bi-envelope text-muted"></i>
+                                </span>
+                                <input type="email" class="form-control text-white py-3 border-start-0"
+                                    style="background: var(--dev-bg-secondary); border: 1px solid var(--dev-border-color); border-radius: 0 var(--dev-radius-md) var(--dev-radius-md) 0;"
+                                    id="email" placeholder="seu@email.com" required>
+                            </div>
                         </div>
 
-                        <form id="login-form">
-                            <div class="mb-3">
-                                <label class="form-label text-muted">Email</label>
-                                <input type="email" class="form-control bg-dark border-secondary text-white" id="email"
-                                    required>
+                        <div class="mb-4 text-start">
+                            <label class="form-label text-muted small fw-bold text-uppercase ls-1">Senha</label>
+                            <div class="input-group">
+                                <span class="input-group-text border-0"
+                                    style="background: var(--dev-bg-secondary); border-radius: var(--dev-radius-md) 0 0 var(--dev-radius-md); border: 1px solid var(--dev-border-color); border-right: none;">
+                                    <i class="bi bi-key text-muted"></i>
+                                </span>
+                                <input type="password" class="form-control text-white py-3 border-start-0"
+                                    style="background: var(--dev-bg-secondary); border: 1px solid var(--dev-border-color); border-radius: 0 var(--dev-radius-md) var(--dev-radius-md) 0;"
+                                    id="password" placeholder="******" required>
                             </div>
-
-                            <div class="mb-4">
-                                <label class="form-label text-muted">Senha</label>
-                                <input type="password" class="form-control bg-dark border-secondary text-white"
-                                    id="password" required>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary w-100 py-2 mb-3">
-                                <span id="login-btn-text">Entrar</span>
-                                <div id="login-spinner" class="spinner-border spinner-border-sm ms-2" role="status"
-                                    style="display: none;"></div>
-                            </button>
-                        </form>
-
-                        <div class="text-center mt-4 border-top border-secondary pt-3">
-                            <p class="text-muted small">Ainda não tem conta? Entre em contato com o administrador.</p>
                         </div>
+
+                        <button type="submit" class="dev-btn dev-btn-primary w-100 py-3 mb-3 justify-content-center">
+                            <span id="login-btn-text">Entrar</span>
+                            <div id="login-spinner" class="spinner-border spinner-border-sm ms-2" role="status"
+                                style="display: none;"></div>
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-4 pt-3 border-top"
+                        style="border-color: var(--dev-border-color) !important;">
+                        <p class="text-muted small mb-0">
+                            Ainda não tem conta? <a href="#"
+                                class="btn-link text-gradient fw-bold text-decoration-none">Contate o admin</a>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    /* Specific overrides for form controls to match theme focus states */
+    .form-control:focus {
+        background: var(--dev-bg-secondary) !important;
+        border-color: var(--dev-accent-primary) !important;
+        box-shadow: none;
+        color: var(--dev-text-primary);
+    }
+
+    .input-group:focus-within .input-group-text {
+        border-color: var(--dev-accent-primary) !important;
+    }
+
+    .form-control::placeholder {
+        color: var(--dev-text-muted);
+        opacity: 0.7;
+    }
+
+    .input-group-text {
+        color: var(--dev-text-muted);
+    }
+</style>
 
 <script>
     (function () {
@@ -63,15 +108,27 @@
             submitBtn.disabled = true;
 
             try {
-                await window.authService.login(email, password);
+
+                console.log(email, password);
+                const response = await window.core.fetchAPI('/auth/login', 'POST', { email, password });
+
+                // Note: fetchAPI might return null on network error if not handled, 
+                // but authService handles it. We should use authService.login directly
+                // Wait, previous code was calling authService.login. 
+                // Let's stick to authService.login which returns the response object with user.
+
+                const loginResponse = await window.authService.login(email, password);
                 window.core.toast('Login realizado com sucesso!', 'success');
 
                 // Redirect based on role
-                const user = window.authService.getUser();
-                if (user.role === 'admin') {
+                const user = loginResponse.user || window.authService.getUser();
+
+                if (user && user.role === 'admin') {
                     window.core.navigate('/admin-cms');
-                } else {
+                } else if (user) {
                     window.core.navigate('/premium');
+                } else {
+                    throw new Error('Falha ao recuperar dados do usuário.');
                 }
 
             } catch (error) {

@@ -1,47 +1,188 @@
-<div class="container py-5">
-    <div class="row">
-        <div class="col-md-8 mx-auto text-center">
-            <div class="mb-4 animate__animated animate__fadeIn">
-                <i class="bi bi-exclamation-triangle text-warning" style="font-size: 5rem;"></i>
+<style>
+    /* 404 Specific Styles */
+    .error-page-wrapper {
+        min-height: 80vh;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .error-number {
+        font-size: clamp(8rem, 20vw, 15rem);
+        font-weight: 900;
+        line-height: 0.8;
+        background: var(--dev-gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: relative;
+        z-index: 2;
+        text-shadow: 0 0 80px rgba(59, 130, 246, 0.3);
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .error-number::after {
+        content: '404';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: blur(20px);
+        opacity: 0.5;
+        z-index: -1;
+    }
+
+    .glass-card {
+        background: rgba(18, 18, 26, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: var(--dev-radius-xl);
+        padding: 60px 20px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 10;
+        overflow: hidden;
+    }
+
+    .glass-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+    }
+
+    .bg-shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.4;
+        z-index: 1;
+        animation: pulse 4s infinite alternate;
+    }
+
+    .shape-1 {
+        width: 300px;
+        height: 300px;
+        background: var(--dev-accent-primary);
+        top: 10%;
+        right: 10%;
+        animation-delay: 0s;
+    }
+
+    .shape-2 {
+        width: 400px;
+        height: 400px;
+        background: var(--dev-accent-secondary);
+        bottom: 10%;
+        left: 0%;
+        animation-delay: 2s;
+    }
+
+    .shape-3 {
+        width: 200px;
+        height: 200px;
+        background: var(--dev-accent-tertiary);
+        top: 40%;
+        left: 40%;
+        opacity: 0.2;
+        animation-delay: 4s;
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            opacity: 0.3;
+        }
+
+        100% {
+            transform: scale(1.1);
+            opacity: 0.5;
+        }
+    }
+</style>
+
+<section class="dev-section error-page-wrapper d-flex align-items-center justify-content-center">
+    <!-- Animated Background Shapes -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+
+    <!-- Main Content -->
+    <div class="container position-relative z-index-2">
+        <div class="glass-card max-w-lg mx-auto text-center animate-on-scroll">
+
+            <div class="mb-2 position-relative">
+                <i class="bi bi-exclamation-triangle text-warning display-4 position-absolute top-0 start-50 translate-middle-x opacity-25"
+                    style="filter: blur(2px);"></i>
+                <h1 class="error-number mb-0">404</h1>
             </div>
-            <h1 class="display-4 mb-4 animate__animated animate__fadeInDown">404</h1>
-            <h2 class="mb-4 animate__animated animate__fadeIn">Página Não Encontrada</h2>
-            <p class="lead mb-4 animate__animated animate__fadeIn">Ops! Parece que você se perdeu. A página que você está procurando não existe ou foi movida.</p>
-            <div class="d-flex justify-content-center gap-3 animate__animated animate__fadeInUp">
-                <button class="btn btn-primary" onclick="window.location.href='/'">
-                    <i class="bi bi-house-door me-2"></i>Voltar para Home
-                </button>
+
+            <h2 class="h2 fw-bold text-white mb-3">Página Não Encontrada</h2>
+
+            <p class="text-secondary fs-5 mb-5 mx-auto" style="max-width: 500px;">
+                Parece que você se aventurou muito longe no desconhecido.
+                A página que você procura não existe neste universo.
+            </p>
+
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="/" class="dev-btn dev-btn-primary rounded-pill px-5">
+                    <i class="bi bi-arrow-left"></i>
+                    Voltar ao Início
+                </a>
+                <a href="/contact" class="dev-btn dev-btn-secondary rounded-pill px-5">
+                    <i class="bi bi-headset"></i>
+                    Suporte
+                </a>
+            </div>
+
+            <div class="mt-5 pt-3 border-top border-secondary border-opacity-10">
+                <p class="small text-muted mb-0">
+                    Código de Erro: <span class="font-mono text-warning">404_PAGE_NOT_FOUND</span>
+                </p>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Add Animate.css -->
-    <link rel="stylesheet" href="/src/assets/vendor/animate/animate.min.css"/>
+<script>
+    (function () {
+        const observerOptions = {
+            threshold: 0.1
+        };
 
-    <div class="row mt-5">
-        <div class="col-md-4">
-            <div class="card h-100 animate__animated animate__fadeInLeft" style="animation-delay: 0.1s">
-                <div class="card-body">
-                    <h5 class="card-title">Verifique a URL</h5>
-                    <p class="card-text">Certifique-se de que o endereço digitado está correto e tente novamente.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card h-100 animate__animated animate__fadeInLeft" style="animation-delay: 0.2s">
-                <div class="card-body">
-                    <h5 class="card-title">Navegue pelo Menu</h5>
-                    <p class="card-text">Use o menu de navegação para encontrar a página desejada.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card h-100 animate__animated animate__fadeInLeft" style="animation-delay: 0.3s">
-                <div class="card-body">
-                    <h5 class="card-title">Entre em Contato</h5>
-                    <p class="card-text">Se precisar de ajuda, entre em contato com nossa equipe de suporte.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        setTimeout(() => {
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        }, 100);
+    })();
+</script>

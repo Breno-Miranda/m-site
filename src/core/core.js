@@ -159,6 +159,12 @@ class Core {
         throw new Error('Page is empty');
       }
 
+      // Check for recursion (SPA fallback returning index.html)
+      if (html.includes('<!DOCTYPE html>') || html.includes('<html')) {
+        console.error(`[Router] Error: ${filePath} returned full HTML document (likely soft 404).`);
+        throw new Error('Page not found (soft 404)');
+      }
+
       // Save reference to this for callback
       const self = this;
 
@@ -308,7 +314,7 @@ class Core {
           method: verb,
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${config?.api?.token}` || '____STANDBY____',
+            'Authorization': `Bearer ${localStorage.getItem('msoft_auth_token') || config?.api?.token || '____STANDBY____'}`,
             'X-CSRF-TOKEN': localStorage.getItem('csrf_token') || '____STANDBY____'
           },
           mode: 'cors',
@@ -345,7 +351,7 @@ class Core {
         method: verb,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${config?.api?.token}` || '____STANDBY____',
+          'Authorization': `Bearer ${localStorage.getItem('msoft_auth_token') || config?.api?.token || '____STANDBY____'}`,
         },
         mode: 'cors',
         credentials: 'include'
