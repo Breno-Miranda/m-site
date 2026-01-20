@@ -2,13 +2,13 @@
 const config = {
   app: {
     name: "Miranda Soft",
-    version: "0.10.30",
+    version: "0.10.31",
     environment: "development",
     debug: true,
     token: "9f3c8b1a-2d7e-4a4d-91e3-c9f621f7dcb1"
   },
   api: {
-    baseUrl: "http://localhost:3000",
+    baseUrl: "https://api.mirandasoft.com.br",
     timeout: 30000,
     retryAttempts: 3,
     useProxy: false,
