@@ -4,9 +4,9 @@
             <span class="dev-section-badge bg-gradient-primary">
                 <i class="bi bi-shop"></i> Marketplace
             </span>
-            <h2 class="dev-section-title">Marketplace Premium</h2>
+            <h2 class="dev-section-title">Marketplace de Apps</h2>
             <p class="dev-section-description">
-                Descubra apps exclusivos para turbinar seus projetos.
+                Descubra apps gratuitos e premium para turbinar seus projetos.
             </p>
         </div>
 
@@ -20,6 +20,10 @@
                         <button class="btn btn-outline-light btn-sm rounded-pill active" data-filter="all"
                             onclick="filterApps('all', this)">
                             <i class="bi bi-grid-3x3-gap-fill"></i> Todos
+                        </button>
+                        <button class="btn btn-outline-light btn-sm rounded-pill" data-filter="free"
+                            onclick="filterApps('free', this)">
+                            <i class="bi bi-gift-fill"></i> Gratuitos
                         </button>
                         <button class="btn btn-outline-light btn-sm rounded-pill" data-filter="one-time"
                             onclick="filterApps('one-time', this)">
@@ -35,6 +39,183 @@
 
             <!-- Apps Grid -->
             <div class="row g-4" id="apps-grid">
+
+                <!-- FREE APPS SECTION -->
+                <!-- Password Generator - Free -->
+                <div class="col-lg-4 col-md-6 app-card" data-type="free">
+                    <div class="card bg-dark border-0 h-100 marketplace-card free-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="app-icon bg-primary bg-opacity-25 rounded-3 p-3">
+                                    <i class="bi bi-key fs-2 text-primary"></i>
+                                </div>
+                                <span
+                                    class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">
+                                    <i class="bi bi-gift-fill"></i> Gratuito
+                                </span>
+                            </div>
+                            <h4 class="card-title text-white fw-bold mb-2">Gerador de Senha</h4>
+                            <p class="card-text text-muted small mb-3">
+                                Crie senhas fortes e seguras com opções personalizáveis.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-success fs-4 fw-bold">Grátis</span>
+                                </div>
+                                <a href="/apps?tool=password-gen" class="btn btn-outline-success rounded-pill px-4">
+                                    <i class="bi bi-box-arrow-up-right"></i> Usar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Percentage Calculator - Free -->
+                <div class="col-lg-4 col-md-6 app-card" data-type="free">
+                    <div class="card bg-dark border-0 h-100 marketplace-card free-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="app-icon bg-success bg-opacity-25 rounded-3 p-3">
+                                    <i class="bi bi-percent fs-2 text-success"></i>
+                                </div>
+                                <span
+                                    class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">
+                                    <i class="bi bi-gift-fill"></i> Gratuito
+                                </span>
+                            </div>
+                            <h4 class="card-title text-white fw-bold mb-2">Calculadora de %</h4>
+                            <p class="card-text text-muted small mb-3">
+                                Cálculos rápidos de porcentagem, desconto e aumento.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-success fs-4 fw-bold">Grátis</span>
+                                </div>
+                                <a href="/apps?tool=percentage-calc" class="btn btn-outline-success rounded-pill px-4">
+                                    <i class="bi bi-box-arrow-up-right"></i> Usar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CPF/CNPJ Generator - Free -->
+                <div class="col-lg-4 col-md-6 app-card" data-type="free">
+                    <div class="card bg-dark border-0 h-100 marketplace-card free-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="app-icon bg-info bg-opacity-25 rounded-3 p-3">
+                                    <i class="bi bi-person-badge fs-2 text-info"></i>
+                                </div>
+                                <span
+                                    class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">
+                                    <i class="bi bi-gift-fill"></i> Gratuito
+                                </span>
+                            </div>
+                            <h4 class="card-title text-white fw-bold mb-2">Gerador CPF/CNPJ</h4>
+                            <p class="card-text text-muted small mb-3">
+                                Gere e valide documentos para testes de desenvolvimento.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-success fs-4 fw-bold">Grátis</span>
+                                </div>
+                                <a href="/apps?tool=doc-gen" class="btn btn-outline-success rounded-pill px-4">
+                                    <i class="bi bi-box-arrow-up-right"></i> Usar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JSON Formatter - Free -->
+                <div class="col-lg-4 col-md-6 app-card" data-type="free">
+                    <div class="card bg-dark border-0 h-100 marketplace-card free-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="app-icon bg-danger bg-opacity-25 rounded-3 p-3">
+                                    <i class="bi bi-braces fs-2 text-danger"></i>
+                                </div>
+                                <span
+                                    class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">
+                                    <i class="bi bi-gift-fill"></i> Gratuito
+                                </span>
+                            </div>
+                            <h4 class="card-title text-white fw-bold mb-2">JSON Formatter</h4>
+                            <p class="card-text text-muted small mb-3">
+                                Valide e formate arquivos JSON desorganizados ou minificados.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-success fs-4 fw-bold">Grátis</span>
+                                </div>
+                                <a href="/apps?tool=json-formatter" class="btn btn-outline-success rounded-pill px-4">
+                                    <i class="bi bi-box-arrow-up-right"></i> Usar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Base64 Converter - Free -->
+                <div class="col-lg-4 col-md-6 app-card" data-type="free">
+                    <div class="card bg-dark border-0 h-100 marketplace-card free-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="app-icon bg-secondary bg-opacity-50 rounded-3 p-3">
+                                    <i class="bi bi-shield-lock fs-2 text-light"></i>
+                                </div>
+                                <span
+                                    class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">
+                                    <i class="bi bi-gift-fill"></i> Gratuito
+                                </span>
+                            </div>
+                            <h4 class="card-title text-white fw-bold mb-2">Base64 Converter</h4>
+                            <p class="card-text text-muted small mb-3">
+                                Codifique e decodifique textos em Base64 facilmente.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-success fs-4 fw-bold">Grátis</span>
+                                </div>
+                                <a href="/apps?tool=base64-converter" class="btn btn-outline-success rounded-pill px-4">
+                                    <i class="bi bi-box-arrow-up-right"></i> Usar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- De/Para Universal - Free -->
+                <div class="col-lg-4 col-md-6 app-card" data-type="free">
+                    <div class="card bg-dark border-0 h-100 marketplace-card free-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="app-icon bg-info bg-opacity-25 rounded-3 p-3">
+                                    <i class="bi bi-arrow-left-right fs-2 text-info"></i>
+                                </div>
+                                <span
+                                    class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25">
+                                    <i class="bi bi-gift-fill"></i> Gratuito
+                                </span>
+                            </div>
+                            <h4 class="card-title text-white fw-bold mb-2">De/Para Universal</h4>
+                            <p class="card-text text-muted small mb-3">
+                                Substituição em massa e mapeamento direto de textos e JSON.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-success fs-4 fw-bold">Grátis</span>
+                                </div>
+                                <a href="/apps?tool=depara-transform" class="btn btn-outline-success rounded-pill px-4">
+                                    <i class="bi bi-box-arrow-up-right"></i> Usar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PREMIUM APPS SECTION -->
 
                 <!-- Analytics Pro - Assinatura -->
                 <div class="col-lg-4 col-md-6 app-card" data-type="subscription">
@@ -222,8 +403,8 @@
             </div>
 
             <div class="text-center mt-5">
-                <a href="/premium" class="btn btn-outline-light rounded-pill px-4">
-                    <i class="bi bi-arrow-left"></i> Voltar para Meus Apps
+                <a href="/my-apps" class="btn btn-outline-light rounded-pill px-4">
+                    <i class="bi bi-arrow-left"></i> Voltar para My Apps
                 </a>
             </div>
         </div>
