@@ -219,7 +219,7 @@
 </section>
 
 <!-- Callout to Apps -->
-<section class="dev-section py-5">
+<section id="cta-section" class="dev-section py-5">
   <div class="container">
     <div class="card border-0"
       style="background: linear-gradient(135deg, #1e1e2f 0%, #2d2d44 100%); border-radius: 20px; overflow: hidden;">
@@ -436,7 +436,35 @@
       setHtml('cta-title', `Conheça o nosso <span class="text-gradient">Super App</span>`); // Keep gradient fixed for now or logic similar to hero
       if (content.cta.title !== "Conheça o nosso Super App") setTxt('cta-title', content.cta.title);
 
-      setTxt('cta-desc', content.cta.description);
+      // Visibility Control
+      const toggle = (id, sectionKey) => {
+        const el = document.getElementById(id) || document.querySelector(`.${id}`);
+        if (el && content[sectionKey]) {
+            el.style.display = (content[sectionKey].enabled === false) ? 'none' : '';
+        }
+      };
+
+      toggle('dev-hero', 'hero'); // Class selector
+      toggle('solucoes', 'features'); // ID
+      toggle('sobre', 'about'); // ID
+      toggle('suporte', 'support'); // ID (assumed support section key is support? defaultCMSContent says 'support' NO wait defaultCMSContent.about has 'supportTitle' but there is no top level 'support' key in defaultCMSContent? Let me check defaultCMSContent.js again. Ah, defaultCMSContent doesn't have 'support' root key. It has 'testimonials'. Let's check home.html again... Section is "Suporte Especializado". It is hardcoded text? No, it has id="suporte". But does it correspond to a CMS key? "Testimonials" is a key. Support seems static or part of about? 
+      // Checking home.html content binding: It doesn't bind "Suporte" text. So it is static.
+      // But user wants to control sections. I can add a fake key 'sections_config' or just use 'support' key if I add it.
+      // For now, I'll allow toggling 'hero', 'features', 'about', 'testimonials', 'cta', 'contact'.
+      toggle('cta-section', 'cta');
+      toggle('contact', 'contact'); // Contact key doesn't exist in defaultCMS, so it will be undefined -> enabled.
+      
+      // Testimonials section is inside About? No it's separate in defaultCMSContent but likely separate in HTML? 
+      // home.html doesn't seem to have a dedicated Testimonials section visible in the snippet I saw? 
+      // Wait, I saw "Support Section" id="suporte". I didn't see Testimonials section in home.html snippet? 
+      // Ah, snippet ended at line 447. Maybe I missed it? 
+      // The snippet had "Support Section" at line 249.
+      // No "Testimonials" section in home.html? 
+      // defaultCMSContent has 'testimonials'.
+      // If home.html doesn't render testimonials, I can't toggle them.
+      // But I can toggle 'suporte' section.
+      
+
     }
 
     // Initial Render

@@ -553,20 +553,69 @@
         }
 
         // Confirm Purchase
-        window.confirmPurchase = function () {
+        window.confirmPurchase = async function () {
             if (!currentPurchase) return;
 
-            const modal = bootstrap.Modal.getInstance(document.getElementById('purchase-modal'));
-            modal.hide();
+            const modalEl = document.getElementById('purchase-modal');
+            const submitBtn = modalEl.querySelector('.btn-success');
+            const originalBtnText = submitBtn.innerHTML;
 
-            // Simulate purchase
-            if (window.core && window.core.toast) {
-                window.core.toast(`Compra de "${currentPurchase.name}" realizada com sucesso!`, 'success');
-            } else {
-                alert('Compra realizada com sucesso!');
+            // Loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Processando...';
+
+            try {
+                // Map display names to keys (simple slugify for now or specific map)
+                // In a real app, data-key attributes on the cards would be better.
+                const keyMap = {
+                    'Gerador de Senha': 'password-gen',
+                    'Calculadora de %': 'percentage-calc',
+                    'Gerador CPF/CNPJ': 'doc-gen',
+                    'JSON Formatter': 'json-formatter',
+                    'Base64 Converter': 'base64-converter',
+                    'De/Para Universal': 'depara-transform',
+                    'Analytics Pro': 'analytics-pro',
+                    'E-commerce Builder': 'ecommerce-builder',
+                    'SEO Toolkit': 'seo-toolkit',
+                    'API Gateway Plus': 'api-gateway',
+                    'CRM Enterprise': 'crm-enterprise',
+                    'Landing Page Kit': 'landing-kit'
+                };
+
+                const appKey = keyMap[currentPurchase.name] || currentPurchase.name.toLowerCase().replace(/\s+/g, '-');
+                const user = auth.getUser();
+
+                if (!user || !user.id) throw new Error('User not found');
+
+                const payload = {
+                    name: currentPurchase.name,
+                    appKey: appKey,
+                    userId: user.id
+                };
+
+                const res = await window.core.fetchAPI('/apps/install', 'POST', payload);
+
+                if (res && res.success) {
+                    if (window.core && window.core.toast) {
+                        window.core.toast(`"${currentPurchase.name}" foi adicionado à sua conta!`, 'success');
+                    }
+                    bootstrap.Modal.getInstance(modalEl).hide();
+                } else {
+                    const msg = res.message || res.error || 'Erro ao processar compra';
+                    if (window.core && window.core.toast) window.core.toast(msg, 'info'); // Often just 'already installed'
+                    bootstrap.Modal.getInstance(modalEl).hide();
+                }
+
+            } catch (error) {
+                console.error(error);
+                if (window.core && window.core.toast) {
+                    window.core.toast('Erro ao processar solicitação.', 'error');
+                }
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                currentPurchase = null;
             }
-
-            currentPurchase = null;
         }
     })();
 </script>

@@ -303,20 +303,80 @@
             updateInstalledBadges();
         }
 
-        function loadUserStats() {
-            // Get installed apps from localStorage
-            const installedApps = JSON.parse(localStorage.getItem('msoft_installed_apps') || '[]');
-            const purchasedApps = JSON.parse(localStorage.getItem('msoft_purchased_apps') || '[]');
-            const subscriptions = purchasedApps.filter(app => app.type === 'subscription');
+        // Cache for catalog data
+        let catalogData = {};
 
-            document.getElementById('stat-installed').textContent = installedApps.length;
-            document.getElementById('stat-purchased').textContent = purchasedApps.length;
-            document.getElementById('stat-subscriptions').textContent = subscriptions.length;
+        async function fetchCatalog() {
+            try {
+                const res = await window.core.fetchAPI('/catalog', 'GET');
+                if (res && res.success) {
+                    // Index by appKey
+                    res.data.forEach(item => {
+                        catalogData[item.appKey] = item;
+                    });
+                    return res.data;
+                }
+                return [];
+            } catch (err) {
+                console.error('Error fetching catalog:', err);
+                return [];
+            }
         }
 
-        function loadPurchasedApps() {
-            const purchasedApps = JSON.parse(localStorage.getItem('msoft_purchased_apps') || '[]');
+
+
+        async function fetchUserApps() {
+            try {
+                const user = auth.getUser();
+                if (!user || !user.id) return [];
+
+                const res = await window.core.fetchAPI(`/apps?userId=${user.id}`, 'GET');
+                if (res && res.success) {
+                    return res.data;
+                }
+                return [];
+            } catch (err) {
+                console.error('Error fetching apps:', err);
+                return [];
+            }
+        }
+
+        async function loadUserStats() {
+            // 1. Ensure catalog is loaded
+            await fetchCatalog();
+
+            // 2. Get User Apps
+            const apps = await fetchUserApps();
+
+            // 3. Enrich apps with catalog data
+            const enrichedApps = apps.map(app => {
+                const meta = catalogData[app.appKey] || { type: 'free' };
+                return { ...app, ...meta }; // Merge
+            });
+
+            // 4. Calculate Stats
+            const purchased = enrichedApps.filter(app => app.type === 'one-time' || app.type === 'subscription');
+            const subscriptions = enrichedApps.filter(app => app.type === 'subscription');
+
+            document.getElementById('stat-installed').textContent = enrichedApps.length;
+            document.getElementById('stat-purchased').textContent = purchased.length;
+            document.getElementById('stat-subscriptions').textContent = subscriptions.length;
+
+            return enrichedApps; // Pass enriched data down
+        }
+
+        async function loadPurchasedApps() {
+            // loadUserStats handles fetching and enriching, but we need the result.
+            // We can just re-fetch since loadUserStats populates cache, or modify flow to chain.
+            // Better: call loadUserStats which returns enrichedApps.
+            const enrichedApps = await loadUserStats();
+
             const grid = document.getElementById('purchased-apps-grid');
+
+            // Filter for premium based on the enriched data
+            const purchasedApps = enrichedApps.filter(app => {
+                return app.type === 'subscription' || app.type === 'one-time';
+            });
 
             if (purchasedApps.length === 0) {
                 grid.innerHTML = `
@@ -331,28 +391,34 @@
                 return;
             }
 
-            grid.innerHTML = purchasedApps.map(app => `
+            grid.innerHTML = purchasedApps.map(app => {
+                // Use data from catalog (merged into app)
+                const isSub = app.type === 'subscription';
+                const icon = app.icon || 'bi-box';
+
+                return `
                 <div class="col-lg-4 col-md-6">
                     <div class="card purchased-card h-100">
                         <div class="card-body p-4">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div class="app-icon bg-warning bg-opacity-25 rounded-3 p-3">
-                                    <i class="bi ${app.icon || 'bi-box'} fs-2 text-warning"></i>
+                                    <i class="bi ${icon} fs-2 text-warning"></i>
                                 </div>
-                                <span class="badge bg-${app.type === 'subscription' ? 'primary' : 'success'} bg-opacity-25 text-${app.type === 'subscription' ? 'primary' : 'success'}">
-                                    <i class="bi bi-${app.type === 'subscription' ? 'arrow-repeat' : 'bag-check'}"></i>
-                                    ${app.type === 'subscription' ? 'Ativo' : 'Comprado'}
+                                <span class="badge bg-${isSub ? 'primary' : 'success'} bg-opacity-25 text-${isSub ? 'primary' : 'success'}">
+                                    <i class="bi bi-${isSub ? 'arrow-repeat' : 'bag-check'}"></i>
+                                    ${isSub ? 'Ativo' : 'Comprado'}
                                 </span>
                             </div>
                             <h5 class="card-title text-white fw-bold mb-2">${app.name}</h5>
                             <p class="card-text text-muted small mb-3">${app.description || ''}</p>
-                            <button class="btn btn-outline-light btn-sm w-100" onclick="window.core.toast('Em breve!', 'info')">
+                            <button class="btn btn-outline-light btn-sm w-100" onclick="window.core.toast('Launch App: ${app.appKey}', 'info')">
                                 <i class="bi bi-box-arrow-up-right"></i> Abrir
                             </button>
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
 
         function updateInstalledBadges() {

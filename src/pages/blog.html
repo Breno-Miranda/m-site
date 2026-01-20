@@ -54,111 +54,133 @@
 
 <script>
     (function () {
-        // Blog Data
-        const blogPosts = [
-            {
-                title: "Transformando Negócios com Apps White Label",
-                category: "White Label",
-                date: "19 Jan 2026",
-                image: "https://placehold.co/600x400/1e293b/6366f1?text=White+Label+Apps",
-                excerpt: "Descubra como soluções white label podem acelerar sua estratégia de go-to-market, permitindo lançar apps com sua marca em semanas."
-            },
-            {
-                title: "Top 5 Ferramentas de Produtividade para 2026",
-                category: "Produtividade",
-                date: "18 Jan 2026",
-                image: "https://placehold.co/600x400/0f172a/06b6d4?text=Produtividade",
-                excerpt: "Mantenha-se à frente com estas ferramentas essenciais que estão redefinindo como as equipes colaboram e gerenciam projetos."
-            },
-            {
-                title: "A Ascensão das Plataformas No-Code",
-                category: "Tech Trends",
-                date: "15 Jan 2026",
-                image: "https://placehold.co/600x400/1e293b/8b5cf6?text=No-Code",
-                excerpt: "Programar não é mais uma barreira. Aprenda como plataformas no-code estão empoderando empreendedores a criar software sem código."
-            },
-            {
-                title: "Soluções White Label: Custo vs. Benefício",
-                category: "White Label",
-                date: "12 Jan 2026",
-                image: "https://placehold.co/600x400/0f172a/14b8a6?text=Custo+vs+Beneficio",
-                excerpt: "Construir do zero vale a pena? Analisamos a relação custo-benefício de adotar soluções white label para sua empresa."
-            },
-            {
-                title: "IA em Apps do Dia a Dia",
-                category: "Tecnologia",
-                date: "10 Jan 2026",
-                image: "https://placehold.co/600x400/1e293b/ec4899?text=AI+Integration",
-                excerpt: "A Inteligência Artificial está em tudo. Explore como a IA está sendo integrada em apps cotidianos para melhorar a experiência do usuário."
-            },
-            {
-                title: "Maximizando a Eficiência com Software Sob Medida",
-                category: "Produtividade",
-                date: "08 Jan 2026",
-                image: "https://placehold.co/600x400/0f172a/f59e0b?text=Custom+Software",
-                excerpt: "Software de prateleira nem sempre serve. Veja como o desenvolvimento sob medida pode otimizar seus processos únicos."
-            },
-            {
-                title: "Desenvolvimento Mobile: Nativo vs. Híbrido",
-                category: "Desenvolvimento",
-                date: "05 Jan 2026",
-                image: "https://placehold.co/600x400/1e293b/ef4444?text=Nativo+vs+Hibrido",
-                excerpt: "O debate continua. Detalhamos os prós e contras do desenvolvimento Nativo vs. Híbrido para seu próximo projeto mobile."
-            },
-            {
-                title: "O Futuro do Trabalho Remoto",
-                category: "Produtividade",
-                date: "03 Jan 2026",
-                image: "https://placehold.co/600x400/0f172a/84cc16?text=Remote+Work",
-                excerpt: "O trabalho remoto veio para ficar. Descubra as estratégias e ferramentas que garantem alta produtividade em equipes distribuídas."
-            },
-            {
-                title: "Segurança em Aplicações Web Modernas",
-                category: "Tecnologia",
-                date: "01 Jan 2026",
-                image: "https://placehold.co/600x400/1e293b/64748b?text=Security",
-                excerpt: "Com ameaças cibernéticas crescendo, segurança é fundamental. Aprenda as melhores práticas para proteger suas aplicações web."
-            },
-            {
-                title: "Escalabilidade: Preparando seu App para Crescer",
-                category: "Desenvolvimento",
-                date: "28 Dez 2025",
-                image: "https://placehold.co/600x400/0f172a/d946ef?text=Scalability",
-                excerpt: "Não deixe o sucesso derrubar seus servidores. Um guia para projetar arquiteturas escaláveis que crescem com sua base de usuários."
-            }
-        ];
-
         const grid = document.getElementById('blog-grid');
-        if (grid) {
-            grid.innerHTML = blogPosts.map((post, index) => `
-        <div class="col-md-6 col-lg-4 animate-on-scroll" style="animation-delay: ${index * 0.1}s">
-          <article class="card h-100 border-0 bg-transparent text-white" style="transition: transform 0.3s ease;">
-            <div class="position-relative overflow-hidden rounded-4 mb-3" style="aspect-ratio: 16/10;">
-              <img src="${post.image}" class="w-100 h-100 object-fit-cover" alt="${post.title}" style="transition: transform 0.5s ease;">
-              <div class="position-absolute top-0 start-0 p-3">
-                <span class="badge bg-primary bg-opacity-75 backdrop-blur shadow-sm">${post.category}</span>
-              </div>
-            </div>
-            <div class="card-body p-0">
-              <div class="d-flex align-items-center gap-2 text-muted small mb-2">
-                <i class="bi bi-calendar3"></i> ${post.date}
-              </div>
-              <h3 class="h5 fw-bold mb-2">
-                <a href="#" class="text-white text-decoration-none hover-gradient">${post.title}</a>
-              </h3>
-              <p class="text-muted small line-clamp-3 mb-3">
-                ${post.excerpt}
-              </p>
-              <a href="#" class="dev-link-arrow text-primary text-decoration-none small fw-semibold">
-                Ler Artigo <i class="bi bi-arrow-right"></i>
-              </a>
-            </div>
-          </article>
-        </div>
-      `).join('');
+        const heroTitle = document.querySelector('.dev-hero-title');
+        const heroSubtitle = document.querySelector('.dev-hero-subtitle');
+        const api = window.config?.api?.baseUrl || 'http://localhost:3000';
 
-            // Add hover effects via JS or rely on CSS
-            // Re-trigger scroll animations
+        // Check for slug in params
+        const pathSegments = window.location.pathname.split('/').filter(Boolean);
+        // segment[0] is 'blog'. segment[1] is slug.
+        const slug = pathSegments[1];
+
+        // --- Detail View ---
+        async function loadPost(slug) {
+            // Adjust layout for detail
+            if (heroTitle) heroTitle.innerHTML = '<div class="spinner-border text-light"></div>';
+            if (heroSubtitle) heroSubtitle.style.display = 'none';
+
+            // Clean grid container for article content
+            if (grid) {
+                grid.parentElement.innerHTML = '<div id="post-content" class="animate-on-scroll"></div>';
+            }
+            const container = document.getElementById('post-content');
+
+            try {
+                let post = null;
+                if (window.core && window.core.fetchAPI) {
+                    const res = await window.core.fetchAPI(`/blogs/${slug}`);
+                    if (res && res.success) post = res.data;
+                } else {
+                    const res = await fetch(`${api}/blogs/${slug}`);
+                    const json = await res.json();
+                    if (json.success) post = json.data;
+                }
+
+                if (!post) throw new Error('Post not found');
+
+                // Render Hero Metadata
+                if (heroTitle) {
+                    heroTitle.innerHTML = `
+                        ${post.title} <br>
+                        <span class="fs-5 text-muted fw-normal mt-3 d-block">Por ${post.author} • ${new Date(post.createdAt).toLocaleDateString()}</span>
+                    `;
+                }
+
+                // Render Content
+                container.innerHTML = `
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="bg-dark p-4 rounded-4 shadow-sm border border-secondary mb-5">
+                                ${post.imageUrl ? `<img src="${post.imageUrl}" class="w-100 rounded-3 mb-4" alt="${post.title}">` : ''}
+                                <div class="blog-content pb-4 text-white">
+                                    ${window.marked ? marked.parse(post.content) : post.content}
+                                </div>
+                                <hr class="border-secondary">
+                                <div class="d-flex justify-content-between align-items-center mt-4">
+                                    <a href="/blog" class="btn btn-outline-light rounded-pill px-4"><i class="bi bi-arrow-left me-2"></i> Voltar</a>
+                                    <div class="d-flex gap-2">
+                                        ${(post.tags || []).map(t => `<span class="badge bg-secondary opacity-50 text-white">${t}</span>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+            } catch (e) {
+                console.error(e);
+                if (heroTitle) heroTitle.innerHTML = 'Post não encontrado';
+                if (container) container.innerHTML = '<div class="text-center"><a href="/blog" class="btn btn-primary">Voltar para o Blog</a></div>';
+            }
+        }
+
+        // --- List View ---
+        async function loadBlogs() {
+            if (!grid) return;
+            grid.innerHTML = '<div class="col-12 text-center py-5"><div class="spinner-border text-primary"></div></div>';
+
+            let posts = [];
+            try {
+                if (window.core && window.core.fetchAPI) {
+                    const res = await window.core.fetchAPI('/blogs');
+                    if (res && res.success) posts = res.data;
+                } else {
+                    const res = await fetch(`${api}/blogs`);
+                    const json = await res.json();
+                    if (json.success) posts = json.data;
+                }
+            } catch (e) {
+                console.warn('Failed to load blogs from API', e);
+            }
+
+            if (posts.length === 0) {
+                grid.innerHTML = '<div class="col-12 text-center text-muted py-5">Nenhuma postagem encontrada.</div>';
+                return;
+            }
+
+            grid.innerHTML = posts.map((post, index) => {
+                const date = new Date(post.createdAt || Date.now()).toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' });
+                const img = post.imageUrl || `https://placehold.co/600x400/1e293b/6366f1?text=${encodeURIComponent(post.category || 'Blog')}`;
+
+                return `
+                <div class="col-md-6 col-lg-4 animate-on-scroll" style="animation-delay: ${index * 0.1}s">
+                <article class="card h-100 border-0 bg-transparent text-white" style="transition: transform 0.3s ease;">
+                    <div class="position-relative overflow-hidden rounded-4 mb-3" style="aspect-ratio: 16/10;">
+                    <img src="${img}" class="w-100 h-100 object-fit-cover" alt="${post.title}" style="transition: transform 0.5s ease;">
+                    <div class="position-absolute top-0 start-0 p-3">
+                        <span class="badge bg-primary bg-opacity-75 backdrop-blur shadow-sm">${post.category || 'Geral'}</span>
+                    </div>
+                    </div>
+                    <div class="card-body p-0">
+                    <div class="d-flex align-items-center gap-2 text-muted small mb-2">
+                        <i class="bi bi-calendar3"></i> ${date}
+                    </div>
+                    <h3 class="h5 fw-bold mb-2">
+                        <a href="/blog/${post.slug}" class="text-white text-decoration-none hover-gradient">${post.title}</a>
+                    </h3>
+                    <p class="text-muted small line-clamp-3 mb-3">
+                        ${post.description || post.content.substring(0, 100) + '...'}
+                    </p>
+                    <a href="/blog/${post.slug}" class="dev-link-arrow text-primary text-decoration-none small fw-semibold">
+                        Ler Artigo <i class="bi bi-arrow-right"></i>
+                    </a>
+                    </div>
+                </article>
+                </div>
+            `}).join('');
+
+            // Animations
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -167,8 +189,14 @@
                     }
                 });
             });
-
             grid.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+        }
+
+        // Router
+        if (slug) {
+            loadPost(slug);
+        } else {
+            loadBlogs();
         }
     })();
 </script>

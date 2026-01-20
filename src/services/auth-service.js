@@ -59,7 +59,15 @@ class AuthService {
     // Check role
     hasRole(role) {
         const user = this.getUser();
-        return user && user.role === role;
+        if (!user) return false;
+
+        // Support new array format
+        if (Array.isArray(user.roles)) {
+            return user.roles.includes(role);
+        }
+
+        // Fallback to old string format
+        return user.role === role;
     }
 }
 

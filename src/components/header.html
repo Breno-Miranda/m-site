@@ -167,12 +167,23 @@
     function render() {
       if (auth && auth.isAuthenticated()) {
         const user = auth.getUser();
-        let dashboardLink = '/premium';
-        let label = 'Dashboard';
+        let menuItems = '';
 
-        if (user.role === 'admin') {
-          dashboardLink = '/admin-cms';
-          label = 'Admin';
+        // Helper to check active state
+        const isActive = (path) => window.location.pathname.startsWith(path) ? 'active bg-primary' : '';
+
+        // Determine accessible areas
+        if (auth.hasRole('admin')) {
+          menuItems += `<li><a class="dropdown-item text-white ${isActive('/admin-cms')}" href="/admin-cms"><i class="bi bi-shield-lock me-2"></i>Painel Admin</a></li>`;
+        }
+
+        if (auth.hasRole('premium')) {
+          menuItems += `<li><a class="dropdown-item text-white ${isActive('/premium')}" href="/premium"><i class="bi bi-star-fill me-2"></i>Dashboard Premium</a></li>`;
+        }
+
+        // Default if no specific roles or just 'user'
+        if (!auth.hasRole('admin') && !auth.hasRole('premium')) {
+          menuItems += `<li><a class="dropdown-item text-white ${isActive('/premium')}" href="/premium"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>`;
         }
 
         headerAuthItem.innerHTML = `
@@ -181,9 +192,10 @@
               <i class="bi bi-person-circle"></i> ${user.name ? user.name.split(' ')[0] : 'Conta'}
             </button>
             <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary shadow-lg">
-              <li><a class="dropdown-item text-white" href="${dashboardLink}"><i class="bi bi-speedometer2 me-2"></i>${label}</a></li>
-              <li><a class="dropdown-item text-white" href="/profile"><i class="bi bi-person-gear me-2"></i>Meu Perfil</a></li>
+              <li class="dropdown-header text-muted small text-uppercase">Meus Acessos</li>
+              ${menuItems}
               <li><hr class="dropdown-divider bg-secondary"></li>
+              <li><a class="dropdown-item text-white" href="/profile"><i class="bi bi-person-gear me-2"></i>Meu Perfil</a></li>
               <li><button class="dropdown-item text-danger" onclick="window.authService.logout()"><i class="bi bi-box-arrow-right me-2"></i>Sair</button></li>
             </ul>
           </div>
