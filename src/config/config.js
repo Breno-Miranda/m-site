@@ -2,13 +2,16 @@
 const config = {
   app: {
     name: "Miranda Soft",
-    version: "0.10.31",
-    environment: "development",
+    version: "0.10.32",
+    environment: "production",
     debug: true,
     token: "9f3c8b1a-2d7e-4a4d-91e3-c9f621f7dcb1"
   },
   api: {
-    baseUrl: "https://api.mirandasoft.com.br",
+    // Auto-detect environment: Use Local API for localhost, otherwise Production API
+    baseUrl: (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))
+      ? "http://localhost:3000"
+      : "https://api.mirandasoft.com.br",
     timeout: 30000,
     retryAttempts: 3,
     useProxy: false,
