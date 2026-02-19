@@ -1,7 +1,7 @@
 /**
  * MCredential - Storage Module
  * Encrypted localStorage management
- * Version: V0.10.10
+ * Version: V0.10.11
  */
 
 const StorageModule = (function () {

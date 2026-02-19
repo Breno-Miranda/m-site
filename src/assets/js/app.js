@@ -1,7 +1,7 @@
 /**
  * MCredential - Main Application
  * Password Manager App Logic
- * Version: V0.10.10
+ * Version: V0.10.11
  */
 
 const App = (function () {

@@ -1,7 +1,7 @@
 /**
  * MCredential - Crypto Module
  * AES-256-GCM encryption via Web Crypto API
- * Version: V0.10.10
+ * Version: V0.10.11
  */
 
 const CryptoModule = (function () {
