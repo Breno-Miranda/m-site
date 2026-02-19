@@ -2,7 +2,7 @@
 const config = {
   app: {
     name: "Miranda Soft",
-    version: "0.10.37",
+    version: "0.10.39",
     environment: "production",
     debug: true,
     token: "9f3c8b1a-2d7e-4a4d-91e3-c9f621f7dcb1"

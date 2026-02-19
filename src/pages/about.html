@@ -1,106 +1,230 @@
-<section class="docs py-5">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 mx-auto">
-        <header class="text-center mb-5">
-          <p class="badge bg-light text-primary text-uppercase fw-semibold">Documentação</p>
-          <h1 class="display-5 fw-bold">Como o Framework Frontend funciona</h1>
-          <p class="lead text-muted">Um resumo da arquitetura, fluxo de trabalho e boas práticas para construir produtos com HTML + JavaScript puro.</p>
-        </header>
-
-        <article class="doc-card mb-4">
-          <h2>Visão geral</h2>
-          <p>
-            O Framework Frontend é um kit opinado para montar single page applications leves. Ele aposta em arquivos estáticos,
-            consumo direto de APIs e um CMS embutido que escreve no <code>localStorage</code>. O resultado é um projeto que roda
-            desde um simples <code>python -m http.server</code> até hospedagens robustas.
+<div class="about-page">
+  <!-- Hero Section -->
+  <section class="about-hero py-5 mb-5">
+    <div class="container pt-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <span
+            class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill mb-3 animate__animated animate__fadeInDown">Nossa
+            História</span>
+          <h1 class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">
+            Transformando o futuro através da <span class="text-gradient">inovação digital</span>
+          </h1>
+          <p class="lead text-secondary mb-4 animate__animated animate__fadeInUp animate__delay-1s">
+            A Miranda Soft nasceu da paixão por resolver problemas complexos com soluções simples, elegantes e
+            eficientes.
+            Há mais de uma década, ajudamos empresas a evoluírem no cenário digital.
           </p>
-          <ul>
-            <li>Router baseado em <code>history.pushState</code> + HTML parcial.</li>
-            <li>Componentes em HTML (fetch) ou JS (classe <code>Component</code>).</li>
-            <li>Assets vendors versionados na pasta <code>src/assets/vendor</code>.</li>
-          </ul>
-        </article>
-
-        <article class="doc-card mb-4">
-          <h2>Estrutura</h2>
-          <pre class="bg-dark text-white rounded p-3 small"><code>src/
-├── components/      # Cabeçalho, rodapé, seções reutilizáveis
-├── core/            # Router, Component, Skeleton, helpers
-├── data/            # Conteúdos mock (blog, cms)
-├── pages/           # HTML carregado pelo SPA
-├── services/        # ContentService e integrações futuras
-└── assets/
-    ├── css/         # Temas e overrides
-    └── vendor/      # Bootstrap, Swiper, Icons, etc</code></pre>
-          <p>
-            Ao navegar para <code>/contact</code>, o Core busca <code>src/pages/contact.html</code>,
-            injeta no <code>#root</code> e reexecuta os componentes daquele fragmento. Tudo funciona
-            em conjunto com o CMS, que mantém o conteúdo sincronizado.
-          </p>
-        </article>
-
-        <article class="doc-card mb-4">
-          <h2>Fluxo de desenvolvimento</h2>
-          <ol>
-            <li>Clone o projeto e rode um servidor estático local.</li>
-            <li>Edite os textos via <code>/cms</code> ou diretamente nos arquivos em <code>src/pages</code>.</li>
-            <li>Para novos componentes, use <code>Component.register('nome')</code> e coloque <code>&lt;div data-component="nome"&gt;</code> no HTML.</li>
-            <li>Consuma APIs com <code>core.fetchAPI</code> para herdar cabeçalhos e tratamento de erro.</li>
-          </ol>
-        </article>
-
-        <article class="doc-card mb-4">
-          <h2>Boas práticas</h2>
-          <ul>
-            <li>Centralize todas as URLs em <code>src/config/config.js</code>.</li>
-            <li>Use <code>core.showSkeleton</code> enquanto carrega dados.</li>
-            <li>Evite duplicar vendors: use os arquivos em <code>src/assets/vendor</code>.</li>
-            <li>Versione os JSON exportados do CMS para rastrear alterações de conteúdo.</li>
-            <li>Se precisar de múltiplos idiomas, salve diferentes arquivos no CMS e carregue conforme o contexto.</li>
-          </ul>
-        </article>
-
-        <article class="doc-card">
-          <h2>Próximos passos</h2>
-          <p>
-            Explore o blog para guias específicos, use a página de materiais para baixar snippets prontos
-            e abra issues no GitHub caso queira contribuir. O framework é deliberadamente simples:
-            quanto mais você o personaliza, mais fácil fica de manter.
-          </p>
-          <div class="d-flex flex-wrap gap-3 mt-3">
-            <a href="/" class="btn btn-primary"><i class="bi bi-arrow-left me-2"></i>Voltar para Home</a>
-            <a href="/materials" class="btn btn-outline-primary">Ir para Recursos</a>
-            <a href="https://github.com/your-repo/framework-frontend" target="_blank" rel="noreferrer" class="btn btn-outline-secondary">
-              <i class="bi bi-github me-2"></i>GitHub
-            </a>
+        </div>
+        <div class="col-lg-6 text-center animate__animated animate__zoomIn">
+          <div class="position-relative d-inline-block">
+            <div class="about-hero-blob"></div>
+            <i class="bi bi-building-gear display-1 text-primary position-relative" style="z-index: 2;"></i>
           </div>
-        </article>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Mission, Vision, Values -->
+  <section class="py-5 bg-dark bg-opacity-25">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 border-0 bg-dark bg-opacity-50 p-4 glass-morphism">
+            <div class="card-body">
+              <i class="bi bi-rocket-takeoff text-primary fs-1 mb-3 d-block"></i>
+              <h3 class="h4 fw-bold mb-3">Missão</h3>
+              <p class="text-secondary">Democratizar o acesso à tecnologia de alta qualidade, entregando soluções que
+                geram valor real e imediato para nossos clientes.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 border-0 bg-dark bg-opacity-50 p-4 glass-morphism">
+            <div class="card-body">
+              <i class="bi bi-eye text-info fs-1 mb-3 d-block"></i>
+              <h3 class="h4 fw-bold mb-3">Visão</h3>
+              <p class="text-secondary">Ser referência nacional em inovação e qualidade técnica, sendo o parceiro
+                preferencial de empresas em sua jornada de transformação digital.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 border-0 bg-dark bg-opacity-50 p-4 glass-morphism">
+            <div class="card-body">
+              <i class="bi bi-shield-heart text-danger fs-1 mb-3 d-block"></i>
+              <h3 class="h4 fw-bold mb-3">Valores</h3>
+              <p class="text-secondary">Transparência, excelência técnica, compromisso com resultados, ética inabalável
+                e foco total no sucesso do cliente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Content from CMS -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <h2 class="fw-bold mb-4" id="about-title-page">Referência em Soluções Digitais</h2>
+          <p class="text-secondary mb-4" id="about-desc-page">
+            Fundada no Rio Grande do Norte, a Miranda Soft (MSoft) consolidou-se como uma das principais fábricas de
+            software da região,
+            atendendo clientes em todo o território nacional. Nossa expertise abrange desde startups em estágio inicial
+            até grandes corporações.
+          </p>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-check-circle-fill text-success"></i>
+                <span class="text-secondary small">10+ Anos de Mercado</span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-check-circle-fill text-success"></i>
+                <span class="text-secondary small">Equipe de Especialistas</span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-check-circle-fill text-success"></i>
+                <span class="text-secondary small">Projetos Customizados</span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-check-circle-fill text-success"></i>
+                <span class="text-secondary small">Suporte Contínuo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-4 rounded-4 bg-primary bg-opacity-5 border border-primary border-opacity-10">
+            <h4 class="fw-bold mb-4">Números que nos orgulham</h4>
+            <div class="row g-4 text-center">
+              <div class="col-6">
+                <div class="p-3">
+                  <div class="display-6 fw-bold text-primary">150+</div>
+                  <div class="text-secondary small">Projetos Entregues</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="p-3">
+                  <div class="display-6 fw-bold text-primary">50k+</div>
+                  <div class="text-secondary small">Horas de Dev</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="p-3">
+                  <div class="display-6 fw-bold text-primary">98%</div>
+                  <div class="text-secondary small">Satisfação</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="p-3">
+                  <div class="display-6 fw-bold text-primary">24/7</div>
+                  <div class="text-secondary small">Disponibilidade</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-5 mb-5">
+    <div class="container">
+      <div class="card border-0 bg-primary bg-opacity-10 p-5 rounded-5 text-center shadow-lg">
+        <div class="card-body">
+          <h2 class="fw-bold mb-3">Pronto para começar seu projeto?</h2>
+          <p class="text-secondary mb-4 mx-auto" style="max-width: 600px;">
+            Nossa equipe está preparada para transformar sua visão em uma solução tecnológica de alta performance.
+          </p>
+          <a href="/contact" class="btn btn-primary rounded-pill px-5 py-3 fw-bold">
+            Falar com Consultor <i class="bi bi-arrow-right-short ms-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
 <style>
-.doc-card {
-  background: #fff;
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
-}
+  .about-page {
+    color: #f8fafc;
+  }
 
-.doc-card h2 {
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
+  .about-hero-blob {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: pulse 4s infinite ease-in-out;
+    z-index: 1;
+  }
 
-.doc-card ul,
-.doc-card ol {
-  margin-left: 1.5rem;
-}
+  .glass-morphism {
+    backdrop-filter: blur(10px);
+    background: rgba(15, 23, 42, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
 
-pre {
-  white-space: pre-wrap;
-  word-break: break-word;
-}
+  .glass-morphism:hover {
+    transform: translateY(-5px);
+    border-color: rgba(59, 130, 246, 0.3) !important;
+  }
+
+  @keyframes pulse {
+
+    0%,
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.5;
+    }
+
+    50% {
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 0.8;
+    }
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 </style>
+
+<script>
+  (function () {
+    // Sync with CMS if needed
+    function updateAboutPage() {
+      if (!window.ContentService) return;
+      const content = window.ContentService.getSection('about');
+      if (!content) return;
+
+      const titleEl = document.getElementById('about-title-page');
+      const descEl = document.getElementById('about-desc-page');
+
+      if (titleEl) titleEl.textContent = content.title;
+      if (descEl) descEl.textContent = content.description;
+    }
+
+    // Initial update
+    updateAboutPage();
+  })();
+</script>
