@@ -1,4 +1,4 @@
-<!-- Version: V0.10.35 -->
+<!-- Version: V0.10.47 -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -57,30 +57,34 @@
     crossorigin="anonymous"></script>
 </head>
 
-<body data-bs-theme="dark">
-  <!-- Toast -->
-  <div id="toast"></div>
+<body data-bs-theme="dark" class="d-flex flex-column min-vh-100">
+  <!-- Layout Wrapper Global -->
+  <div class="container-lg d-flex flex-column flex-grow-1 p-0" style="max-width: 1140px;">
+    <!-- Toast -->
+    <div id="toast"></div>
 
-  <!-- Header -->
-  <div id="head" data-component="header">
-    <div data-component="skeleton"></div>
-  </div>
+    <!-- Header -->
+    <div id="head" data-component="header">
+      <div data-component="skeleton"></div>
+    </div>
 
-  <!-- Root -->
-  <div id="root">
-    <div data-component="skeleton"></div>
-  </div>
+    <!-- Root -->
+    <div id="root">
+      <div data-component="skeleton"></div>
+    </div>
 
-  <!-- Modal -->
-  <div id="modal" data-component="modal"></div>
+    <!-- Modal -->
+    <div id="modal" data-component="modal"></div>
 
-  <!-- CTA Tutorial -->
-  <div id="cta-tutorial" data-component="cta-tutorial"></div>
+    <!-- CTA Tutorial -->
+    <div id="cta-tutorial" data-component="cta-tutorial"></div>
 
-  <!-- Footer -->
-  <div id="footer" data-component="footer">
-    <div data-component="skeleton"></div>
-  </div>
+    <!-- Footer -->
+    <div id="footer" data-component="footer" class="mt-auto">
+      <div data-component="skeleton"></div>
+    </div>
+
+  </div> <!-- Fechamento Layout Wrapper -->
 
   <!-- jQuery -->
   <script src="/src/assets/vendor/jquery/jquery-3.7.1.min.js"></script>

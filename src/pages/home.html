@@ -232,7 +232,7 @@
               Explore nossa suíte de ferramentas e utilitários desenvolvidos para facilitar o dia a dia de
               desenvolvedores e empresas.
             </p>
-            <a href="/my-apps" class="btn btn-primary btn-lg rounded-pill px-5">
+            <a href="/apps" class="btn btn-primary btn-lg rounded-pill px-5">
               Acessar Ferramentas <i class="bi bi-arrow-right ms-2"></i>
             </a>
           </div>
@@ -327,20 +327,19 @@
         </p>
 
         <div class="dev-contact-links">
-          <a href="tel:5584988330532" class="dev-contact-link">
-            <i class="bi bi-whatsapp"></i>
-            <span>(84) 98833-0532</span>
+          <a href="https://wa.me/5584988330532" target="_blank"
+            class="btn btn-primary rounded-pill px-4 py-3 mb-3 d-inline-flex align-items-center gap-2 shadow-sm text-white"
+            style="text-decoration: none;">
+            <i class="bi bi-whatsapp fs-5"></i>
+            <span class="fw-bold fs-6">Chamar no WhatsApp</span>
           </a>
 
-          <a href="mailto:contato@msoft.com.br" class="dev-contact-link">
+          <a href="mailto:contato@mirandasoft.com.br" class="dev-contact-link">
             <i class="bi bi-envelope-fill"></i>
-            <span>contato@msoft.com.br</span>
+            <span>contato@mirandasoft.com.br</span>
           </a>
 
-          <div class="dev-contact-link" style="max-width: fit-content;">
-            <i class="bi bi-geo-alt-fill"></i>
-            <span>Rua Ver. Mauricio Fernandes, 142 - São Gonçalo do Amarante/RN</span>
-          </div>
+
         </div>
       </div>
     </div>
@@ -440,7 +439,7 @@
       const toggle = (id, sectionKey) => {
         const el = document.getElementById(id) || document.querySelector(`.${id}`);
         if (el && content[sectionKey]) {
-            el.style.display = (content[sectionKey].enabled === false) ? 'none' : '';
+          el.style.display = (content[sectionKey].enabled === false) ? 'none' : '';
         }
       };
 
@@ -453,7 +452,7 @@
       // For now, I'll allow toggling 'hero', 'features', 'about', 'testimonials', 'cta', 'contact'.
       toggle('cta-section', 'cta');
       toggle('contact', 'contact'); // Contact key doesn't exist in defaultCMS, so it will be undefined -> enabled.
-      
+
       // Testimonials section is inside About? No it's separate in defaultCMSContent but likely separate in HTML? 
       // home.html doesn't seem to have a dedicated Testimonials section visible in the snippet I saw? 
       // Wait, I saw "Support Section" id="suporte". I didn't see Testimonials section in home.html snippet? 
@@ -463,7 +462,7 @@
       // defaultCMSContent has 'testimonials'.
       // If home.html doesn't render testimonials, I can't toggle them.
       // But I can toggle 'suporte' section.
-      
+
 
     }
 

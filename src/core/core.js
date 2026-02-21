@@ -179,6 +179,13 @@ class Core {
         // Initialize any components inside the loaded content
         self.initializeComponents(root);
 
+        // Force scroll to top of page when changing page views
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'instant'
+        });
+
         // Add fade-in animation
         root.classList.add('content-fade-in');
         setTimeout(() => {
@@ -285,7 +292,7 @@ class Core {
   }
 
   // FetchAPI
-  async fetchAPI(url, verb = 'GET', data = {}) {
+  async fetchAPI(url, verb = 'GET', data = {}, customOptions = {}) {
     console.time('fetchAPI');
     try {
       // Verifica se a URL base está definida
@@ -387,16 +394,18 @@ class Core {
         errorMessage = 'Configuração da API está incompleta. Contate o suporte.';
       }
 
-      // Notifica o usuário sobre o erro
-      this.toast(errorMessage, 'error');
+      if (!customOptions.silent) {
+        // Notifica o usuário sobre o erro
+        this.toast(errorMessage, 'error');
 
-      // Log do erro para debugging
-      console.error(`[API Error] ${verb} ${url}:`, {
-        error: error.message,
-        stack: error.stack,
-        url: url,
-        verb: verb
-      });
+        // Log do erro para debugging
+        console.error(`[API Error] ${verb} ${url}:`, {
+          error: error.message,
+          stack: error.stack,
+          url: url,
+          verb: verb
+        });
+      }
 
       // Propaga o erro para ser tratado pelo chamador
       throw error;

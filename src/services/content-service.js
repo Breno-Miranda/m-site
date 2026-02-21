@@ -33,7 +33,7 @@
           return;
         }
 
-        const response = await window.core.fetchAPI('/content/site_config');
+        const response = await window.core.fetchAPI('/content/site_config', 'GET', {}, { silent: true });
         if (response && response.success && response.data) {
           this.content = { ...this.content, ...response.data };
           this.persistLocal();

@@ -49,7 +49,6 @@ const config = {
       'mcredential',
       'profile',
       'support',
-      'my-apps',
       'tutorial-caricatura'
     ]
   },
