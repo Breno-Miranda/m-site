@@ -209,6 +209,28 @@ class Core {
 
       console.log(`Page loaded: ${pageName}`);
 
+      // Gerenciamento de visibilidade global baseada em Rotas (Regras de Negócio)
+      const ctaTutorialEl = document.getElementById('cta-tutorial');
+      const headerEl = document.getElementById('head');
+      const footerEl = document.getElementById('footer');
+
+      // 1. "essa pagina Crie seu próprio Vídeo Animado grátis! nao pode ir para area logadas"
+      const isLoggedArea = ['premium', 'admin-cms', 'healthtech-dashboard', 'my-apps', 'profile'].includes(pageName);
+      if (ctaTutorialEl) {
+          ctaTutorialEl.style.display = isLoggedArea ? 'none' : 'block';
+      }
+
+      // 2. "dashboard de cms pode apareceer o menu do site.. dash premium nao pode"
+      const hideMainFrame = ['premium', 'healthtech-dashboard'].includes(pageName);
+      if (headerEl) headerEl.style.display = hideMainFrame ? 'none' : 'block';
+      if (footerEl) footerEl.style.display = hideMainFrame ? 'none' : 'block';
+      
+      if(hideMainFrame) {
+         document.body.style.background = '#0a0a0f';
+      } else {
+         document.body.style.background = '';
+      }
+
       // Atualiza a URL mantendo os parâmetros
       const paramsString = this.params.length > 0 ? `/${this.params.join('/')}` : '';
       const newPath = pageName === 'home' ? '/' : `/${pageName}${paramsString}`;
