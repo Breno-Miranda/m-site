@@ -41,7 +41,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet">
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 
   <!-- Styles -->
   <link href="/src/assets/css/design-system.css" rel="stylesheet">
@@ -59,6 +62,7 @@
 </head>
 
 <body data-bs-theme="dark" class="d-flex flex-column min-vh-100">
+  <a href="#root" class="visually-hidden-focusable skip-link">Pular para o conteúdo</a>
   <!-- Layout Wrapper Global -->
   <div class="container-lg d-flex flex-column flex-grow-1 p-0" style="max-width: 1140px;">
     <!-- Toast -->
@@ -69,10 +73,10 @@
       <div data-component="skeleton"></div>
     </div>
 
-    <!-- Root -->
-    <div id="root">
+    <!-- Main Content -->
+    <main id="root" role="main">
       <div data-component="skeleton"></div>
-    </div>
+    </main>
 
     <!-- Modal -->
     <div id="modal" data-component="modal"></div>

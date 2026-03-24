@@ -85,7 +85,7 @@ class Core {
           return;
         }
       } catch (error) {
-        console.warn(`Failed to load component: ${name}`, error);
+        if (config?.app?.debug) console.warn(`Failed to load component: ${name}`, error);
       }
 
       // Fallback to JS component
@@ -130,8 +130,10 @@ class Core {
     const pageName = segments[1] || 'home';
     this.params = segments.slice(2);
 
-    console.log(`pageName`, pageName);
-    console.log(`params`, this.params);
+    if (config?.app?.debug) {
+      console.log(`pageName`, pageName);
+      console.log(`params`, this.params);
+    }
 
     // Armazena os parâmetros no estado global
     this.state = { ...this.state, params: this.params };
@@ -145,7 +147,7 @@ class Core {
       // Verifica se o arquivo existe no path
       const filePath = `/src/pages/${pageName}.html`;
 
-      console.log(`filePath`, filePath);
+      if (config?.app?.debug) console.log(`filePath`, filePath);
 
       if (!this.registerPages.includes(pageName)) {
         throw new Error('Page not found');
@@ -207,7 +209,7 @@ class Core {
         loadContent();
       }
 
-      console.log(`Page loaded: ${pageName}`);
+      if (config?.app?.debug) console.log(`Page loaded: ${pageName}`);
 
       // Gerenciamento de visibilidade global baseada em Rotas (Regras de Negócio)
       const ctaTutorialEl = document.getElementById('cta-tutorial');
@@ -337,7 +339,7 @@ class Core {
 
         // Constrói a URL completa para o proxy
         const fullUrl = `${cleanProxyUrl}/api/${cleanUrl}`;
-        console.log(`[API Request] ${verb} ${fullUrl}`, data);
+        if (config?.app?.debug) console.log(`[API Request] ${verb} ${fullUrl}`, data);
 
         const options = {
           method: verb,
@@ -364,7 +366,7 @@ class Core {
         }
 
         const responseData = await res.json();
-        console.log(`[API Response] ${verb} ${url}:`, responseData);
+        if (config?.app?.debug) console.log(`[API Response] ${verb} ${url}:`, responseData);
         console.timeEnd('fetchAPI');
         return responseData;
       }
@@ -374,7 +376,7 @@ class Core {
       const cleanUrl = url.replace(/^\/+/, '');
       const fullUrl = `${cleanBaseUrl}/${cleanUrl}`;
 
-      console.log(`[API Request] ${verb} ${fullUrl}`, data);
+      if (config?.app?.debug) console.log(`[API Request] ${verb} ${fullUrl}`, data);
 
       const options = {
         method: verb,
@@ -403,7 +405,7 @@ class Core {
       }
 
       const responseData = await res.json();
-      console.log(`[API Response] ${verb} ${url}:`, responseData);
+      if (config?.app?.debug) console.log(`[API Response] ${verb} ${url}:`, responseData);
       console.timeEnd('fetchAPI');
       return responseData;
     } catch (error) {
@@ -420,13 +422,14 @@ class Core {
         // Notifica o usuário sobre o erro
         this.toast(errorMessage, 'error');
 
-        // Log do erro para debugging
-        console.error(`[API Error] ${verb} ${url}:`, {
-          error: error.message,
-          stack: error.stack,
-          url: url,
-          verb: verb
-        });
+        if (config?.app?.debug) {
+          console.error(`[API Error] ${verb} ${url}:`, {
+            error: error.message,
+            stack: error.stack,
+            url: url,
+            verb: verb
+          });
+        }
       }
 
       // Propaga o erro para ser tratado pelo chamador
@@ -455,10 +458,10 @@ class Core {
   // event listener
   eventListener(event, callback) {
     return window.document.addEventListener(event, callback).then(data => {
-      console.log(`data`, data);
+      if (config?.app?.debug) console.log(`data`, data);
       return data;
     }).catch(error => {
-      console.error(`error`, error);
+      if (config?.app?.debug) console.error(`error`, error);
       return error;
     });
   }

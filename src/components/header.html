@@ -9,8 +9,8 @@
       </a>
 
       <!-- Mobile Toggle Button -->
-      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <i class="bi bi-list" style="font-size: 1.75rem;"></i>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="navbarNav">
+        <i class="bi bi-list" style="font-size: 1.75rem;" aria-hidden="true"></i>
       </button>
 
       <!-- Navigation Menu -->
@@ -187,7 +187,7 @@
 
         headerAuthItem.innerHTML = `
           <div class="dropdown">
-            <button class="header-user-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="header-user-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menu da conta">
               <i class="bi bi-person-circle"></i> ${user.name ? user.name.split(' ')[0] : 'Conta'}
             </button>
             <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary shadow-lg">

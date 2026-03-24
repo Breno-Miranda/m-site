@@ -103,21 +103,89 @@
 
                 if (!post) throw new Error('Post not found');
 
+                const hasCoverImage = !!(post.imageUrl && String(post.imageUrl).trim());
+
+                // SEO: meta tags dinâmicos
+                const canonicalUrl = (typeof window !== 'undefined' && window.location.origin)
+                    ? `${window.location.origin}/blog/${post.slug}`
+                    : `https://mirandasoft.com.br/blog/${post.slug}`;
+                const desc = (post.description || (post.content || '').replace(/<[^>]*>/g, '').substring(0, 160).trim() || post.title) + ' | Miranda Soft';
+                const pubDate = post.createdAt ? new Date(post.createdAt).toISOString() : '';
+
+                document.title = `${post.title} | Blog Miranda Soft`;
+
+                const setMeta = (attr, val, prop = 'content') => {
+                    const sel = attr.startsWith('og:') || attr.startsWith('twitter:') ? `meta[property="${attr}"]` : `meta[name="${attr}"]`;
+                    let el = document.querySelector(sel);
+                    if (!el) {
+                        el = document.createElement('meta');
+                        if (attr.startsWith('og:') || attr.startsWith('twitter:')) el.setAttribute('property', attr);
+                        else el.setAttribute('name', attr);
+                        document.head.appendChild(el);
+                    }
+                    el.setAttribute(prop, val || '');
+                };
+
+                setMeta('description', desc);
+                setMeta('og:type', 'article');
+                setMeta('og:url', canonicalUrl);
+                setMeta('og:title', post.title);
+                setMeta('og:description', desc);
+                if (hasCoverImage) {
+                    setMeta('og:image', post.imageUrl.trim());
+                    setMeta('twitter:image', post.imageUrl.trim());
+                } else {
+                    const ogImg = document.querySelector('meta[property="og:image"]');
+                    const twImg = document.querySelector('meta[property="twitter:image"]');
+                    if (ogImg) ogImg.remove();
+                    if (twImg) twImg.remove();
+                }
+                setMeta('og:site_name', 'Miranda Soft');
+                if (pubDate) setMeta('article:published_time', pubDate);
+                if (post.author) setMeta('article:author', post.author);
+                setMeta('twitter:card', hasCoverImage ? 'summary_large_image' : 'summary');
+                setMeta('twitter:title', post.title);
+                setMeta('twitter:description', desc);
+
+                const linkCanonical = document.querySelector('link[rel="canonical"]') || document.createElement('link');
+                linkCanonical.rel = 'canonical';
+                linkCanonical.href = canonicalUrl;
+                if (!document.querySelector('link[rel="canonical"]')) document.head.appendChild(linkCanonical);
+
+                const jsonLd = {
+                    '@context': 'https://schema.org',
+                    '@type': 'Article',
+                    headline: post.title,
+                    description: desc,
+                    ...(hasCoverImage && { image: post.imageUrl.trim() }),
+                    datePublished: pubDate,
+                    dateModified: (post.updatedAt ? new Date(post.updatedAt).toISOString() : pubDate),
+                    author: { '@type': 'Person', name: post.author || 'Miranda Soft' },
+                    publisher: { '@type': 'Organization', name: 'Miranda Soft', url: 'https://mirandasoft.com.br' },
+                    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl }
+                };
+                let scriptLd = document.getElementById('blog-jsonld');
+                if (scriptLd) scriptLd.remove();
+                scriptLd = document.createElement('script');
+                scriptLd.id = 'blog-jsonld';
+                scriptLd.type = 'application/ld+json';
+                scriptLd.textContent = JSON.stringify(jsonLd);
+                document.head.appendChild(scriptLd);
+
                 // Render Hero Metadata
                 if (heroTitle) {
                     heroTitle.innerHTML = `
                         ${post.title} <br>
-                        <span class="fs-5 text-muted fw-normal mt-3 d-block">Por ${post.author} • ${new Date(post.createdAt).toLocaleDateString()}</span>
+                        <span class="fs-5 text-muted fw-normal mt-3 d-block">Por ${post.author} • ${new Date(post.createdAt).toLocaleDateString('pt-BR')}</span>
                     `;
                 }
 
-                // Render Content
+                // Render Content (article semântico)
                 container.innerHTML = `
-                    <div class="row justify-content-center">
+                    <article class="row justify-content-center" itemscope itemtype="https://schema.org/Article">
                         <div class="col-12 col-lg-11 col-xl-10 mx-auto" style="max-width: 1100px;">
-                            <div class="mb-5">
-                                ${post.imageUrl ? `<img src="${post.imageUrl}" class="w-100 rounded-3 mb-4 shadow" alt="${post.title}">` : ''}
-                                <div class="blog-content pb-4 text-white" style="line-height: 1.8; font-size: 1.15rem;">
+                            ${hasCoverImage ? `<header class="mb-5"><img src="${post.imageUrl.trim()}" class="w-100 rounded-3 mb-4 shadow" alt="${(post.title || '').replace(/"/g, '&quot;')}" itemprop="image" loading="lazy"></header>` : ''}
+                            <div class="blog-content pb-4 text-white" style="line-height: 1.8; font-size: 1.15rem;" itemprop="articleBody">
                                     ${post.content || '<p class="text-muted">Sem conteúdo disponível.</p>'}
                                 </div>
                                 <hr class="border-secondary mt-5 mb-4 opacity-25">
@@ -141,7 +209,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </article>
                 `;
 
                 const articleBody = container.querySelector('.blog-content');
@@ -167,9 +235,27 @@
             }
         }
 
+        function resetBlogMeta() {
+            document.title = 'Blog & Insights | Miranda Soft';
+            const def = {
+                description: 'Fique por dentro das últimas novidades sobre Apps White Label, tendências tech e dicas para impulsionar sua produtividade.',
+                'og:type': 'website', 'og:url': 'https://mirandasoft.com.br/blog', 'og:title': 'Blog | Miranda Soft', 'og:description': 'Insights sobre tecnologia e produtividade.',
+                'twitter:card': 'summary_large_image', 'twitter:title': 'Blog | Miranda Soft', 'twitter:description': 'Insights sobre tecnologia e produtividade.'
+            };
+            const setMeta = (attr, val) => {
+                const sel = attr.startsWith('og:') || attr.startsWith('twitter:') ? `meta[property="${attr}"]` : `meta[name="${attr}"]`;
+                const el = document.querySelector(sel);
+                if (el) el.setAttribute('content', val || '');
+            };
+            Object.entries(def).forEach(([k, v]) => setMeta(k, v));
+            const ld = document.getElementById('blog-jsonld');
+            if (ld) ld.remove();
+        }
+
         // --- List View ---
         async function loadBlogs() {
             if (!grid) return;
+            resetBlogMeta();
             grid.innerHTML = '<div class="col-12 text-center py-5"><div class="spinner-border text-primary"></div></div>';
 
             let posts = [];
@@ -193,26 +279,33 @@
 
             grid.innerHTML = posts.map((post, index) => {
                 const date = new Date(post.createdAt || Date.now()).toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' });
-                const img = post.imageUrl || `https://placehold.co/600x400/1e293b/6366f1?text=${encodeURIComponent(post.category || 'Blog')}`;
+                const hasImage = !!(post.imageUrl && post.imageUrl.trim());
 
                 return `
                 <div class="col-md-6 col-lg-4 animate-on-scroll" style="animation-delay: ${index * 0.1}s">
                 <article class="card h-100 border-0 bg-transparent text-white" style="transition: transform 0.3s ease;">
+                    ${hasImage ? `
                     <div class="position-relative overflow-hidden rounded-4 mb-3" style="aspect-ratio: 16/10;">
-                    <img src="${img}" class="w-100 h-100 object-fit-cover" alt="${post.title}" style="transition: transform 0.5s ease;">
-                    <div class="position-absolute top-0 start-0 p-3">
-                        <span class="badge bg-primary bg-opacity-75 backdrop-blur shadow-sm">${post.category || 'Geral'}</span>
+                        <img src="${post.imageUrl}" class="w-100 h-100 object-fit-cover" alt="${(post.title || '').replace(/"/g, '&quot;')}" style="transition: transform 0.5s ease;">
+                        <div class="position-absolute top-0 start-0 p-3">
+                            <span class="badge bg-primary bg-opacity-75 backdrop-blur shadow-sm">${post.category || 'Geral'}</span>
+                        </div>
                     </div>
-                    </div>
-                    <div class="card-body p-0">
+                    ` : `
                     <div class="d-flex align-items-center gap-2 text-muted small mb-2">
-                        <i class="bi bi-calendar3"></i> ${date}
+                        <span class="badge bg-primary bg-opacity-25 text-primary">${post.category || 'Geral'}</span>
+                        <span><i class="bi bi-calendar3"></i> ${date}</span>
                     </div>
+                    `}
+                    <div class="card-body p-0 ${hasImage ? '' : 'pt-2'}">
+                    ${hasImage ? `<div class="d-flex align-items-center gap-2 text-muted small mb-2">
+                        <i class="bi bi-calendar3"></i> ${date}
+                    </div>` : ''}
                     <h3 class="h5 fw-bold mb-2">
                         <a href="/blog/${post.slug}" class="text-white text-decoration-none hover-gradient">${post.title}</a>
                     </h3>
                     <p class="text-muted small line-clamp-3 mb-3">
-                        ${post.description || post.content.substring(0, 100) + '...'}
+                        ${post.description || (post.content || '').replace(/<[^>]*>/g, '').substring(0, 120).trim() + '...'}
                     </p>
                     <a href="/blog/${post.slug}" class="dev-link-arrow text-primary text-decoration-none small fw-semibold">
                         Ler Artigo <i class="bi bi-arrow-right"></i>
