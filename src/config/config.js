@@ -104,3 +104,7 @@ const config = {
     info: "#17a2b8"
   }
 };
+
+if (typeof window !== 'undefined') {
+  window.config = config;
+}
