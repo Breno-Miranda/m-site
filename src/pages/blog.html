@@ -1,4 +1,17 @@
 <!-- Version: V0.10.31 -->
+<style>
+    /* Anúncios / iframes no meio do artigo */
+    .blog-content .adsbygoogle,
+    .blog-content ins.adsbygoogle {
+        display: block !important;
+        margin: 1.75rem auto;
+        max-width: 100%;
+        min-height: 90px;
+    }
+    .blog-content iframe {
+        max-width: 100%;
+    }
+</style>
 <!-- Blog Hero Section -->
 <section class="dev-hero" style="padding: 120px 0 80px;">
     <div class="container">
@@ -73,7 +86,7 @@
 
             // Clean grid container for article content
             if (grid) {
-                grid.parentElement.innerHTML = '<div id="post-content" class="animate-on-scroll"></div>';
+                grid.parentElement.innerHTML = '<div id="post-content" class="animate__animated animate__fadeInUp"></div>';
             }
             const container = document.getElementById('post-content');
 
@@ -100,14 +113,14 @@
 
                 // Render Content
                 container.innerHTML = `
-                    <div class="row">
-                        <div class="col-lg-8 mx-auto">
-                            <div class="bg-dark p-4 rounded-4 shadow-sm border border-secondary mb-5">
-                                ${post.imageUrl ? `<img src="${post.imageUrl}" class="w-100 rounded-3 mb-4" alt="${post.title}">` : ''}
-                                <div class="blog-content pb-4 text-white">
-                                    ${window.marked ? marked.parse(post.content) : post.content}
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-11 col-xl-10 mx-auto" style="max-width: 1100px;">
+                            <div class="mb-5">
+                                ${post.imageUrl ? `<img src="${post.imageUrl}" class="w-100 rounded-3 mb-4 shadow" alt="${post.title}">` : ''}
+                                <div class="blog-content pb-4 text-white" style="line-height: 1.8; font-size: 1.15rem;">
+                                    ${post.content || '<p class="text-muted">Sem conteúdo disponível.</p>'}
                                 </div>
-                                <hr class="border-secondary mt-5 mb-4">
+                                <hr class="border-secondary mt-5 mb-4 opacity-25">
                                 <div class="d-flex justify-content-between align-items-center flex-wrap gap-4 mt-4">
                                     <div>
                                         <a href="/blog" class="btn btn-outline-light rounded-pill px-4"><i class="bi bi-arrow-left me-2"></i> Voltar ao Blog</a>
@@ -117,19 +130,35 @@
                                         ${(post.tags && post.tags.length > 0) ? post.tags.map(t => `<span class="badge bg-secondary opacity-50 text-white">${t}</span>`).join('') : '<span class="text-muted small">Nenhuma tag</span>'}
                                     </div>
                                 </div>
-                                <div class="mt-4 p-4 bg-black rounded-3 border border-secondary border-opacity-50">
-                                    <h6 class="text-white mb-3">Compartilhe este artigo na sua rede:</h6>
+                                <div class="mt-4 pt-4 border-top border-secondary border-opacity-25">
+                                    <h6 class="text-white mb-3 fw-bold">Compartilhe este artigo na sua rede:</h6>
                                     <div class="d-flex gap-3 flex-wrap">
                                         <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}" target="_blank" class="btn btn-outline-light rounded-circle" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;"><i class="bi bi-twitter-x"></i></a>
                                         <a href="https://www.linkedin.com/shareArticle?mini=true&title=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}" target="_blank" class="btn btn-outline-light rounded-circle" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;"><i class="bi bi-linkedin"></i></a>
-                                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('Acabei de ler esse conteúdo incrível no MSOFT: ' + post.title + ' ' + window.location.href)}" target="_blank" class="btn btn-outline-light rounded-circle border-success text-success" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;"><i class="bi bi-whatsapp"></i></a>
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" target="_blank" class="btn btn-outline-light rounded-circle border-primary text-primary" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;"><i class="bi bi-facebook"></i></a>
+                                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('Acabei de ler esse conteúdo incrível no MSOFT: ' + post.title + ' ' + window.location.href)}" target="_blank" class="btn btn-outline-light rounded-circle" style="border-color: #22c55e; color: #22c55e; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;"><i class="bi bi-whatsapp"></i></a>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" target="_blank" class="btn btn-outline-light rounded-circle" style="border-color: #3b82f6; color: #3b82f6; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;"><i class="bi bi-facebook"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 `;
+
+                const articleBody = container.querySelector('.blog-content');
+                if (articleBody) {
+                    if (window.core && typeof window.core.executeScripts === 'function') {
+                        window.core.executeScripts(articleBody);
+                    } else {
+                        articleBody.querySelectorAll('script').forEach((oldScript) => {
+                            const newScript = document.createElement('script');
+                            Array.from(oldScript.attributes).forEach((attr) => {
+                                newScript.setAttribute(attr.name, attr.value);
+                            });
+                            newScript.textContent = oldScript.textContent;
+                            oldScript.parentNode.replaceChild(newScript, oldScript);
+                        });
+                    }
+                }
 
             } catch (e) {
                 console.error(e);

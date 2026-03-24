@@ -215,7 +215,7 @@ class Core {
       const footerEl = document.getElementById('footer');
 
       // 1. "essa pagina Crie seu próprio Vídeo Animado grátis! nao pode ir para area logadas"
-      const isLoggedArea = ['premium', 'admin-cms', 'healthtech-dashboard', 'my-apps', 'profile'].includes(pageName);
+      const isLoggedArea = ['premium', 'cms', 'healthtech-dashboard', 'my-apps', 'profile'].includes(pageName);
       if (ctaTutorialEl) {
           ctaTutorialEl.style.display = isLoggedArea ? 'none' : 'block';
       }

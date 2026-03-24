@@ -29,8 +29,8 @@
           <li><a href="#solucoes">Soluções</a></li>
           <li><a href="#sobre">Sobre Nós</a></li>
           <li><a href="/apps">Apps</a></li>
-          <li id="footer-auth-item"><a href="/login"><i class="bi bi-lock-fill me-1"></i> Área do Cliente</a></li>
           <li><a href="#contact">Fale Conosco</a></li>
+          <li id="footer-auth-item"><a href="/login">Área do Cliente</a></li>
         </ul>
       </div>
 
@@ -49,10 +49,6 @@
       <div class="col-lg-3 col-md-6">
         <h6 class="footer-title">Contato</h6>
         <ul class="footer-contact">
-          <li>
-            <i class="bi bi-envelope-fill"></i>
-            <a href="mailto:contato@mirandasoft.com.br">contato@mirandasoft.com.br</a>
-          </li>
           <li>
             <a href="https://wa.me/5584988330532" class="btn btn-outline-primary btn-sm rounded-pill mt-1"
               target="_blank">
@@ -74,7 +70,10 @@
         </div>
         <div class="col-md-6 text-md-end">
           <p class="made-with">
-            Tecnologia com <i class="bi bi-heart-fill text-danger"></i>
+            Feito com muita tecnologia na veia <i class="bi bi-person-workspace ms-1"></i>
+            <a href="/cms" class="secret-admin-link ms-2">
+              <i class="bi bi-shield-lock-fill"></i>
+            </a>
           </p>
         </div>
       </div>
@@ -84,9 +83,9 @@
 
 <style>
   .dev-footer-section {
-    background: #0a0a0f;
+    background: transparent;
     padding: 80px 0 30px;
-    border-top: 1px solid rgba(59, 130, 246, 0.1);
+    border-top: none;
   }
 
   .footer-brand {
@@ -226,10 +225,25 @@
     color: #475569;
     font-size: 0.875rem;
     margin: 0;
+    white-space: nowrap;
   }
 
   .made-with i {
     animation: heartbeat 1.5s ease infinite;
+  }
+
+  .secret-admin-link {
+    font-size: 1.1rem;
+    color: transparent;
+    transition: all 0.5s ease;
+    cursor: default;
+    text-decoration: none;
+    vertical-align: middle;
+  }
+
+  .secret-admin-link:hover {
+    color: rgba(255, 255, 255, 0.1);
+    cursor: crosshair;
   }
 
   @keyframes heartbeat {
@@ -257,33 +271,13 @@
 </style>
 
 <script>
-  // Auth Footer Logic
+  // Auth Footer Logic - Apenas monitora estado se necessário, mas não injeta mais links de admin/premium
   (function updateFooterNav() {
     const footerAuthItem = document.getElementById('footer-auth-item');
     if (!footerAuthItem) return;
 
-    const auth = window.authService;
-    // Check immediately
-    update();
-
-    // Listen for changes
-    window.addEventListener('auth-change', update);
-
-    function update() {
-      if (auth && auth.isAuthenticated()) {
-        const user = auth.getUser();
-        let dashboardLink = '/premium';
-        let label = 'Minha Conta';
-
-        if (user.role === 'admin') {
-          dashboardLink = '/admin-cms';
-          label = 'Admin CMS';
-        }
-
-        footerAuthItem.innerHTML = `<a href="${dashboardLink}" class="text-warning"><i class="bi bi-speedometer2 me-1"></i> ${label}</a>`;
-      } else {
-        footerAuthItem.innerHTML = `<a href="/login"><i class="bi bi-lock-fill me-1"></i> Área do Cliente</a>`;
-      }
-    }
+    // Removemos a injeção dinâmica de labels de conta no rodapé para manter o design minimalista pedido pelo usuário.
+    // O acesso agora é centralizado no Header ou no atalho secreto de cadeado no canto inferior.
+    footerAuthItem.innerHTML = `<a href="/login">Área do Cliente</a>`;
   })();
 </script>

@@ -1,67 +1,78 @@
+<!-- Version: V0.12.0 -->
+<!-- Luminous Background Elements -->
+<div class="orb-primary" style="top: -10%; right: -10%;"></div>
+<div class="orb-secondary" style="bottom: 15%; left: -5%;"></div>
+
 <!-- Hero Section -->
-<section class="dev-hero">
+<section class="relative min-vh-100 d-flex align-items-center justify-content-center pt-5 overflow-hidden">
+  <div class="container text-center pt-5 position-relative z-1">
+    <span class="label-pill mb-4 d-block" id="hero-badge-text">TECNOLOGIA DE ELITE</span>
+    <h1 class="display-lg text-gradient mb-4" id="hero-title">
+      Soluções Digitais que<br>Transformam o seu Negócio
+    </h1>
+    <p class="body-lg mx-auto mb-5 text-on-surface-variant" style="max-width: 700px;" id="hero-desc">
+      Construímos ecossistemas digitais escaláveis e inteligentes. Da consultoria estratégica ao desenvolvimento de alta performance.
+    </p>
+    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-4">
+      <a href="#solucoes" class="dev-btn dev-btn-primary px-5 py-3 text-decoration-none shadow-lg" id="hero-btn-primary">
+        Conheça Nossas Soluções
+      </a>
+      <a href="#contact" class="dev-btn dev-btn-secondary px-5 py-3 text-decoration-none" id="hero-btn-secondary">
+        Fale com um Especialista
+      </a>
+    </div>
+  </div>
+  
+  <div class="position-absolute bottom-0 start-0 w-100 h-25" style="background: linear-gradient(transparent, var(--ms-surface));"></div>
+</section>
+
+<!-- Nossas Soluções (Bento Grid) -->
+<section id="solucoes" class="dev-section" style="background-color: var(--ms-surface-container-low);">
   <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-7 dev-hero-content">
-        <div class="dev-hero-badge" id="hero-badge-text">
-          <span><i class="bi bi-rocket-takeoff-fill"></i> Tecnologia & Inovação</span>
-        </div>
-
-        <h1 class="dev-hero-title" id="hero-title">
-          Soluções digitais que<br>
-          <span class="text-gradient">transformam o seu negócio</span>
-        </h1>
-
-        <p class="dev-hero-subtitle" id="hero-subtitle">
-          Miranda Soft
-        </p>
-
-        <p class="dev-hero-description" id="hero-desc">
-          Somos uma empresa líder em desenvolvimento de software e soluções tecnológicas inovadoras.
-          Transformamos ideias complexas em produtos digitais de alta performance, focados em resultados
-          reais para sua empresa.
-        </p>
-
-        <!-- Solutions Tags -->
-        <div class="dev-tech-stack">
-          <span class="dev-tech-pill"><i class="bi bi-laptop"></i> Software Web</span>
-          <span class="dev-tech-pill"><i class="bi bi-phone"></i> Apps Mobile</span>
-          <span class="dev-tech-pill"><i class="bi bi-cloud-check"></i> Cloud Solutions</span>
-          <span class="dev-tech-pill"><i class="bi bi-graph-up-arrow"></i> Consultoria</span>
-        </div>
-
-        <!-- Actions -->
-        <div class="dev-hero-actions">
-          <a href="#solucoes" class="dev-btn dev-btn-primary" id="hero-btn-primary">
-            <i class="bi bi-grid-fill"></i>
-            Conheça Nossas Soluções
-          </a>
-          <a href="#contact" class="dev-btn dev-btn-secondary" id="hero-btn-secondary">
-            <i class="bi bi-chat-text-fill"></i>
-            Fale com um Especialista
-          </a>
+    <div class="mb-5">
+      <span class="label-pill d-block mb-3" style="color: var(--ms-tertiary);">ESPECIALIDADES</span>
+      <h2 class="display-md text-white tracking-tight">Nossas Soluções</h2>
+    </div>
+    
+    <div class="row g-4" id="features-grid">
+      <!-- Solution 1 -->
+      <div class="col-lg-4">
+        <div class="dev-skill-card h-100">
+          <div class="dev-skill-icon">
+            <i class="bi bi-terminal fs-2"></i>
+          </div>
+          <h3 class="h4 fw-bold text-white mb-3">Fábrica de Software</h3>
+          <p class="text-on-surface-variant mb-4">Desenvolvimento sob medida com metodologias ágeis e foco em escalabilidade global.</p>
+          <div class="mt-auto d-flex align-items-center text-primary fw-bold gap-2">
+            Saber mais <i class="bi bi-arrow-right"></i>
+          </div>
         </div>
       </div>
-
-      <div class="col-lg-5 dev-hero-visual">
-        <div class="dev-avatar-wrapper">
-          <div class="dev-avatar"
-            style="border-radius: 20px; overflow: hidden; background: linear-gradient(45deg, #1e293b, #0f172a);">
-            <!-- Abstract abstract tech visual -->
-            <div class="d-flex align-items-center justify-content-center h-100 w-100">
-              <i class="bi bi-box-seam text-gradient" style="font-size: 8rem; opacity: 0.8;"></i>
-            </div>
+      
+      <!-- Solution 2 -->
+      <div class="col-lg-4">
+        <div class="dev-skill-card h-100">
+          <div class="dev-skill-icon" style="color: var(--ms-secondary); background: rgba(76, 215, 246, 0.1);">
+            <i class="bi bi-phone fs-2"></i>
           </div>
-          <div class="dev-floating-elements">
-            <div class="dev-floating-item">
-              <i class="bi bi-trophy-fill text-warning"></i> Excelência
-            </div>
-            <div class="dev-floating-item">
-              <i class="bi bi-shield-check-fill text-success"></i> Segurança
-            </div>
-            <div class="dev-floating-item">
-              <i class="bi bi-lightning-charge-fill text-info"></i> Performance
-            </div>
+          <h3 class="h4 fw-bold text-white mb-3">Aplicativos Mobile</h3>
+          <p class="text-on-surface-variant mb-4">Experiências nativas e híbridas que colocam o seu negócio na palma da mão do cliente.</p>
+          <div class="mt-auto d-flex align-items-center text-secondary fw-bold gap-2">
+            Saber mais <i class="bi bi-arrow-right"></i>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Solution 3 -->
+      <div class="col-lg-4">
+        <div class="dev-skill-card h-100">
+          <div class="dev-skill-icon" style="color: var(--ms-tertiary); background: rgba(78, 222, 163, 0.1);">
+            <i class="bi bi-graph-up-arrow fs-2"></i>
+          </div>
+          <h3 class="h4 fw-bold text-white mb-3">Consultoria Tech</h3>
+          <p class="text-on-surface-variant mb-4">Diagnóstico e planejamento arquitetural para modernização de sistemas legados.</p>
+          <div class="mt-auto d-flex align-items-center text-tertiary fw-bold gap-2">
+            Saber mais <i class="bi bi-arrow-right"></i>
           </div>
         </div>
       </div>
@@ -69,312 +80,176 @@
   </div>
 </section>
 
-<!-- Solutions Section -->
-<section id="solucoes" class="dev-section">
-  <div class="container">
-    <div class="dev-section-header">
-      <span class="dev-section-badge">
-        <i class="bi bi-layers-fill"></i> O Que Fazemos
-      </span>
-      <h2 class="dev-section-title">Nossas Soluções</h2>
-      <p class="dev-section-description">
-        Tecnologia de ponta para impulsionar o crescimento da sua empresa
-      </p>
-    </div>
-
-    <div class="dev-skills-grid" id="features-grid">
-      <!-- Software Development -->
-      <div class="dev-skill-card animate-on-scroll">
-        <div class="dev-skill-icon">
-          <i class="bi bi-code-square"></i>
-        </div>
-        <h3 class="dev-skill-title">Fábrica de Software</h3>
-        <p class="text-muted mb-3">Desenvolvimento de software sob medida para atender as necessidades específicas do
-          seu negócio.</p>
-        <ul class="dev-skill-list">
-          <li>Sistemas Web</li>
-          <li>Plataformas SaaS</li>
-          <li>APIs RESTful</li>
-          <li>Dashboards & BI</li>
-        </ul>
-      </div>
-
-      <!-- Mobile Apps -->
-      <div class="dev-skill-card animate-on-scroll">
-        <div class="dev-skill-icon" style="background: rgba(59, 130, 246, 0.1);">
-          <i class="bi bi-phone" style="color: #3b82f6;"></i>
-        </div>
-        <h3 class="dev-skill-title">Aplicativos Mobile</h3>
-        <p class="text-muted mb-3">Apps nativos e híbridos com a melhor experiência de usuário para iOS e Android.</p>
-        <ul class="dev-skill-list">
-          <li>React Native</li>
-          <li>Flutter</li>
-          <li>Apps Corporativos</li>
-          <li>Marketplaces</li>
-        </ul>
-      </div>
-
-      <!-- Consultancy -->
-      <div class="dev-skill-card animate-on-scroll">
-        <div class="dev-skill-icon" style="background: rgba(6, 182, 212, 0.1);">
-          <i class="bi bi-diagram-3" style="color: #06b6d4;"></i>
-        </div>
-        <h3 class="dev-skill-title">Consultoria Tech</h3>
-        <p class="text-muted mb-3">Assessoria especializada para modernização tecnológica e transformação digital.</p>
-        <ul class="dev-skill-list">
-          <li>Arquitetura de Software</li>
-          <li>DevOps & Cloud</li>
-          <li>Gestão de Projetos Ágeis</li>
-          <li>Segurança da Informação</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- About Section -->
-<section id="sobre" class="dev-section" style="background: rgba(255, 255, 255, 0.02);">
+<!-- Sobre a Miranda Soft -->
+<section id="sobre" class="dev-section" style="background-color: var(--ms-surface);">
   <div class="container">
     <div class="row align-items-center g-5">
-      <div class="col-lg-6 animate-on-scroll">
+      <div class="col-lg-6">
         <div class="position-relative">
-          <div
-            style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%); border-radius: 20px; padding: 40px; border: 1px solid rgba(255,255,255,0.05);">
-            <h3 class="fw-bold mb-4" id="about-title">Sobre a <span class="text-gradient">Miranda Soft</span></h3>
-            <p class="text-muted mb-4" id="about-desc">
-              Fundada com a missão de democratizar o acesso à tecnologia de alta qualidade, a Miranda Soft (MSoft)
-              se estabeleceu como referência em desenvolvimento de soluções digitais no Rio Grande do Norte e para todo
-              o Brasil.
-            </p>
-            <p class="text-muted mb-4">
-              Nossa equipe é formada por especialistas apaixonados por código e inovação, com mais de uma década de
-              experiência
-              combinada em projetos de alta complexidade. Acreditamos que a tecnologia deve ser um facilitador de
-              negócios,
-              não uma barreira.
-            </p>
-
-            <div class="row g-4 mt-2">
-              <div class="col-6">
-                <div class="d-flex align-items-center gap-3">
-                  <div class="fs-2 text-primary fw-bold">10+</div>
-                  <div class="text-muted small lh-sm">Anos de<br>Experiência</div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="d-flex align-items-center gap-3">
-                  <div class="fs-2 text-success fw-bold">100%</div>
-                  <div class="text-muted small lh-sm">Foco no<br>Cliente</div>
-                </div>
-              </div>
+          <div style="border-radius: 48px; min-height: 500px; background-color: var(--ms-surface-container-low); overflow: hidden; position: relative;">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Miranda Soft Team" 
+                 class="w-100 h-100 object-fit-cover opacity-50" 
+                 style="mix-blend-mode: luminosity; position: absolute; inset: 0;">
+            <div class="position-absolute bottom-0 start-0 w-100 p-5" style="background: linear-gradient(transparent, rgba(19,19,24,0.9));">
+            </div>
+          </div>
+          
+          <div class="position-absolute top-50 start-100 translate-middle d-none d-lg-block" style="margin-left: -50px;">
+            <div class="p-4 shadow-lg border border-white border-opacity-10" style="background-color: var(--ms-surface-container-highest); min-width: 180px; border-radius: 20px;">
+               <div class="h2 fw-black text-primary mb-0">10+</div>
+               <div class="small fw-bold text-on-surface-variant tracking-wider text-uppercase">ANOS DE INOVAÇÃO</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-6 animate-on-scroll">
-        <div class="dev-section-header text-start mb-4">
-          <span class="dev-section-badge">
-            <i class="bi bi-building"></i> Nossa Essência
-          </span>
-          <h2 class="dev-section-title" id="about-support-title">Por que escolher a MSoft?</h2>
-        </div>
-
-        <div class="d-flex flex-column gap-4">
-          <div class="d-flex gap-3">
-            <div class="flex-shrink-0">
-              <span class="badge rounded-circle bg-primary p-3"><i class="bi bi-check-lg fs-5"></i></span>
-            </div>
-            <div>
-              <h5 class="fw-bold mb-1">Qualidade Técnica Superior</h5>
-              <p class="text-muted m-0">Utilizamos as tecnologias mais modernas e estáveis do mercado (React, Node.js,
-                Laravel) para garantir longevidade ao seu projeto.</p>
-            </div>
+      
+      <div class="col-lg-6">
+        <span class="label-pill text-primary d-block mb-4">NOSSA ESSÊNCIA</span>
+        <h2 class="display-md text-white mb-4" id="about-title">Engenharia de Software com Propósito</h2>
+        <p class="body-lg mb-4" id="about-desc">
+          A Miranda Soft nasceu da paixão por resolver problemas complexos através do código. Não entregamos apenas software; construímos parcerias estratégicas que impulsionam o crescimento real.
+        </p>
+        <p class="body-lg mb-5" id="about-support-title">
+          Nossa cultura é pautada na transparência técnica e na busca incessante pela excelência. Cada linha de código é pensada para ser resiliente, segura e preparada para o futuro.
+        </p>
+        
+        <div class="d-flex align-items-center gap-3">
+          <div class="d-flex" style="padding-left: 15px;">
+            <div class="rounded-circle border border-dark bg-secondary shadow-sm" style="width: 40px; height: 40px; margin-left: -15px;"></div>
+            <div class="rounded-circle border border-dark bg-primary shadow-sm" style="width: 40px; height: 40px; margin-left: -15px;"></div>
+            <div class="rounded-circle border border-dark bg-tertiary shadow-sm" style="width: 40px; height: 40px; margin-left: -15px;"></div>
           </div>
-
-          <div class="d-flex gap-3">
-            <div class="flex-shrink-0">
-              <span class="badge rounded-circle bg-primary p-3"><i class="bi bi-clock-history fs-5"></i></span>
-            </div>
-            <div>
-              <h5 class="fw-bold mb-1">Entregas Ágeis</h5>
-              <p class="text-muted m-0">Metodologia Scrum para garantir entregas frequentes e feedback constante, sem
-                surpresas no final.</p>
-            </div>
-          </div>
-
-          <div class="d-flex gap-3">
-            <div class="flex-shrink-0">
-              <span class="badge rounded-circle bg-primary p-3"><i class="bi bi-people-fill fs-5"></i></span>
-            </div>
-            <div>
-              <h5 class="fw-bold mb-1">Parceria Real</h5>
-              <p class="text-muted m-0">Não somos apenas fornecedores, somos parceiros estratégicos do seu crescimento.
-              </p>
-            </div>
-          </div>
+          <span class="small fw-medium text-on-surface-variant">Confiança de centenas de parceiros</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Callout to Apps -->
-<section id="cta-section" class="dev-section py-5">
+<!-- Destaque MSOFT (Latest Blog Post) -->
+<section id="cta-section" class="dev-section" style="background-color: var(--ms-surface-container-low);">
   <div class="container">
-    <div class="card border-0"
-      style="background: linear-gradient(135deg, #1e1e2f 0%, #2d2d44 100%); border-radius: 20px; overflow: hidden;">
-      <div class="card-body p-5 position-relative">
-        <div class="row align-items-center position-relative" style="z-index: 2;">
-          <div class="col-lg-8">
-            <h2 class="fw-bold mb-3 text-white" id="cta-title">Conheça o nosso <span class="text-gradient">Super
-                App</span></h2>
-            <p class="lead text-light opacity-75 mb-4" id="cta-desc">
-              Explore nossa suíte de ferramentas e utilitários desenvolvidos para facilitar o dia a dia de
-              desenvolvedores e empresas.
+    <div class="border border-white border-opacity-5 p-5 p-lg-5" style="border-radius: 40px; background: linear-gradient(145deg, var(--ms-surface-container-high), var(--ms-surface-container-low));">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+           <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-4" style="background-color: rgba(78, 222, 163, 0.1); color: var(--ms-tertiary);">
+             <i class="bi bi-patch-check-fill"></i>
+             <span class="small fw-bold text-uppercase tracking-wider">Novo Lançamento</span>
+           </div>
+            <h2 class="display-md text-white mb-4" id="cta-title">Carregando Destaque...</h2>
+            <p class="body-lg mb-4 text-on-surface-variant" id="cta-desc">
+              Buscando as últimas novidades da Miranda Soft para você.
             </p>
-            <a href="/apps" class="btn btn-primary btn-lg rounded-pill px-5">
-              Acessar Ferramentas <i class="bi bi-arrow-right ms-2"></i>
+            <div id="cta-meta" class="d-flex align-items-center gap-3 mb-5 text-muted small"></div>
+           
+
+           
+            <a href="/blog" id="cta-btn" class="dev-btn dev-btn-primary px-5 text-decoration-none">
+              Ler Artigo Completo
             </a>
-          </div>
-          <div class="col-lg-4 text-center mt-4 mt-lg-0">
-            <i class="bi bi-grid-1x2-fill text-gradient" style="font-size: 8rem; opacity: 0.2;"></i>
-          </div>
+        </div>
+        
+        <div class="col-lg-5 d-flex justify-content-center">
+               <div class="shadow-lg overflow-hidden" style="aspect-ratio: 16/10; border-radius: 24px; background-color: #000; position: relative; border: 1px solid rgba(255,255,255,0.05);">
+                  <img id="cta-img" src="" 
+                       alt="Blog Destaque" class="w-100 h-100 object-fit-cover opacity-75">
+               </div>
+           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Blog Section (Tech Insights) -->
+<section id="blog-home" class="dev-section" style="background-color: var(--ms-surface);">
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-end mb-5 gap-4">
+      <div>
+        <span class="label-pill d-block mb-3" style="color: var(--ms-secondary);">INSIGHTS TECH</span>
+        <h2 class="display-md text-white tracking-tight m-0">Nosso Blog</h2>
+      </div>
+      <a href="/blog" class="dev-btn dev-btn-secondary px-4 py-2 text-decoration-none d-flex align-items-center gap-2">
+        Ver Todos <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+    
+    <div class="row g-4" id="home-blog-grid">
+      <!-- Skeleton or Loading -->
+      <div class="col-lg-4"><div class="dev-skill-card h-100 opacity-25" style="min-height: 300px;"></div></div>
+      <div class="col-lg-4"><div class="dev-skill-card h-100 opacity-25" style="min-height: 300px;"></div></div>
+      <div class="col-lg-4"><div class="dev-skill-card h-100 opacity-25" style="min-height: 300px;"></div></div>
     </div>
   </div>
 </section>
 
 <!-- Support Section -->
-<section id="suporte" class="dev-section" style="background: rgba(255, 255, 255, 0.02);">
-  <div class="container">
-    <div class="dev-section-header text-center mb-5">
-      <span class="dev-section-badge">
-        <i class="bi bi-headset"></i> Suporte
-      </span>
-      <h2 class="dev-section-title">Suporte Especializado</h2>
-      <p class="dev-section-description">
-        Estamos sempre prontos para ajudar você a resolver qualquer desafio
-      </p>
+<section id="suporte" class="dev-section" style="background: var(--ms-surface);">
+  <div class="container text-center">
+    <div class="mb-5">
+      <span class="label-pill d-block mb-3" style="color: var(--ms-primary);">SUPORTE</span>
+      <h2 class="display-md text-white">Suporte Especializado</h2>
     </div>
 
     <div class="row g-4 justify-content-center">
       <div class="col-lg-4 col-md-6">
-        <div class="card bg-dark border-0 h-100 p-4 text-center"
-          style="background: linear-gradient(145deg, rgba(30, 30, 45, 0.9), rgba(20, 20, 35, 0.95)) !important; border-radius: 16px; border: 1px solid rgba(59, 130, 246, 0.1) !important;">
-          <div class="card-body">
-            <div
-              class="bg-primary bg-opacity-25 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
-              style="width: 80px; height: 80px;">
-              <i class="bi bi-chat-dots fs-1 text-primary"></i>
-            </div>
-            <h5 class="text-white fw-bold mb-3">Chat em Tempo Real</h5>
-            <p class="text-muted small mb-0">Tire suas dúvidas instantaneamente com nossa equipe de suporte via chat.
-            </p>
+        <div class="dev-skill-card p-4 text-center">
+          <div class="mx-auto bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px;">
+            <i class="bi bi-chat-dots fs-1 text-primary"></i>
           </div>
+          <h5 class="text-white fw-bold mb-3">Chat em Tempo Real</h5>
+          <p class="text-on-surface-variant small mb-0">Tire suas dúvidas instantaneamente com nossa equipe de suporte via chat.</p>
         </div>
       </div>
-
       <div class="col-lg-4 col-md-6">
-        <div class="card bg-dark border-0 h-100 p-4 text-center"
-          style="background: linear-gradient(145deg, rgba(30, 30, 45, 0.9), rgba(20, 20, 35, 0.95)) !important; border-radius: 16px; border: 1px solid rgba(16, 185, 129, 0.1) !important;">
-          <div class="card-body">
-            <div
-              class="bg-success bg-opacity-25 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
-              style="width: 80px; height: 80px;">
-              <i class="bi bi-book fs-1 text-success"></i>
-            </div>
-            <h5 class="text-white fw-bold mb-3">Base de Conhecimento</h5>
-            <p class="text-muted small mb-0">Acesse nossa documentação completa, tutoriais e guias de uso.</p>
+        <div class="dev-skill-card p-4 text-center">
+          <div class="mx-auto bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px;">
+            <i class="bi bi-book fs-1 text-success"></i>
           </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="card bg-dark border-0 h-100 p-4 text-center"
-          style="background: linear-gradient(145deg, rgba(30, 30, 45, 0.9), rgba(20, 20, 35, 0.95)) !important; border-radius: 16px; border: 1px solid rgba(245, 158, 11, 0.1) !important;">
-          <div class="card-body">
-            <div
-              class="bg-warning bg-opacity-25 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
-              style="width: 80px; height: 80px;">
-              <i class="bi bi-ticket-detailed fs-1 text-warning"></i>
-            </div>
-            <h5 class="text-white fw-bold mb-3">Tickets de Suporte</h5>
-            <p class="text-muted small mb-0">Abra chamados técnicos e acompanhe o status das suas solicitações.</p>
-          </div>
+          <h5 class="text-white fw-bold mb-3">Base de Conhecimento</h5>
+          <p class="text-on-surface-variant small mb-0">Acesse nossa documentação completa, tutoriais e guias de uso.</p>
         </div>
       </div>
     </div>
 
-    <div class="text-center mt-5">
-      <a href="/support" class="btn btn-outline-primary rounded-pill px-5">
-        <i class="bi bi-headset me-2"></i>Acessar Central de Suporte
+    <div class="mt-5">
+      <a href="/support" class="dev-btn dev-btn-secondary px-5 py-3 text-decoration-none">
+        Acessar Central de Suporte
       </a>
     </div>
   </div>
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="dev-section">
+<section id="contact" class="dev-section" style="background-color: var(--ms-surface-container-low);">
   <div class="container">
-    <div class="dev-contact-wrapper animate-on-scroll">
-      <div class="dev-contact-content">
-        <h2 class="dev-contact-title">
-          Vamos <span class="text-gradient">inovar juntos?</span>
-        </h2>
-        <p class="dev-contact-description">
-          Estamos prontos para atender sua demanda. Entre em contato e solicite um orçamento.
-        </p>
-
-        <div class="dev-contact-links">
-          <a href="https://wa.me/5584988330532" target="_blank"
-            class="btn btn-primary rounded-pill px-4 py-3 mb-3 d-inline-flex align-items-center gap-2 shadow-sm text-white"
-            style="text-decoration: none;">
-            <i class="bi bi-whatsapp fs-5"></i>
-            <span class="fw-bold fs-6">Chamar no WhatsApp</span>
-          </a>
-
-          <a href="mailto:contato@mirandasoft.com.br" class="dev-contact-link">
-            <i class="bi bi-envelope-fill"></i>
-            <span>contato@mirandasoft.com.br</span>
-          </a>
-
-
-        </div>
+    <div class="text-center">
+      <h2 class="display-md text-white mb-4">Vamos <span class="text-gradient-neon">inovar juntos?</span></h2>
+      <p class="body-lg mx-auto mb-5" style="max-width: 600px;">
+        Estamos prontos para atender sua demanda. Entre em contato e solicite um orçamento.
+      </p>
+      
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-4">
+        <a href="https://wa.me/5584988330532" target="_blank" class="dev-btn dev-btn-primary px-5 py-3 text-decoration-none shadow-lg">
+          <i class="bi bi-whatsapp me-2"></i> Chamar no WhatsApp
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-
 <script>
   (function () {
-    // Scroll Animation Observer
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.animate-on-scroll').forEach(el => {
-      observer.observe(el);
-    });
-
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (this.getAttribute('href').length > 1) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
         }
       });
     });
@@ -385,90 +260,141 @@
       const content = window.ContentService.getAll();
       if (!content) return;
 
-      const safeText = (text) => text || '';
       const setHtml = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
       const setTxt = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
       const setAttr = (id, attr, val) => { const el = document.getElementById(id); if (el) el.setAttribute(attr, val); };
 
       // Hero
-      setHtml('hero-badge-text', `<i class="${content.hero.badgeIcon}"></i> ${content.hero.eyebrow}`);
-      // Preserving gradient if possible, otherwise plain text
-      if (content.hero.title.includes('transformam')) {
-        setHtml('hero-title', content.hero.title.replace('transformam o seu negócio', '<span class="text-gradient">transformam o seu negócio</span>'));
-      } else {
-        setTxt('hero-title', content.hero.title);
+      if (content.hero) {
+        setHtml('hero-badge-text', content.hero.eyebrow);
+        if (content.hero.title.includes('transformam')) {
+           setHtml('hero-title', content.hero.title.replace('transformam o seu negócio', '<span class="text-gradient">transformam o seu negócio</span>'));
+        } else {
+           setTxt('hero-title', content.hero.title);
+        }
+        setTxt('hero-desc', content.hero.description);
+        setTxt('hero-btn-primary', content.hero.primaryAction.label);
+        setAttr('hero-btn-primary', 'href', content.hero.primaryAction.href);
+        setTxt('hero-btn-secondary', content.hero.secondaryAction.label);
+        setAttr('hero-btn-secondary', 'href', content.hero.secondaryAction.href);
       }
-      setTxt('hero-subtitle', content.hero.subtitle);
-      setTxt('hero-desc', content.hero.description);
 
-      setTxt('hero-btn-primary', content.hero.primaryAction.label);
-      setAttr('hero-btn-primary', 'href', content.hero.primaryAction.href);
-
-      setTxt('hero-btn-secondary', content.hero.secondaryAction.label);
-      setAttr('hero-btn-secondary', 'href', content.hero.secondaryAction.href);
-
-      // Features (Dynamic Render)
+      // Features
       const grid = document.getElementById('features-grid');
       if (grid && content.features) {
         grid.innerHTML = content.features.map(f => `
-              <div class="dev-skill-card animate-on-scroll">
-                <div class="dev-skill-icon">
-                  <i class="bi ${f.icon}"></i>
-                </div>
-                <h3 class="dev-skill-title">${f.title}</h3>
-                <p class="text-muted mb-3">${f.description}</p>
-                <ul class="dev-skill-list">
-                  ${(f.bullets || []).map(b => `<li>${b}</li>`).join('')}
-                </ul>
+          <div class="col-lg-4">
+            <div class="dev-skill-card h-100">
+              <div class="dev-skill-icon">
+                <i class="bi ${f.icon}"></i>
               </div>
-           `).join('');
-        // Re-observe new elements
-        grid.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+              <h3 class="h4 fw-bold text-white mb-3">${f.title}</h3>
+              <p class="text-on-surface-variant mb-4">${f.description}</p>
+              <div class="mt-auto d-flex align-items-center text-primary fw-bold gap-2">
+                Saber mais <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+        `).join('');
       }
 
       // About
-      setTxt('about-title', content.about.title);
-      setTxt('about-desc', content.about.description);
-      setTxt('about-support-title', content.about.supportTitle);
+      if (content.about) {
+        setTxt('about-title', content.about.title);
+        setTxt('about-desc', content.about.description);
+        setTxt('about-support-title', content.about.supportTitle);
+      }
 
-      // CTA
-      setHtml('cta-title', `Conheça o nosso <span class="text-gradient">Super App</span>`); // Keep gradient fixed for now or logic similar to hero
-      if (content.cta.title !== "Conheça o nosso Super App") setTxt('cta-title', content.cta.title);
-
-      // Visibility Control
+      // Sections Visibility
       const toggle = (id, sectionKey) => {
-        const el = document.getElementById(id) || document.querySelector(`.${id}`);
-        if (el && content[sectionKey]) {
-          el.style.display = (content[sectionKey].enabled === false) ? 'none' : '';
-        }
+        const el = document.getElementById(id);
+        if (el && content[sectionKey]) el.style.display = (content[sectionKey].enabled === false) ? 'none' : '';
       };
-
-      toggle('dev-hero', 'hero'); // Class selector
-      toggle('solucoes', 'features'); // ID
-      toggle('sobre', 'about'); // ID
-      toggle('suporte', 'support'); // ID (assumed support section key is support? defaultCMSContent says 'support' NO wait defaultCMSContent.about has 'supportTitle' but there is no top level 'support' key in defaultCMSContent? Let me check defaultCMSContent.js again. Ah, defaultCMSContent doesn't have 'support' root key. It has 'testimonials'. Let's check home.html again... Section is "Suporte Especializado". It is hardcoded text? No, it has id="suporte". But does it correspond to a CMS key? "Testimonials" is a key. Support seems static or part of about? 
-      // Checking home.html content binding: It doesn't bind "Suporte" text. So it is static.
-      // But user wants to control sections. I can add a fake key 'sections_config' or just use 'support' key if I add it.
-      // For now, I'll allow toggling 'hero', 'features', 'about', 'testimonials', 'cta', 'contact'.
-      toggle('cta-section', 'cta');
-      toggle('contact', 'contact'); // Contact key doesn't exist in defaultCMS, so it will be undefined -> enabled.
-
-      // Testimonials section is inside About? No it's separate in defaultCMSContent but likely separate in HTML? 
-      // home.html doesn't seem to have a dedicated Testimonials section visible in the snippet I saw? 
-      // Wait, I saw "Support Section" id="suporte". I didn't see Testimonials section in home.html snippet? 
-      // Ah, snippet ended at line 447. Maybe I missed it? 
-      // The snippet had "Support Section" at line 249.
-      // No "Testimonials" section in home.html? 
-      // defaultCMSContent has 'testimonials'.
-      // If home.html doesn't render testimonials, I can't toggle them.
-      // But I can toggle 'suporte' section.
-
-
+      toggle('solucoes', 'features');
+      toggle('sobre', 'about');
     }
 
-    // Initial Render
-    document.addEventListener('DOMContentLoaded', renderContent);
-    // Listen for storage changes (if another tab updates content)
-    window.addEventListener('storage', renderContent);
+    // Blog Integration - Definitive Standalone Fix
+    async function loadHomeBlog() {
+      const grid = document.getElementById('home-blog-grid');
+      const ctaSection = document.getElementById('cta-section');
+      if (!grid) return;
+
+      try {
+        const apiBase = 'http://localhost:3000';
+        
+        const response = await fetch(`${apiBase}/blogs`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer NjliZGFjYmZjMDRlZTdjNTdlZGJjNTgwOjE3NzQyOTM5NTgwMzE='
+          }
+        });
+
+        const res = await response.json();
+        
+        if (res && res.success && res.data && res.data.length > 0) {
+          const sortedPosts = res.data
+            .filter(p => p.createdAt || p.date)
+            .sort((a, b) => new Date(b.createdAt || b.date).getTime() - new Date(a.createdAt || a.date).getTime());
+
+          const posts = sortedPosts.slice(0, 3);
+          
+          const highlightPost = sortedPosts[0];
+          if (highlightPost && ctaSection) {
+              const hTitle = document.getElementById('cta-title');
+              const hDesc = document.getElementById('cta-desc');
+              const hImg = document.getElementById('cta-img');
+              const hBtn = document.getElementById('cta-btn');
+              const hMeta = document.getElementById('cta-meta');
+              const dateStr = highlightPost.createdAt || highlightPost.date;
+              const date = dateStr ? new Date(dateStr).toLocaleDateString('pt-BR') : 'Hoje';
+
+              if (hTitle) hTitle.textContent = highlightPost.title;
+              if (hDesc) hDesc.textContent = highlightPost.description || (highlightPost.content.substring(0, 160).replace(/<[^>]*>/g, '') + '...');
+              if (hImg) hImg.src = highlightPost.imageUrl || 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop';
+              if (hBtn) hBtn.href = `/blog/${highlightPost.slug}`;
+              if (hMeta) hMeta.innerHTML = `<span><i class="bi bi-calendar3 me-1"></i> ${date}</span> <span class="opacity-25">|</span> <span class="text-secondary"><i class="bi bi-tag me-1"></i> ${highlightPost.category || 'Insights'}</span>`;
+          }
+
+          grid.innerHTML = posts.map(post => {
+            const dateStr = post.createdAt || post.date;
+            const date = dateStr ? new Date(dateStr).toLocaleDateString('pt-BR') : 'Novidade';
+            const img = post.imageUrl || 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop';
+            return `
+              <div class="col-lg-4">
+                <a href="/blog/${post.slug}" class="text-decoration-none">
+                  <div class="dev-skill-card h-100 p-0 overflow-hidden border border-white border-opacity-5">
+                    <div style="height: 200px; overflow: hidden;">
+                      <img src="${img}" class="w-100 h-100 object-fit-cover transition-all" style="transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    </div>
+                    <div class="p-4">
+                      <div class="d-flex align-items-center gap-2 mb-3 text-muted small">
+                        <i class="bi bi-calendar3"></i> ${date}
+                        <span class="mx-2 opacity-25">|</span>
+                        <span class="text-secondary">${post.category || 'Tecnologia'}</span>
+                      </div>
+                      <h4 class="h5 fw-bold text-white mb-3 line-clamp-2">${post.title}</h4>
+                      <div class="d-flex align-items-center text-primary small fw-bold gap-2">
+                        Ler Artigo <i class="bi bi-chevron-right"></i>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            `;
+          }).join('');
+        } else {
+          grid.innerHTML = '<div class="col-12 text-center text-muted">Aguardando novos conteúdos...</div>';
+        }
+      } catch (e) {
+        console.error('Blog load failed:', e);
+        grid.innerHTML = ''; // Silencioso na falha persistente
+      }
+    }
+
+    // Execução Imediata + Evento
+    loadHomeBlog();
+    document.addEventListener('DOMContentLoaded', loadHomeBlog);
   })();
 </script>

@@ -15,19 +15,14 @@
 
       <!-- Navigation Menu -->
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-4">
           <li class="nav-item"><a class="nav-link" href="/marketplace">Marketplace</a></li>
-          <li class="nav-item"><a class="nav-link" href="/apps">Apps</a></li>
-          <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
-          <li class="nav-item"><a class="nav-link" href="/#solucoes">Soluções</a></li>
-          <li class="nav-item"><a class="nav-link" href="/#sobre">Sobre</a></li>
-          <li class="nav-item"><a class="nav-link" href="/#suporte">Suporte</a></li>
-          <li class="nav-item"><a class="nav-link" href="/#contact">Contato</a></li>
-          <li class="nav-item ms-lg-3" id="header-auth-action">
-            <a class="nav-link" href="/login" title="Área do Cliente">
-              <i class="bi bi-person-circle fs-5"></i>
+          <li class="nav-item ms-lg-2" id="header-contact-action">
+            <a class="dev-btn dev-btn-primary" href="/#contact">
+              Fale Conosco
             </a>
           </li>
+          <li class="nav-item ms-lg-2" id="header-auth-action"></li>
         </ul>
       </div>
     </div>
@@ -164,23 +159,28 @@
     window.addEventListener('auth-change', render);
 
     function render() {
-      if (auth && auth.isAuthenticated()) {
+      const contactAction = document.getElementById('header-contact-action');
+      const isAuthenticated = auth && auth.isAuthenticated();
+      
+      if (contactAction) {
+          contactAction.style.display = isAuthenticated ? 'none' : 'block';
+      }
+
+      if (isAuthenticated) {
+        headerAuthItem.style.display = 'block';
         const user = auth.getUser();
         let menuItems = '';
 
-        // Helper to check active state
         const isActive = (path) => window.location.pathname.startsWith(path) ? 'active bg-primary' : '';
 
-        // Determine accessible areas
         if (auth.hasRole('admin')) {
-          menuItems += `<li><a class="dropdown-item text-white ${isActive('/admin-cms')}" href="/admin-cms"><i class="bi bi-shield-lock me-2"></i>Painel Admin</a></li>`;
+          menuItems += `<li><a class="dropdown-item text-white ${isActive('/cms')}" href="/cms"><i class="bi bi-shield-lock me-2"></i>Painel Admin</a></li>`;
         }
 
         if (auth.hasRole('premium')) {
           menuItems += `<li><a class="dropdown-item text-white ${isActive('/premium')}" href="/premium"><i class="bi bi-star-fill me-2"></i>Dashboard Premium</a></li>`;
         }
 
-        // Default if no specific roles or just 'user'
         if (!auth.hasRole('admin') && !auth.hasRole('premium')) {
           menuItems += `<li><a class="dropdown-item text-white ${isActive('/premium')}" href="/premium"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>`;
         }
@@ -200,11 +200,8 @@
           </div>
         `;
       } else {
-        headerAuthItem.innerHTML = `
-          <a class="nav-link" href="/login" title="Área do Cliente">
-            <i class="bi bi-person-circle fs-5"></i>
-          </a>
-        `;
+        headerAuthItem.innerHTML = '';
+        headerAuthItem.style.display = 'none';
       }
     }
   })();
