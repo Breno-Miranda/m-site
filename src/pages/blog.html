@@ -1,15 +1,65 @@
-<!-- Version: V0.10.31 -->
+<!-- Version: V0.10.32 -->
 <style>
     /* Anúncios / iframes no meio do artigo */
     .blog-content .adsbygoogle,
-    .blog-content ins.adsbygoogle {
+    .blog-content ins.adsbygoogle,
+    .ad-sidebar-slot .adsbygoogle,
+    .ad-sidebar-slot ins.adsbygoogle,
+    .ad-inline-slot .adsbygoogle,
+    .ad-inline-slot ins.adsbygoogle {
         display: block !important;
         margin: 1.75rem auto;
         max-width: 100%;
         min-height: 90px;
     }
+    .ad-sidebar-slot .adsbygoogle,
+    .ad-sidebar-slot ins.adsbygoogle {
+        margin: 0 auto;
+    }
     .blog-content iframe {
         max-width: 100%;
+    }
+
+    /* Sidebars de anúncios no detalhe do post */
+    .blog-ads-sidebar {
+        display: none;
+    }
+
+    .ad-sidebar-slot {
+        min-height: 280px;
+        border: 1px dashed rgba(255, 255, 255, 0.25);
+        border-radius: 0.75rem;
+        padding: 0.75rem;
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    .ad-sidebar-slot.is-sticky {
+        position: sticky;
+        top: 100px;
+    }
+
+    .ad-slot-label {
+        display: block;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 0.5rem;
+    }
+
+    .ad-inline-slot {
+        min-height: 110px;
+        border: 1px dashed rgba(255, 255, 255, 0.2);
+        border-radius: 0.75rem;
+        padding: 0.75rem;
+        margin: 1.75rem 0;
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    @media (min-width: 1200px) {
+        .blog-ads-sidebar {
+            display: block;
+        }
     }
 </style>
 <!-- Blog Hero Section -->
@@ -75,6 +125,56 @@
         const heroTitle = document.querySelector('.dev-hero-title');
         const heroSubtitle = document.querySelector('.dev-hero-subtitle');
         const api = window.config?.api?.baseUrl || 'http://localhost:3000';
+
+        const ADSENSE_CLIENT = 'ca-pub-7844284078845131';
+        const ADSENSE_SLOT_BLOG_POST = '4406317970';
+        const ADSENSE_SLOT_BLOG_VERTICAL = '6976640993';
+
+        function ensureAdsenseScript() {
+            if (document.getElementById('adsense-script-blog')) return;
+            const s = document.createElement('script');
+            s.id = 'adsense-script-blog';
+            s.async = true;
+            s.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(ADSENSE_CLIENT)}`;
+            s.crossOrigin = 'anonymous';
+            document.head.appendChild(s);
+        }
+
+        function appendAdSenseUnit(containerEl, adSlot) {
+            if (!containerEl || containerEl.querySelector('ins.adsbygoogle')) return;
+            const ins = document.createElement('ins');
+            ins.className = 'adsbygoogle';
+            ins.style.display = 'block';
+            ins.setAttribute('data-ad-client', ADSENSE_CLIENT);
+            ins.setAttribute('data-ad-slot', adSlot);
+            ins.setAttribute('data-ad-format', 'auto');
+            ins.setAttribute('data-full-width-responsive', 'true');
+            containerEl.appendChild(ins);
+        }
+
+        function pushAdsenseSlots(root) {
+            if (!root) return;
+            root.querySelectorAll('ins.adsbygoogle:not([data-adsense-pushed])').forEach((ins) => {
+                ins.setAttribute('data-adsense-pushed', '1');
+                try {
+                    (window.adsbygoogle = window.adsbygoogle || []).push({});
+                } catch (e) {
+                    console.warn('Adsense push failed', e);
+                }
+            });
+        }
+
+        function mountBlogPostAds(container) {
+            if (!container) return;
+            ensureAdsenseScript();
+            container.querySelectorAll('.ad-sidebar-content').forEach((el) => {
+                appendAdSenseUnit(el, ADSENSE_SLOT_BLOG_VERTICAL);
+            });
+            container.querySelectorAll('.ad-inline-content').forEach((el) => {
+                appendAdSenseUnit(el, ADSENSE_SLOT_BLOG_POST);
+            });
+            pushAdsenseSlots(container);
+        }
 
         // Check for slug in params
         const pathSegments = window.location.pathname.split('/').filter(Boolean);
@@ -186,10 +286,17 @@
                 // Render Content (article semântico)
                 container.innerHTML = `
                     <article class="row justify-content-center" itemscope itemtype="https://schema.org/Article">
+                        <aside class="col-xl-1 blog-ads-sidebar">
+                            <div class="ad-sidebar-slot is-sticky" data-ad-position="left" data-ad-slot="${ADSENSE_SLOT_BLOG_VERTICAL}">
+                                <span class="ad-slot-label">Publicidade</span>
+                                <!-- blog-post-vertical: lateral esquerda -->
+                                <div class="ad-sidebar-content" id="ad-sidebar-left"></div>
+                            </div>
+                        </aside>
                         <div class="col-12 col-lg-11 col-xl-10 mx-auto" style="max-width: 1100px;">
                             ${hasCoverImage ? `<header class="mb-5"><img src="${post.imageUrl.trim()}" class="w-100 rounded-3 mb-4 shadow" alt="${(post.title || '').replace(/"/g, '&quot;')}" itemprop="image" loading="lazy"></header>` : ''}
-                            <div class="blog-content pb-4 text-white" style="line-height: 1.8; font-size: 1.15rem;" itemprop="articleBody">
-                                    ${post.content || '<p class="text-muted">Sem conteúdo disponível.</p>'}
+                            <div class="blog-content pb-4 text-white" style="line-height: 1.8; font-size: 1.15rem;" itemprop="articleBody" data-inline-ads="enabled">
+                                ${post.content || '<p class="text-muted">Sem conteúdo disponível.</p>'}
                                 </div>
                                 <hr class="border-secondary mt-5 mb-4 opacity-25">
                                 <div class="d-flex justify-content-between align-items-center flex-wrap gap-4 mt-4">
@@ -212,11 +319,19 @@
                                 </div>
                             </div>
                         </div>
+                        <aside class="col-xl-1 blog-ads-sidebar">
+                            <div class="ad-sidebar-slot is-sticky" data-ad-position="right" data-ad-slot="${ADSENSE_SLOT_BLOG_VERTICAL}">
+                                <span class="ad-slot-label">Publicidade</span>
+                                <!-- blog-post-vertical: lateral direita -->
+                                <div class="ad-sidebar-content" id="ad-sidebar-right"></div>
+                            </div>
+                        </aside>
                     </article>
                 `;
 
                 const articleBody = container.querySelector('.blog-content');
                 if (articleBody) {
+                    injectInlineAdSlots(articleBody);
                     if (window.core && typeof window.core.executeScripts === 'function') {
                         window.core.executeScripts(articleBody);
                     } else {
@@ -230,12 +345,38 @@
                         });
                     }
                 }
+                mountBlogPostAds(container);
 
             } catch (e) {
                 console.error(e);
                 if (heroTitle) heroTitle.innerHTML = 'Post não encontrado';
                 if (container) container.innerHTML = '<div class="text-center"><a href="/blog" class="btn btn-primary">Voltar para o Blog</a></div>';
             }
+        }
+
+        function injectInlineAdSlots(articleBody) {
+            const paragraphSelector = 'p, .ql-align-justify';
+            const paragraphs = Array.from(articleBody.querySelectorAll(paragraphSelector));
+            if (paragraphs.length < 3) return;
+
+            const insertionIndexes = [2, 5, 8].filter((idx) => idx < paragraphs.length);
+            insertionIndexes.forEach((paragraphIndex, slotIndex) => {
+                const referenceParagraph = paragraphs[paragraphIndex];
+                if (!referenceParagraph || referenceParagraph.nextElementSibling?.classList.contains('ad-inline-slot')) {
+                    return;
+                }
+
+                const slot = document.createElement('div');
+                slot.className = 'ad-inline-slot';
+                slot.setAttribute('data-ad-position', `inline-${slotIndex + 1}`);
+                slot.setAttribute('data-ad-slot', ADSENSE_SLOT_BLOG_POST);
+                slot.innerHTML = `
+                    <span class="ad-slot-label">Publicidade</span>
+                    <!-- blog-post: anúncio entre parágrafos -->
+                    <div class="ad-inline-content" id="ad-inline-${slotIndex + 1}"></div>
+                `;
+                referenceParagraph.insertAdjacentElement('afterend', slot);
+            });
         }
 
         function resetBlogMeta() {
