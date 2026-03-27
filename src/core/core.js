@@ -244,10 +244,12 @@ class Core {
         const errorRes = await fetch('/src/pages/404.html');
         if (errorRes.ok) {
           const errorHtml = await errorRes.text();
-          if (errorHtml && errorHtml.trim() !== '') {
+          const isSoft404 = errorHtml.includes('<!DOCTYPE html>') || errorHtml.includes('<html');
+          if (errorHtml && errorHtml.trim() !== '' && !isSoft404) {
             root.innerHTML = errorHtml;
             // Atualiza a URL para 404
             window.history.replaceState({}, '', '/404');
+            this.executeScripts(root);
             this.initializeComponents(root);
             return;
           }
@@ -256,7 +258,14 @@ class Core {
         console.error('Erro ao carregar página 404:', error);
       }
       // Fallback se não conseguir carregar a página 404
-      root.innerHTML = '<div class="error">Página não encontrada</div>';
+      root.innerHTML = `
+        <section class="dev-section text-center py-5">
+          <h1 class="text-white mb-3">404</h1>
+          <p class="text-muted mb-4">Página não encontrada</p>
+          <a href="/" class="dev-btn dev-btn-primary">Voltar ao Início</a>
+        </section>
+      `;
+      window.history.replaceState({}, '', '/404');
     }
   }
 
