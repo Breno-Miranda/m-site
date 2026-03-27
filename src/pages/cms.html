@@ -1,5 +1,6 @@
-<!-- Version: V0.11.10 -->
-<script src="https://cdn.tiny.cloud/1/94yk4tf31jf7bnjst4s8zrmhmf4xsdg4dih9gfwljwbe4m73/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<!-- Version: V0.11.11 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
 
 <style>
     .cms-container {
@@ -96,16 +97,27 @@
         font-weight: 600;
         letter-spacing: -0.02em;
     }
-    .tox.tox-tinymce {
+    .note-editor.note-frame {
         border-radius: 10px !important;
         border: 1px solid #3f3f46 !important;
         overflow: hidden;
-    }
-    .tox .tox-toolbar,
-    .tox .tox-toolbar__primary,
-    .tox .tox-toolbar-overlord,
-    .tox .tox-edit-area__iframe {
         background: #18181b !important;
+    }
+    .note-editor .note-toolbar,
+    .note-editor .note-statusbar {
+        background: #18181b !important;
+        border-color: #27272a !important;
+    }
+    .note-editor .note-editing-area .note-editable {
+        background: #0f0f12 !important;
+        color: #fafafa !important;
+        min-height: 360px;
+    }
+    .note-editor .note-btn,
+    .note-editor .note-color-all .note-dropdown-menu {
+        background: #27272a !important;
+        color: #fafafa !important;
+        border-color: #3f3f46 !important;
     }
 </style>
 
@@ -624,43 +636,48 @@
                     setBlogSlugMode(true);
                     window.generateSlug(document.getElementById('blog-title').value);
 
-                    // Inicializando o TinyMCE
-                    if (!window.quillEditorInstance || !window.tinymce || !window.tinymce.get('blog-editor-container')) {
+                    // Inicializando o Summernote (free, sem token)
+                    if (!window.quillEditorInstance || !window.jQuery || !window.jQuery('#blog-editor-container').next('.note-editor').length) {
                         try {
-                            const editors = await tinymce.init({
-                                selector: '#blog-editor-container',
+                            const $editor = window.jQuery('#blog-editor-container');
+                            $editor.summernote({
                                 height: 360,
-                                menubar: true,
-                                branding: false,
-                                promotion: false,
-                                skin: 'oxide-dark',
-                                content_css: 'dark',
-                                convert_urls: false,
                                 placeholder: 'A mágica começa agora. Escreva seu artigo...',
-                                plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
-                                toolbar: 'undo redo | blocks | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media table | removeformat code fullscreen preview'
+                                dialogsInBody: true,
+                                tabsize: 2,
+                                toolbar: [
+                                    ['style', ['style']],
+                                    ['font', ['bold', 'italic', 'underline', 'clear']],
+                                    ['fontname', ['fontname']],
+                                    ['color', ['color']],
+                                    ['para', ['ul', 'ol', 'paragraph']],
+                                    ['table', ['table']],
+                                    ['insert', ['link', 'picture', 'video', 'hr']],
+                                    ['view', ['fullscreen', 'codeview', 'help']],
+                                    ['misc', ['undo', 'redo']]
+                                ]
                             });
-                            const editor = Array.isArray(editors) ? editors[0] : editors;
+                            const editor = $editor;
                             window.quillEditorInstance = {
                                 _editor: editor,
                                 root: {
                                     get innerHTML() {
-                                        return editor.getContent() || '<p><br></p>';
+                                        return editor.summernote('code') || '<p><br></p>';
                                     },
                                     set innerHTML(value) {
-                                        editor.setContent(value || '<p><br></p>');
+                                        editor.summernote('code', value || '<p><br></p>');
                                     }
                                 },
                                 on(eventName, callback) {
                                     if (eventName === 'text-change') {
-                                        editor.on('input change keyup undo redo SetContent', callback);
+                                        editor.on('summernote.change', callback);
                                     }
                                 }
                             };
                             window.quillEditorInstance.on('text-change', function() {
                                 document.getElementById('blog-content').value = window.quillEditorInstance.root.innerHTML;
                             });
-                        } catch(e) { console.error('TinyMCE não iniciou: ', e); }
+                        } catch(e) { console.error('Summernote não iniciou: ', e); }
                     } else {
                         window.quillEditorInstance.root.innerHTML = '';
                     }

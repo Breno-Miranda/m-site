@@ -145,8 +145,7 @@ class Core {
 
     try {
       // Verifica se o arquivo existe no path
-      const resolvedPageName = pageName === 'admin' ? 'cms' : pageName;
-      const filePath = `/src/pages/${resolvedPageName}.html`;
+      const filePath = `/src/pages/${pageName}.html`;
 
       if (config?.app?.debug) console.log(`filePath`, filePath);
 
