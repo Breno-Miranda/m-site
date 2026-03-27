@@ -155,7 +155,7 @@
         if (window.authService && window.authService.isAuthenticated()) {
             const user = window.authService.getUser();
             if (user && (user.role === 'admin' || (user.roles && user.roles.includes('admin')))) {
-                window.core.navigate('/cms');
+                window.core.navigate('/admin');
             } else {
                 window.core.navigate('/premium');
             }
@@ -204,7 +204,7 @@
                     if (hasAdmin && hasPremium) {
                         const container = document.getElementById('role-options');
                         container.innerHTML = `
-                            <button class="role-btn d-flex align-items-center justify-content-between" onclick="navigateToRole('/cms')">
+                            <button class="role-btn d-flex align-items-center justify-content-between" onclick="navigateToRole('/admin')">
                                 <span><i class="bi bi-shield-lock-fill text-primary me-3"></i> Painel Administrativo</span>
                                 <i class="bi bi-chevron-right small opacity-50"></i>
                             </button>
@@ -224,7 +224,7 @@
                     }
 
                     if (hasAdmin) {
-                        window.core.navigate('/cms');
+                        window.core.navigate('/admin');
                     } else {
                         window.core.navigate('/premium');
                     }

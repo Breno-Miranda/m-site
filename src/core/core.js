@@ -145,7 +145,8 @@ class Core {
 
     try {
       // Verifica se o arquivo existe no path
-      const filePath = `/src/pages/${pageName}.html`;
+      const resolvedPageName = pageName === 'admin' ? 'cms' : pageName;
+      const filePath = `/src/pages/${resolvedPageName}.html`;
 
       if (config?.app?.debug) console.log(`filePath`, filePath);
 
@@ -217,12 +218,12 @@ class Core {
       const footerEl = document.getElementById('footer');
 
       // 1. "essa pagina Crie seu próprio Vídeo Animado grátis! nao pode ir para area logadas"
-      const isLoggedArea = ['premium', 'cms', 'healthtech-dashboard', 'my-apps', 'profile'].includes(pageName);
+      const isLoggedArea = ['premium', 'admin', 'healthtech-dashboard', 'my-apps', 'profile'].includes(pageName);
       if (ctaTutorialEl) {
           ctaTutorialEl.style.display = isLoggedArea ? 'none' : 'block';
       }
 
-      // 2. "dashboard de cms pode apareceer o menu do site.. dash premium nao pode"
+      // 2. "dashboard de admin pode apareceer o menu do site.. dash premium nao pode"
       const hideMainFrame = ['premium', 'healthtech-dashboard'].includes(pageName);
       if (headerEl) headerEl.style.display = hideMainFrame ? 'none' : 'block';
       if (footerEl) footerEl.style.display = hideMainFrame ? 'none' : 'block';

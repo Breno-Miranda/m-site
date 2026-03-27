@@ -179,7 +179,7 @@
         const isActive = (path) => window.location.pathname.startsWith(path) ? 'active bg-primary' : '';
 
         if (auth.hasRole('admin')) {
-          menuItems += `<li><a class="dropdown-item text-white ${isActive('/cms')}" href="/cms"><i class="bi bi-shield-lock me-2"></i>Painel Admin</a></li>`;
+          menuItems += `<li><a class="dropdown-item text-white ${isActive('/admin')}" href="/admin"><i class="bi bi-shield-lock me-2"></i>Painel Admin</a></li>`;
         }
 
         if (auth.hasRole('premium')) {
