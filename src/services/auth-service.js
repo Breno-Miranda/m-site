@@ -23,6 +23,10 @@ class AuthService {
             localStorage.setItem(this.tokenKey, response.token);
             localStorage.setItem(this.userKey, JSON.stringify(response.user));
 
+            if (window.auditService && window.auditService.track) {
+                window.auditService.track('LOGIN', `User login: ${response.user?.email || response.user?.name || 'unknown'}`);
+            }
+
             // Dispatch auth change event
             window.dispatchEvent(new CustomEvent('auth-change', { detail: { isAuthenticated: true, user: response.user } }));
 
@@ -46,6 +50,11 @@ class AuthService {
 
     // Logout
     logout() {
+        const user = this.getUser();
+        if (window.auditService && window.auditService.track) {
+            window.auditService.track('LOGOUT', `User logout: ${user?.email || user?.name || 'unknown'}`);
+        }
+
         localStorage.removeItem(this.tokenKey);
         localStorage.removeItem(this.userKey);
 

@@ -19,6 +19,92 @@
 
 <section class="dev-section pt-0">
   <div class="container">
+    <div class="dev-skill-card p-4 p-lg-5 d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-4">
+      <div>
+        <h2 class="h3 text-white mb-2">Pronto para tirar o projeto do papel?</h2>
+        <p class="text-on-surface-variant mb-0">
+          Fale com nosso time agora no WhatsApp ou avance para iniciar um novo negocio com a Miranda Soft.
+        </p>
+      </div>
+      <div class="d-flex flex-wrap gap-3">
+        <a href="https://wa.me/5584988330532" target="_blank" rel="noopener noreferrer" class="dev-btn dev-btn-primary text-decoration-none">
+          <i class="bi bi-whatsapp me-2"></i> Chamar no WhatsApp
+        </a>
+        <a href="/#contact" class="dev-btn dev-btn-secondary text-decoration-none">
+          <i class="bi bi-briefcase me-2"></i> Fazer Negocio
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dev-section pt-0">
+  <div class="container">
+    <div class="dev-skill-card p-4 p-lg-5">
+      <div class="mb-4">
+        <h2 class="h3 text-white mb-2">Abrir oportunidade de negocio</h2>
+        <p class="text-on-surface-variant mb-0">
+          Preencha os dados do projeto. Nosso time comercial recebe seu lead e retorna com o plano ideal.
+        </p>
+      </div>
+
+      <form id="lead-capture-form" class="row g-3">
+        <div class="col-md-6">
+          <label for="lead-name" class="form-label text-light">Nome completo</label>
+          <input id="lead-name" name="name" type="text" class="form-control cms-input" required>
+        </div>
+        <div class="col-md-6">
+          <label for="lead-email" class="form-label text-light">E-mail</label>
+          <input id="lead-email" name="email" type="email" class="form-control cms-input" required>
+        </div>
+        <div class="col-md-6">
+          <label for="lead-phone" class="form-label text-light">WhatsApp</label>
+          <input id="lead-phone" name="phone" type="text" class="form-control cms-input" required>
+        </div>
+        <div class="col-md-6">
+          <label for="lead-company" class="form-label text-light">Empresa</label>
+          <input id="lead-company" name="company" type="text" class="form-control cms-input">
+        </div>
+        <div class="col-md-6">
+          <label for="lead-service" class="form-label text-light">Servico de interesse</label>
+          <select id="lead-service" name="service" class="form-select cms-input" required>
+            <option value="">Selecione</option>
+            <option value="Desenvolvimento Web">Desenvolvimento Web</option>
+            <option value="Apps Mobile">Apps Mobile</option>
+            <option value="Consultoria TI">Consultoria TI</option>
+            <option value="Cloud Computing">Cloud Computing</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="lead-budget" class="form-label text-light">Faixa de investimento</label>
+          <select id="lead-budget" name="budget" class="form-select cms-input">
+            <option value="">Nao informado</option>
+            <option value="ate-10k">Ate R$ 10 mil</option>
+            <option value="10k-30k">R$ 10 mil a R$ 30 mil</option>
+            <option value="30k-80k">R$ 30 mil a R$ 80 mil</option>
+            <option value="acima-80k">Acima de R$ 80 mil</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label for="lead-message" class="form-label text-light">Descreva o objetivo</label>
+          <textarea id="lead-message" name="message" rows="4" class="form-control cms-input" required></textarea>
+        </div>
+        <div class="col-12 d-flex flex-wrap gap-3 pt-2">
+          <button id="lead-submit-btn" type="submit" class="dev-btn dev-btn-primary">
+            Enviar lead
+          </button>
+          <a href="https://wa.me/5584988330532" target="_blank" rel="noopener noreferrer" class="dev-btn dev-btn-secondary text-decoration-none">
+            Preferir WhatsApp
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="dev-section pt-0">
+  <div class="container">
     <div class="row g-4">
       <div class="col-lg-6" id="desenvolvimento-web">
         <article class="dev-skill-card h-100 p-4 p-lg-5">
@@ -78,3 +164,56 @@
     </div>
   </div>
 </section>
+
+<script>
+  (function () {
+    const form = document.getElementById('lead-capture-form');
+    const submitBtn = document.getElementById('lead-submit-btn');
+    if (!form || !submitBtn) return;
+
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      const getFieldValue = (name) => {
+        const element = form.querySelector(`[name="${name}"]`);
+        return element ? String(element.value || '').trim() : '';
+      };
+
+      const payload = {
+        name: getFieldValue('name'),
+        email: getFieldValue('email'),
+        phone: getFieldValue('phone'),
+        company: getFieldValue('company'),
+        service: getFieldValue('service'),
+        budget: getFieldValue('budget'),
+        message: getFieldValue('message'),
+        source: 'website:expertise'
+      };
+
+      if (!payload.name || !payload.email || !payload.phone || !payload.service || !payload.message) {
+        window.core.toast('Preencha os campos obrigatorios do formulario.', 'warning');
+        return;
+      }
+
+      const previousHtml = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Enviando...';
+      submitBtn.disabled = true;
+
+      try {
+        const response = await window.core.fetchAPI('/leads', 'POST', payload);
+        if (!response || !response.success) {
+          throw new Error(response && response.error ? response.error : 'Falha ao enviar lead');
+        }
+
+        form.reset();
+        window.core.toast('Lead enviado com sucesso. Retornaremos em breve.', 'success');
+      } catch (error) {
+        const message = error && error.message ? error.message : 'Nao foi possivel enviar o lead';
+        window.core.toast(message, 'error');
+      } finally {
+        submitBtn.innerHTML = previousHtml;
+        submitBtn.disabled = false;
+      }
+    });
+  })();
+</script>
