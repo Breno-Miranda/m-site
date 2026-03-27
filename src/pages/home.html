@@ -141,13 +141,6 @@
               Ler Artigo Completo
             </a>
         </div>
-        
-        <div class="col-lg-5 d-flex justify-content-center" id="cta-image-col" style="display: none;">
-               <div class="shadow-lg overflow-hidden" style="aspect-ratio: 16/10; border-radius: 24px; background-color: #000; position: relative; border: 1px solid rgba(255,255,255,0.05);">
-                  <img id="cta-img" src="" 
-                       alt="Blog Destaque" class="w-100 h-100 object-fit-cover opacity-75">
-               </div>
-           </div>
         </div>
       </div>
     </div>
@@ -345,7 +338,6 @@
           if (highlightPost && ctaSection) {
               const hTitle = document.getElementById('cta-title');
               const hDesc = document.getElementById('cta-desc');
-              const hImg = document.getElementById('cta-img');
               const hBtn = document.getElementById('cta-btn');
               const hMeta = document.getElementById('cta-meta');
               const dateStr = highlightPost.createdAt || highlightPost.date;
@@ -353,49 +345,6 @@
 
               if (hTitle) hTitle.textContent = highlightPost.title;
               if (hDesc) hDesc.textContent = highlightPost.description || ((highlightPost.content || '').replace(/<[^>]*>/g, '').substring(0, 160).trim() + '...');
-              const imgCol = document.getElementById('cta-image-col');
-              const textCol = document.getElementById('cta-text-col');
-              const imageUrl = (highlightPost.imageUrl || '').trim();
-              const setCtaImageVisibility = (showImage) => {
-                if (imgCol) imgCol.style.display = showImage ? '' : 'none';
-                if (textCol) {
-                  textCol.classList.toggle('col-lg-7', showImage);
-                  textCol.classList.toggle('col-lg-12', !showImage);
-                }
-              };
-              const hideCtaImage = () => {
-                if (hImg) hImg.removeAttribute('src');
-                setCtaImageVisibility(false);
-              };
-
-              setCtaImageVisibility(false);
-              if (imageUrl && hImg) {
-                try {
-                  const imageResponse = await fetch(imageUrl, { method: 'GET' });
-                  if (imageResponse.ok) {
-                    hImg.src = imageUrl;
-                    setCtaImageVisibility(true);
-                  } else {
-                    hideCtaImage();
-                  }
-                } catch (error) {
-                  // Fallback para cenarios de CORS: valida carregamento real da imagem
-                  const canRenderImage = await new Promise((resolve) => {
-                    const probe = new Image();
-                    probe.onload = () => resolve(true);
-                    probe.onerror = () => resolve(false);
-                    probe.src = imageUrl;
-                  });
-                  if (canRenderImage) {
-                    hImg.src = imageUrl;
-                    setCtaImageVisibility(true);
-                  } else {
-                    hideCtaImage();
-                  }
-                }
-              } else {
-                hideCtaImage();
-              }
               if (hBtn) hBtn.href = `/blog/${highlightPost.slug}`;
               if (hMeta) hMeta.innerHTML = `<span class="text-white"><i class="bi bi-calendar3 me-1"></i> ${date}</span> <span class="opacity-50 text-white">|</span> <span class="text-info fw-semibold"><i class="bi bi-tag me-1"></i> ${highlightPost.category || 'Insights'}</span>`;
           }
