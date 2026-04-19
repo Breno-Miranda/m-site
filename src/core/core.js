@@ -44,8 +44,11 @@ class Core {
     elements.forEach(async el => {
       const name = el.getAttribute('data-component');
 
-      // Skip skeleton components
-      if (name === 'skeleton') return;
+      // Skip skeleton components, already loaded components, or components currently loading
+      if (name === 'skeleton' || el.hasAttribute('data-loaded') || el.hasAttribute('data-loading')) return;
+
+      // Mark as loading to prevent duplicate triggers
+      el.setAttribute('data-loading', 'true');
 
       // Determine skeleton type based on component name
       const skeletonTypeMap = {
@@ -73,18 +76,23 @@ class Core {
           // Use smooth transition if Skeleton is available
           if (typeof Skeleton !== 'undefined' && Skeleton.hide) {
             Skeleton.hide(el, content, () => {
+              el.removeAttribute('data-loading');
+              el.setAttribute('data-loaded', 'true');
               this.loadedHtmlComponents.add(name);
               // Execute any inline scripts
               this.executeScripts(el);
             });
           } else {
             el.innerHTML = content;
+            el.removeAttribute('data-loading');
+            el.setAttribute('data-loaded', 'true');
             this.loadedHtmlComponents.add(name);
             this.executeScripts(el);
           }
           return;
         }
       } catch (error) {
+        el.removeAttribute('data-loading');
         if (config?.app?.debug) console.warn(`Failed to load component: ${name}`, error);
       }
 
@@ -96,11 +104,18 @@ class Core {
           if (typeof Skeleton !== 'undefined' && Skeleton.hide) {
             const tempDiv = document.createElement('div');
             instance.render(tempDiv);
-            Skeleton.hide(el, tempDiv.innerHTML);
+            Skeleton.hide(el, tempDiv.innerHTML, () => {
+              el.removeAttribute('data-loading');
+              el.setAttribute('data-loaded', 'true');
+            });
           } else {
             instance.render(el);
+            el.removeAttribute('data-loading');
+            el.setAttribute('data-loaded', 'true');
           }
         }
+      } else {
+        el.removeAttribute('data-loading');
       }
     });
   }
@@ -418,6 +433,40 @@ class Core {
       console.timeEnd('fetchAPI');
       return responseData;
     } catch (error) {
+      // Tenta fallback se a URL base falhar e não for o próprio fallback
+      const fallbackUrl = config?.api?.fallbackUrl;
+      const baseUrl = config?.api?.baseUrl;
+
+      if (fallbackUrl && baseUrl !== fallbackUrl && !url.startsWith('http')) {
+        if (config?.app?.debug) console.warn(`[API Fallback] Request failed, retrying with ${fallbackUrl}`);
+        
+        try {
+          const cleanFallback = fallbackUrl.replace(/\/+$/, '');
+          const cleanUrl = url.replace(/^\/+/, '');
+          const fallbackFullUrl = `${cleanFallback}/${cleanUrl}`;
+          
+          const options = {
+            method: verb,
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('msoft_auth_token') || config?.api?.token || '____STANDBY____'}`,
+            },
+            mode: 'cors',
+            credentials: 'include'
+          };
+          if (verb !== 'GET') options.body = JSON.stringify(data);
+
+          const res = await fetch(fallbackFullUrl, options);
+          if (res.ok) {
+            const fallbackData = await res.json();
+            console.timeEnd('fetchAPI');
+            return fallbackData;
+          }
+        } catch (fallbackErr) {
+          if (config?.app?.debug) console.error('[API Fallback] Critical Error:', fallbackErr);
+        }
+      }
+
       // Mensagens de erro mais específicas baseadas no tipo de erro
       let errorMessage = 'Erro ao acessar o servidor. Por favor, tente novamente mais tarde.';
 

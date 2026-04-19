@@ -1,4 +1,4 @@
-<!-- Version: V0.11.11 -->
+<!-- Version: V0.11.39 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
 
@@ -8,7 +8,45 @@
         min-height: 100vh;
         font-family: 'Inter', sans-serif;
     }
-    /* Sobrescreve .dev-section { padding: 100px 0 } do developer.css */
+    /* Tech UI Actions */
+    .btn-action-tech {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #a1a1aa;
+        transition: all 0.2s ease;
+    }
+    .btn-action-tech:hover {
+        transform: translateY(-2px);
+    }
+    .btn-action-tech.edit:hover {
+        background: rgba(59, 130, 246, 0.15);
+        border-color: rgba(59, 130, 246, 0.4);
+        color: #60a5fa;
+    }
+    .btn-action-tech.delete:hover {
+        background: rgba(239, 68, 68, 0.15);
+        border-color: rgba(239, 68, 68, 0.4);
+        color: #f87171;
+    }
+    .extra-small {
+        font-size: 0.75rem;
+    }
+    .hover-primary:hover {
+        color: var(--ms-primary) !important;
+    }
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    /* Rest of existing styles... */
     section.cms-container.dev-section {
         padding-top: 0.75rem;
         padding-bottom: 0.5rem;
@@ -118,6 +156,56 @@
         background: #27272a !important;
         color: #fafafa !important;
         border-color: #3f3f46 !important;
+    }
+    /* Summernote Modals (Insert Link, Image, etc) */
+    .note-modal-content {
+        background: #18181b !important;
+        color: #fafafa !important;
+        border: 1px solid #3f3f46 !important;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5) !important;
+        border-radius: 12px !important;
+    }
+    .note-modal-header {
+        border-bottom: 1px solid #27272a !important;
+        padding: 15px 20px !important;
+    }
+    .note-modal-header .close {
+        color: #fafafa !important;
+        opacity: 0.5;
+    }
+    .note-modal-body {
+        padding: 20px !important;
+    }
+    .note-modal-footer {
+        border-top: 1px solid #27272a !important;
+        padding: 15px 20px !important;
+    }
+    .note-form-label {
+        color: #a1a1aa !important;
+        margin-bottom: 8px !important;
+        font-weight: 500 !important;
+    }
+    .note-input {
+        background: #09090b !important;
+        border: 1px solid #3f3f46 !important;
+        color: #fafafa !important;
+        border-radius: 6px !important;
+        padding: 8px 12px !important;
+    }
+    .note-input:focus {
+        border-color: #3b82f6 !important;
+        outline: none !important;
+    }
+    .note-modal .btn-primary {
+        background: #3b82f6 !important;
+        border-color: #3b82f6 !important;
+        color: #fff !important;
+        font-weight: 600 !important;
+    }
+    .note-modal .btn-default {
+        background: transparent !important;
+        border-color: #3f3f46 !important;
+        color: #fafafa !important;
     }
 </style>
 
@@ -687,23 +775,45 @@
                         const listEl = document.getElementById('blog-list-container');
                         if (res && res.success && res.data.length > 0) {
                             window.blogCache = {};
-                            let listHtml = '<div class="list-group gap-3">';
+                            let listHtml = '<div class="d-flex flex-column gap-3">';
+                            
                             res.data.forEach(blog => {
                                 window.blogCache[blog._id] = blog;
-                                const status = blog.published ? '<span class="badge bg-success bg-opacity-25 text-success px-3 py-2 rounded-pill"><i class="bi bi-check-circle-fill me-1"></i> Publicado</span>' : '<span class="badge bg-warning bg-opacity-25 text-warning px-3 py-2 rounded-pill"><i class="bi bi-clock-history me-1"></i> Rascunho</span>';
+                                const status = blog.published 
+                                    ? '<span class="badge-tech" style="color: #10b981; border-color: rgba(16,185,129,0.2); background: rgba(16,185,129,0.05);"><i class="bi bi-check2-circle me-1"></i> Ativo</span>' 
+                                    : '<span class="badge-tech" style="color: #f59e0b; border-color: rgba(245,158,11,0.2); background: rgba(245,158,11,0.05);"><i class="bi bi-clock me-1"></i> Rascunho</span>';
+                                
                                 listHtml += `
-                                    <div class="list-group-item border-0 p-4 rounded-4 d-flex justify-content-between align-items-center flex-wrap" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05) !important; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 10px 25px rgba(0,0,0,0.5)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.boxShadow=''; this.style.transform='';">
-                                        <div class="d-flex flex-column gap-2 mb-2 mb-md-0">
-                                            <h5 class="text-white mb-0 fw-bold"><a href="/blog/${blog.slug}" target="_blank" class="text-decoration-none text-white">${blog.title}</a></h5>
-                                            <div class="d-flex flex-wrap gap-3 align-items-center">
-                                                ${status}
-                                                <span class="text-muted small"><i class="bi bi-folder text-info me-1"></i> ${(blog.categories && blog.categories.length ? blog.categories.join(', ') : (blog.category || 'Geral'))}</span>
-                                                <span class="text-muted small"><i class="bi bi-eye text-info me-1"></i> ${blog.views || 0} visualizações</span>
+                                    <div class="ms-card p-3 p-md-4" style="transition: all 0.3s ease;">
+                                        <div class="row align-items-center g-3">
+                                            <!-- Info do Artigo -->
+                                            <div class="col-12 col-md">
+                                                <h6 class="text-white mb-1 fw-bold">
+                                                    <a href="/blog/${blog.slug}" target="_blank" class="text-decoration-none text-white hover-primary">${blog.title}</a>
+                                                </h6>
+                                                <div class="d-flex flex-wrap align-items-center gap-2">
+                                                    <span class="text-muted extra-small"><i class="bi bi-folder text-info me-1"></i> ${(blog.categories && blog.categories.length ? blog.categories[0] : (blog.category || 'Geral'))}</span>
+                                                    <span class="text-muted opacity-25">|</span>
+                                                    <span class="text-muted extra-small"><i class="bi bi-eye text-info me-1"></i> ${blog.views || 0}</span>
+                                                    <span class="text-muted opacity-25">|</span>
+                                                    <span class="text-muted extra-small">/${blog.slug}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="d-flex gap-2">
-                                            <button class="btn btn-outline-info" style="border-radius: 8px;" onclick="editBlog('${blog._id}')" title="Modificar Texto"><i class="bi bi-pencil-square"></i></button>
-                                            <button class="btn btn-outline-danger" style="border-radius: 8px;" onclick="deleteBlog('${blog._id}')" title="Apagar"><i class="bi bi-trash3"></i></button>
+                                            
+                                            <!-- Status e Ações -->
+                                            <div class="col-12 col-md-auto">
+                                                <div class="d-flex align-items-center justify-content-between justify-content-md-end gap-4">
+                                                    ${status}
+                                                    <div class="d-flex gap-2">
+                                                        <button class="btn-action-tech edit" onclick="editBlog('${blog._id}')" title="Editar Artigo">
+                                                            <i class="bi bi-pencil-square"></i>
+                                                        </button>
+                                                        <button class="btn-action-tech delete" onclick="deleteBlog('${blog._id}')" title="Excluir">
+                                                            <i class="bi bi-trash3"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 `;
@@ -714,8 +824,9 @@
                             listEl.innerHTML = '<div class="alert alert-dark border-secondary bg-black text-white text-center rounded-4"><i class="bi bi-wind fs-2 d-block text-muted mb-3 mt-2"></i>Nenhum artigo detectado. O estúdio está vazio!</div>';
                         }
                     } catch (e) {
+                        console.error(e);
                         const listEl = document.getElementById('blog-list-container');
-                        if (listEl) listEl.innerHTML = '<div class="text-danger p-3 bg-danger bg-opacity-10 rounded">Erro estrutural ao se conectar com a API (M-Manage). O Serviço M-API está ativo?</div>';
+                        if (listEl) listEl.innerHTML = '<div class="text-danger p-3 bg-danger bg-opacity-10 rounded">Erro estrutural ao se conectar com a API (M-Manage).</div>';
                     }
                 };
 

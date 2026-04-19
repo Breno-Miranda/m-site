@@ -30,20 +30,20 @@ body {
   --bs-body-line-height: 2;
   --bs-body-color: #747474;
 
-  --bs-primary: #6BB252;
-  --bs-primary-rgb: 107, 178, 82;
+  --bs-primary: #3b82f6;
+  --bs-primary-rgb: 59, 130, 246;
   
-  --bs-secondary: #364127;
-  --bs-secondary-rgb: 54, 65, 39;
+  --bs-secondary: #06b6d4;
+  --bs-secondary-rgb: 6, 182, 212;
   
-  --bs-danger: #F95F09;
-  --bs-danger-rgb: 249, 95, 9;
+  --bs-danger: #ef4444;
+  --bs-danger-rgb: 239, 68, 68;
 
-  --bs-success: #a3be4c;
-  --bs-success-rgb: 163, 190, 76;
+  --bs-success: #10b981;
+  --bs-success-rgb: 16, 185, 129;
   
-  --bs-primary-bg-subtle: #FFF9EB;
-  --bs-success-bg-subtle: #eef5e5;
+  --bs-primary-bg-subtle: #eff6ff;
+  --bs-success-bg-subtle: #ecfdf5;
   
   --bs-border-color: #F7F7F7;
 }

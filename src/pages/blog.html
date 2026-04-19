@@ -9,15 +9,26 @@
     .ad-inline-slot ins.adsbygoogle {
         display: block !important;
         margin: 1.75rem auto;
-        max-width: 100%;
+        max-width: 100% !important;
         min-height: 90px;
+        overflow: hidden !important;
+        text-align: center;
     }
     .ad-sidebar-slot .adsbygoogle,
     .ad-sidebar-slot ins.adsbygoogle {
         margin: 0 auto;
+        width: 100% !important;
     }
-    .blog-content iframe {
-        max-width: 100%;
+    .blog-content iframe,
+    .ad-sidebar-slot iframe,
+    .ad-inline-slot iframe {
+        max-width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    .ad-sidebar-slot, .ad-inline-slot {
+        overflow: hidden !important;
+        position: relative;
     }
 
     /* Sidebars de anúncios no detalhe do post */
@@ -160,13 +171,10 @@
         const ADSENSE_CLIENT = 'ca-pub-7844284078845131';
         const ADSENSE_SLOT_BLOG_POST = '4406317970';
         const ADSENSE_SLOT_BLOG_VERTICAL = '6976640993';
-        const SIDEBAR_AD_DELAY_MS = 10000;
 
-        let sidebarAdsTimerId = null;
         let sidebarAdsGeneration = 0;
 
-        function ensureAdsenseScript() {
-            if (document.getElementById('adsense-script-blog')) return;
+        function ensureAdsenseScript() {            if (document.getElementById('adsense-script-blog')) return;
             const s = document.createElement('script');
             s.id = 'adsense-script-blog';
             s.async = true;
@@ -209,19 +217,11 @@
         }
 
         function mountBlogPostSidebarAds(container) {
-            if (!container || !document.body.contains(container)) return;
             ensureAdsenseScript();
             container.querySelectorAll('.ad-sidebar-content').forEach((el) => {
                 appendAdSenseUnit(el, ADSENSE_SLOT_BLOG_VERTICAL);
             });
             pushAdsenseSlots(container);
-        }
-
-        function clearSidebarAdSchedule() {
-            if (sidebarAdsTimerId) {
-                clearTimeout(sidebarAdsTimerId);
-                sidebarAdsTimerId = null;
-            }
         }
 
         // Check for slug in params
@@ -231,7 +231,6 @@
 
         // --- Detail View ---
         async function loadPost(slug) {
-            clearSidebarAdSchedule();
             sidebarAdsGeneration++;
             const loadGen = sidebarAdsGeneration;
 
@@ -406,12 +405,10 @@
                 document.body.classList.add('blog-post-detail-open');
 
                 mountBlogPostInlineAds(container);
-                sidebarAdsTimerId = setTimeout(() => {
-                    sidebarAdsTimerId = null;
-                    if (loadGen !== sidebarAdsGeneration) return;
-                    const root = document.getElementById('post-content');
+                const root = document.getElementById('post-content');
+                if (loadGen === sidebarAdsGeneration) {
                     mountBlogPostSidebarAds(root);
-                }, SIDEBAR_AD_DELAY_MS);
+                }
 
             } catch (e) {
                 console.error(e);
@@ -468,7 +465,6 @@
         // --- List View ---
         async function loadBlogs() {
             if (!grid) return;
-            clearSidebarAdSchedule();
             sidebarAdsGeneration++;
             document.documentElement.classList.remove('blog-post-detail-open');
             document.body.classList.remove('blog-post-detail-open');

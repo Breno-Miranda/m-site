@@ -8,30 +8,30 @@
    CSS VARIABLES - Design System
    ============================================ */
 :root {
-  --ms-surface: #131318;
-  --ms-surface-container-low: #131318;
-  --ms-surface-container: #1b1b20;
-  --ms-surface-container-high: #1f1f25;
-  --ms-surface-container-highest: #2a292f;
+  --ms-surface: #0a0a0f;
+  --ms-surface-container-low: #0f0f15;
+  --ms-surface-container: #14141d;
+  --ms-surface-container-high: #1a1a26;
+  --ms-surface-container-highest: #222230;
   
-  /* Primary Palette - Obsidian to Neon */
-  --ms-primary: #adc6ff;
-  --ms-primary-container: #4d8eff;
-  --ms-on-primary-container: #00285d;
-  --ms-secondary: #4cd7f6;
-  --ms-tertiary: #4edea3;
-  --ms-tertiary-container: #00a572;
+  /* Primary Palette - MirandaSoft Brand */
+  --ms-primary: #3b82f6;
+  --ms-primary-container: #1d4ed8;
+  --ms-on-primary-container: #ffffff;
+  --ms-secondary: #06b6d4;
+  --ms-tertiary: #10b981;
+  --ms-tertiary-container: #059669;
   --ms-on-tertiary-container: #ffffff;
   
   /* Text Colors - Editorial Voice */
-  --ms-text-primary: #e4e1e9;
-  --ms-text-secondary: #909094;
+  --ms-text-primary: #f1f5f9;
+  --ms-text-secondary: #94a3b8;
   --ms-text-muted: #64748b;
-  --ms-on-surface-variant: #c2c6d6;
+  --ms-on-surface-variant: #94a3b8;
   
   /* Outlines - Ghost Border Principle */
-  --ms-outline: #8c909f;
-  --ms-outline-variant: rgba(66, 71, 84, 0.15);
+  --ms-outline: #475569;
+  --ms-outline-variant: rgba(30, 41, 59, 0.3);
   
   /* Typography - Editorial Scale */
   --ms-font-display: 'Inter', sans-serif;

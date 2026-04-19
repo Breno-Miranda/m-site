@@ -18,13 +18,14 @@ function resolveApiBaseUrl() {
 const config = {
   app: {
     name: "Miranda Soft",
-    version: "0.10.43",
+    version: "0.10.44",
     environment: "production",
     debug: false,
     token: "9f3c8b1a-2d7e-4a4d-91e3-c9f621f7dcb1"
   },
   api: {
     baseUrl: resolveApiBaseUrl(),
+    fallbackUrl: "https://api.mirandasoft.com.br",
     timeout: 30000,
     retryAttempts: 3,
     useProxy: false,

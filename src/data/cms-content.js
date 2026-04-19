@@ -7,9 +7,9 @@
     hero: {
       eyebrow: "Tecnologia & Inovação",
       title: "Soluções digitais que transformam o seu negócio",
-      subtitle: "Miranda Soft",
+      subtitle: "MSoft Digital",
       description:
-        "Somos uma empresa líder em desenvolvimento de software e soluções tecnológicas inovadoras. Transformamos ideias complexas em produtos digitais de alta performance, focados em resultados reais para sua empresa.",
+        "Somos líderes em desenvolvimento de software e soluções tecnológicas inovadoras. Transformamos ideias complexas em produtos de alta performance, focados em resultados reais para sua empresa.",
       primaryAction: {
         label: "Conheça Nossas Soluções",
         href: "#solucoes",
@@ -52,16 +52,16 @@
       },
     ],
     about: {
-      title: "Sobre a Miranda Soft",
+      title: "Nossa Essência",
       description:
-        "Fundada com a missão de democratizar o acesso à tecnologia de alta qualidade, a Miranda Soft (MSoft) se estabeleceu como referência em desenvolvimento de soluções digitais no Rio Grande do Norte e para todo o Brasil.",
+        "Fundada com a missão de democratizar o acesso à tecnologia de alta qualidade, a MSoft se estabeleceu como referência em desenvolvimento de soluções digitais para todo o Brasil.",
       bullets: [
         "10+ Anos de Experiência",
         "100% Foco no Cliente",
         "Equipe Especializada",
         "Projetos de Alta Complexidade",
       ],
-      supportTitle: "Por que escolher a MSoft?",
+      supportTitle: "Por que nos escolher?",
       supportDescription: "Nossa essência é entregar qualidade técnica superior com agilidade e parceria real.",
       supportColumns: [
         ["Qualidade Técnica Superior", "Tecnologias Modernas (React, Node.js)", "Longevidade do Projeto"],
@@ -73,7 +73,7 @@
         name: "Carlos Eduardo",
         relation: "CEO - TechSolutions RN",
         quote:
-          "A Miranda Soft transformou nossa operação. O sistema desenvolvido por eles automatizou processos que levavam dias em poucos minutos.",
+          "Essa parceria transformou nossa operação. O sistema desenvolvido automatizou processos que levavam dias em poucos minutos.",
         icon: "bi-person-circle",
         tone: "primary",
       },
@@ -106,7 +106,7 @@
     },
     seo: {
       updatedAt: new Date().toISOString(),
-      author: "Miranda Soft",
+      author: "MSoft",
     },
   };
 
