@@ -532,7 +532,7 @@
                             <a href="/blog/${post.slug}" class="text-white text-decoration-none hover-gradient">${post.title}</a>
                         </h3>
                         <p class="text-muted small line-clamp-3 mb-3">
-                            ${post.description || (post.content || '').replace(/<[^>]*>/g, '').substring(0, 120).trim() + '...'}
+                            ${post.description || (post.content || '').replace(/<[^>]*>/g, '').substring(0, 120).trim()}
                         </p>
                         <a href="/blog/${post.slug}" class="dev-link-arrow text-primary text-decoration-none small fw-semibold">
                             Ler Artigo <i class="bi bi-arrow-right"></i>

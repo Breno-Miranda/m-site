@@ -12,7 +12,7 @@ function resolveApiBaseUrl() {
   const h = window.location.hostname;
   const isLocal = h === 'localhost' || h === '127.0.0.1';
   if (!isLocal) return 'https://api.mirandasoft.com.br';
-  return 'http://127.0.0.1:3000';
+  return `http://${h}:3000`;
 }
 
 const config = {

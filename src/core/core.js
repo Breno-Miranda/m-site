@@ -436,6 +436,7 @@ class Core {
       console.timeEnd('fetchAPI');
       return responseData;
     } catch (error) {
+      if (config?.app?.debug) console.error('[API Fetch Error Original]:', error);
       // Tenta fallback se a URL base falhar e não for o próprio fallback
       const fallbackUrl = config?.api?.fallbackUrl;
       const baseUrl = config?.api?.baseUrl;
@@ -451,6 +452,7 @@ class Core {
           const options = {
             method: verb,
             headers: {
+              'Accept': '*/*',
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${localStorage.getItem('msoft_auth_token') || config?.api?.token || '____STANDBY____'}`,
             },
@@ -460,9 +462,14 @@ class Core {
           if (verb !== 'GET') options.body = JSON.stringify(data);
 
           const res = await fetch(fallbackFullUrl, options);
+          const fallbackData = await res.json().catch(() => ({}));
+          
           if (res.ok) {
-            const fallbackData = await res.json();
             console.timeEnd('fetchAPI');
+            return fallbackData;
+          } else {
+            // Se o fallback retornou erro (ex: 403), repassa esse erro em vez de deixar cair na falha de conexão original
+            if (config?.app?.debug) console.error('[API Fallback] Error Status:', res.status, fallbackData);
             return fallbackData;
           }
         } catch (fallbackErr) {

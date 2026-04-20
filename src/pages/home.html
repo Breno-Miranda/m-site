@@ -129,7 +129,7 @@
              <i class="bi bi-patch-check-fill"></i>
              <span class="small fw-bold text-uppercase tracking-wider">Novo Lançamento</span>
            </div>
-            <h2 class="display-md text-white mb-4" id="cta-title">Carregando Destaque...</h2>
+            <h2 class="display-md text-white mb-4" id="cta-title"></h2>
             <p class="body-lg mb-4 text-on-surface-variant" id="cta-desc">
               Buscando as últimas novidades da Miranda Soft para você.
             </p>
@@ -344,7 +344,7 @@
               const date = dateStr ? new Date(dateStr).toLocaleDateString('pt-BR') : 'Hoje';
 
               if (hTitle) hTitle.textContent = highlightPost.title;
-              if (hDesc) hDesc.textContent = highlightPost.description || ((highlightPost.content || '').replace(/<[^>]*>/g, '').substring(0, 160).trim() + '...');
+              if (hDesc) hDesc.textContent = highlightPost.description || ((highlightPost.content || '').replace(/<[^>]*>/g, '').substring(0, 160).trim());
               if (hBtn) hBtn.href = `/blog/${highlightPost.slug}`;
               if (hMeta) hMeta.innerHTML = `<span class="text-white"><i class="bi bi-calendar3 me-1"></i> ${date}</span> <span class="opacity-50 text-white">|</span> <span class="text-info fw-semibold"><i class="bi bi-tag me-1"></i> ${highlightPost.category || 'Insights'}</span>`;
           }

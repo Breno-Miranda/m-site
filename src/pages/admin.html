@@ -369,7 +369,7 @@
                     </form>
                     <div class="mt-4">
                         <h6 class="text-white mb-3">Chaves recentes</h6>
-                        <div id="mjson-list" class="small text-muted">Carregando...</div>
+                        <div id="mjson-list" class="small text-muted"></div>
                     </div>
                 `;
                 window.saveMjson = async function () {
@@ -453,7 +453,7 @@
 
                 refreshMjsonList();
             } else if (tab === 'logs') {
-                container.innerHTML = '<div class="text-center py-5"><div class="spinner-grow text-info" role="status"></div><p class="text-muted mt-3">Acessando servidores...</p></div>';
+                container.innerHTML = '<div class="text-center py-5"><div class="spinner-grow text-info" role="status"></div><p class="text-muted mt-3"></p></div>';
                 try {
                     const res = await window.core.fetchAPI('/logs');
                     let logsHtml = '';
